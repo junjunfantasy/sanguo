@@ -60,7 +60,7 @@
 </div>
 <div class="main">
     <div class="page-title">🃏 三国杀·武将图鉴</div>
-    <div class="page-subtitle"><span id="totalCount">66</span>位武将 · 技能探索 · 组队模拟</div>
+    <div class="page-subtitle"><span id="totalCount">0</span>位武将 · 技能探索 · 组队模拟</div>
 
     <div class="search-section fade-in" style="padding:16px 20px;margin-bottom:16px;">
         <div class="search-box" style="margin-bottom:12px;">
@@ -255,17 +255,27 @@ function renderCards() {
   const grid = document.getElementById('gameCardGrid');
   const filtered = chars.filter(c => {
     if (factionFilter !== 'all' && c.faction !== factionFilter) return false;
-    if (q && !c.name.includes(q) && !(c.alias||'').toLowerCase().includes(q)) return false;
+    if (q && !c.name.toLowerCase().includes(q) && !(c.alias||'').toLowerCase().includes(q)) return false;
     return true;
   });
   document.getElementById('filterCount').textContent = `显示 ${filtered.length} 人`;
   if (!filtered.length) { grid.innerHTML = '<div class="empty-state"><div class="empty-state-icon">📭</div>没有找到匹配的武将</div>'; return; }
-  grid.innerHTML = filtered.map(c => {
+  
+  let html = '';
+  filtered.forEach(c => {
     const hp = c.hp || 4;
     const skills = c.skills || [];
     const inTeam = team.some(t => t.name === c.name);
     const f = c.faction||'群';
-    return `<div class="game-card ${inTeam?'selected':''}" onclick="toggleTeam('${c.name}')" style="position:relative;padding-top:24px;">
+    
+    let skillHtml = '';
+    skills.forEach(s => {
+      const desc = SD[s] || '—';
+      const brief = desc.indexOf('。') >= 0 ? desc.split('。')[0] + '。' : desc.slice(0, 20) + '…';
+      skillHtml += `<div class="skill-item"><div class="skill-name" data-skill="${s}" data-char="${c.name}">${s}</div><div class="skill-desc">${brief}</div></div>`;
+    });
+    
+    html += `<div class="game-card ${inTeam?'selected':''}" data-char="${c.name}" style="position:relative;padding-top:24px;">
       <div class="faction-stripe" style="background:${FC[f]}"></div>
       <div class="game-card-header">
         <div>
@@ -277,12 +287,27 @@ function renderCards() {
         </div>
         <div class="hp-row">${'<span class="hp-dot"></span>'.repeat(hp)}</div>
       </div>
-      <div class="game-card-skills">${skills.map(s => {
-        const desc = SD[s] || '—';
-        return `<div class="skill-item"><div class="skill-name" onclick="event.stopPropagation();showSkill('${s}','${c.name}')">${s}</div><div class="skill-desc">${desc.split('。')[0]}。</div></div>`;
-      }).join('')}</div>
+      <div class="game-card-skills">${skillHtml}</div>
     </div>`;
-  }).join('');
+  });
+  grid.innerHTML = html;
+  
+  // 事件委托——点击卡牌切换阵容
+  grid.onclick = function(e) {
+    const card = e.target.closest('.game-card');
+    if (!card) return;
+    const name = card.getAttribute('data-char');
+    if (name) toggleTeam(name);
+  };
+  // 事件委托——点击技能名弹出详情
+  grid.querySelectorAll('.skill-name').forEach(el => {
+    el.onclick = function(e) {
+      e.stopPropagation();
+      const skill = this.getAttribute('data-skill');
+      const char = this.getAttribute('data-char');
+      if (skill) showSkill(skill, char);
+    };
+  });
 }
 
 function toggleTeam(name) {
@@ -294,11 +319,31 @@ function toggleTeam(name) {
 
 function renderTeam() {
   const slots = document.getElementById('teamSlots');
-  slots.innerHTML = '';
+  let slotHtml = '';
   for (let i = 0; i < 5; i++) {
     const c = team[i];
-    slots.innerHTML += `<div class="team-slot ${c?'has-character':''}">${c ? `<span class="faction-badge faction-${c.faction||'群'}">${c.faction||'群'}</span> <strong>${c.name}</strong> <span class="remove-btn" onclick="removeFromTeam(${i})">×</span>` : '<span style="color:var(--text-muted)">空位 ' + (i+1) + '</span>'}</div>`;
+    if (c) {
+      slotHtml += `<div class="team-slot has-character" data-slot="${i}">
+        <span class="faction-badge faction-${c.faction||'群'}">${c.faction||'群'}</span>
+        <strong>${c.name}</strong>
+        <span class="remove-btn" data-slot="${i}">×</span>
+      </div>`;
+    } else {
+      slotHtml += `<div class="team-slot"><span style="color:var(--text-muted)">空位 ${i+1}</span></div>`;
+    }
   }
+  slots.innerHTML = slotHtml;
+  
+  // 事件委托——点击移除按钮
+  slots.querySelectorAll('.remove-btn').forEach(el => {
+    el.onclick = function() {
+      const i = parseInt(this.getAttribute('data-slot'));
+      team.splice(i,1);
+      renderCards();
+      renderTeam();
+    };
+  });
+  
   document.getElementById('teamCount').textContent = team.length + '/5';
   document.getElementById('battleBtn').style.display = team.length >= 2 ? 'block' : 'none';
   const stats = document.getElementById('teamStats');

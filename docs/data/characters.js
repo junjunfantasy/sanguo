@@ -1401,3 +1401,6 @@ const SANGUO_CHARACTERS = [
     obsidian: 'characters/黄盖'
   },
 ];
+
+// 兼容 window 引用
+if (typeof window !== 'undefined') window.SANGUO_CHARACTERS = SANGUO_CHARACTERS;
