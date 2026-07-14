@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关系图谱 - 三国知识库</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/d3@7.8.5/dist/d3.min.js"></script>
+    <script src="data/characters.js"></script>
+    <script src="data/relations.js"></script>
+</head>
+<body>
+    <div class="header">
+        <div class="logo"><span class="logo-icon">🏯</span> 三国知识库</div>
+        <nav class="nav">
+            <a href="index.html">首页</a>
+            <a href="characters.html">人物谱</a>
+            <a href="timeline.html">事件时间线</a>
+            <a href="graph.html" class="active">关系图谱</a>
+            <a href="game.html">三国杀</a>
+        </nav>
+    </div>
+
+    <div class="main">
+        <div class="page-title">🕸️ 人物关系图谱</div>
+        <div class="page-subtitle">拖动缩放 · 悬停查看人物信息 · 颜色按势力区分</div>
+
+        <div class="network-container fade-in">
+            <div class="viz-title" style="margin-bottom:0;border-bottom:none;">
+                <span>⚡ 拖动节点探索人物关系</span>
+                <span style="margin-left:16px;font-size:12px;color:var(--text-muted);">
+                    <span style="color:#e74c3c;">● 魏</span>
+                    <span style="color:#2ecc71;margin-left:8px;">● 蜀</span>
+                    <span style="color:#3498db;margin-left:8px;">● 吴</span>
+                    <span style="color:#f39c12;margin-left:8px;">● 群</span>
+                </span>
+            </div>
+            <div class="network-canvas" id="graph"></div>
+            <div class="graph-tooltip" id="tooltip"></div>
+        </div>
+
+        <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap;" id="legend">
+            <span style="padding:4px 12px;border-radius:4px;font-size:12px;background:rgba(255,255,255,0.05);color:var(--text-secondary);">兄弟</span>
+            <span style="padding:4px 12px;border-radius:4px;font-size:12px;background:rgba(255,255,255,0.05);color:var(--text-secondary);">君臣</span>
+            <span style="padding:4px 12px;border-radius:4px;font-size:12px;background:rgba(255,255,255,0.05);color:var(--text-secondary);">师徒</span>
+            <span style="padding:4px 12px;border-radius:4px;font-size:12px;background:rgba(255,255,255,0.05);color:var(--text-secondary);">夫妻</span>
+            <span style="padding:4px 12px;border-radius:4px;font-size:12px;background:rgba(255,255,255,0.05);color:var(--text-secondary);">同僚</span>
+            <span style="padding:4px 12px;border-radius:4px;font-size:12px;background:rgba(255,255,255,0.05);color:var(--text-secondary);">敌对</span>
+            <span style="padding:4px 12px;border-radius:4px;font-size:12px;background:rgba(255,255,255,0.05);color:var(--text-secondary);">盟友</span>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>三国知识库 · 关系图谱展示人物间的关联网络</p>
+    </div>
+
+    <script>
+    function initGraph() {
+        const factionColors = { '魏': '#e74c3c', '蜀': '#2ecc71', '吴': '#3498db', '群': '#f39c12' };
+        const relationColors = { '兄弟': '#e8e8e8', '君臣': '#8e44ad', '师徒': '#1abc9c', '夫妻': '#e91e63', '同僚': '#95a5a6', '敌对': '#e74c3c', '盟友': '#2ecc71', '宗亲': '#f1c40f', '医患': '#7f8c8d', '父子': '#c9a227' };
+        
+        const charMap = {};
+        SANGUO_CHARACTERS.forEach(c => { charMap[c.id] = c; });
+
+        // Build nodes and links
+        const nodeSet = new Set();
+        SANGUO_RELATIONS.forEach(r => { nodeSet.add(r.source); nodeSet.add(r.target); });
+        
+        const nodes = Array.from(nodeSet).map(id => {
+            const c = charMap[id];
+            return {
+                id: id,
+                name: id,
+                faction: c ? c.faction : '群',
+                desc: c ? c.desc : '',
+                birth: c ? c.birth : '?',
+                death: c ? c.death : '?',
+                r: c ? (c.mastery ? Math.max(8, c.mastery.strength * 1.5 + 5) : 12) : 10
+            };
+        });
+
+        const links = SANGUO_RELATIONS.map(r => ({
+            source: r.source,
+            target: r.target,
+            type: r.type
+        }));
+
+        const width = document.getElementById('graph').offsetWidth;
+        const height = 600;
+
+        const svg = d3.select('#graph')
+            .append('svg')
+            .attr('width', width)
+            .attr('height', height)
+            .style('background', 'transparent');
+
+        // Zoom behavior
+        const g = svg.append('g');
+        const zoom = d3.zoom()
+            .scaleExtent([0.2, 5])
+            .on('zoom', (event) => { g.attr('transform', event.transform); });
+        svg.call(zoom);
+
+        const tooltip = d3.select('#tooltip');
+
+        const simulation = d3.forceSimulation(nodes)
+            .force('link', d3.forceLink(links).id(d => d.id).distance(80))
+            .force('charge', d3.forceManyBody().strength(-200))
+            .force('center', d3.forceCenter(width / 2, height / 2))
+            .force('collision', d3.forceCollide().radius(d => d.r + 5));
+
+        const link = g.append('g')
+            .selectAll('line')
+            .data(links)
+            .enter()
+            .append('line')
+            .attr('stroke', d => relationColors[d.type] || '#666')
+            .attr('stroke-width', d => d.type === '敌对' ? 1.5 : 1)
+            .attr('stroke-opacity', 0.4)
+            .attr('stroke-dasharray', d => d.type === '敌对' ? '4,3' : (d.type === '盟友' ? '2,4' : 'none'));
+
+        const node = g.append('g')
+            .selectAll('circle')
+            .data(nodes)
+            .enter()
+            .append('circle')
+            .attr('r', d => d.r)
+            .attr('fill', d => factionColors[d.faction] || '#95a5a6')
+            .attr('stroke', '#0f0f1a')
+            .attr('stroke-width', 2)
+            .style('cursor', 'pointer')
+            .on('mouseover', function(event, d) {
+                d3.select(this).attr('stroke', '#c9a227').attr('stroke-width', 3);
+                tooltip.style('display', 'block')
+                    .html(`<div class="tt-name">${d.name}</div>
+                           <div class="tt-detail">势力: ${d.faction}</div>
+                           <div class="tt-detail">📅 ${d.birth} - ${d.death}</div>
+                           ${d.desc ? `<div class="tt-detail" style="margin-top:4px;max-width:250px;">${d.desc}</div>` : ''}`)
+                    .style('left', (event.offsetX + 15) + 'px')
+                    .style('top', (event.offsetY - 10) + 'px');
+            })
+            .on('mouseout', function() {
+                d3.select(this).attr('stroke', '#0f0f1a').attr('stroke-width', 2);
+                tooltip.style('display', 'none');
+            })
+            .call(d3.drag()
+                .on('start', (event, d) => {
+                    if (!event.active) simulation.alphaTarget(0.3).restart();
+                    d.fx = d.x;
+                    d.fy = d.y;
+                })
+                .on('drag', (event, d) => {
+                    d.fx = event.x;
+                    d.fy = event.y;
+                })
+                .on('end', (event, d) => {
+                    if (!event.active) simulation.alphaTarget(0);
+                    d.fx = null;
+                    d.fy = null;
+                }));
+
+        const labels = g.append('g')
+            .selectAll('text')
+            .data(nodes)
+            .enter()
+            .append('text')
+            .text(d => d.name)
+            .attr('font-size', d => Math.min(14, d.r * 0.8 + 6) + 'px')
+            .attr('fill', '#e8e8e8')
+            .attr('font-weight', 'bold')
+            .attr('text-anchor', 'middle')
+            .attr('dy', d => d.r + 15)
+            .style('pointer-events', 'none')
+            .style('text-shadow', '0 1px 3px rgba(0,0,0,0.8)');
+
+        simulation.on('tick', () => {
+            link
+                .attr('x1', d => d.source.x)
+                .attr('y1', d => d.source.y)
+                .attr('x2', d => d.target.x)
+                .attr('y2', d => d.target.y);
+            node
+                .attr('cx', d => d.x)
+                .attr('cy', d => d.y);
+            labels
+                .attr('x', d => d.x)
+                .attr('y', d => d.y);
+        });
+
+        // Center on double-click
+        svg.on('dblclick.zoom', null);
+        svg.on('dblclick', () => {
+            svg.transition().duration(750).call(zoom.transform, d3.zoomIdentity);
+        });
+    }
+
+    window.onload = initGraph;
+    window.addEventListener('resize', () => {
+        d3.select('#graph').select('svg').remove();
+        initGraph();
+    });
+    </script>
+</body>
+</html>

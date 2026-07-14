@@ -1,0 +1,18 @@
+{
+  "promptDelete": false,
+  "alwaysUpdateLinks": true,
+  "attachmentFolderPath": "attachments",
+  "newLinkFormat": "shortest",
+  "useMarkdownLinks": true,
+  "showUnsupportedFiles": true,
+  "userIgnoreFilters": null,
+  "tabSize": 2,
+  "spellcheck": true,
+  "showFrontmatter": true,
+  "showLineNumber": false,
+  "readableLineLength": true,
+  "strictLineBreaks": false,
+  "propertiesInDocument": "hidden",
+  "focusNewTab": true,
+  "showInlineTitle": true
+}

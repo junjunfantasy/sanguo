@@ -1,0 +1,439 @@
+[
+  {
+    "id": "caocao",
+    "name": "曹操",
+    "aliases": ["孟德", "曹孟德", "曹公"],
+    "faction": "魏",
+    "birth_year": 155,
+    "death_year": 220,
+    "era": ["东汉末年", "三国时期"],
+    "tags": ["政治家", "军事家", "文学家", "奸雄"],
+    "skills": ["奸雄", "护驾"],
+    "related_entities": {
+      "relatives": ["曹丕", "曹植", "曹冲", "曹嵩"],
+      "subordinates": ["荀彧", "郭嘉", "程昱", "贾诩", "夏侯惇", "张辽", "司马懿"],
+      "rivals": ["刘备", "孙权", "袁绍", "吕布"]
+    }
+  },
+  {
+    "id": "liubei",
+    "name": "刘备",
+    "aliases": ["玄德", "刘皇叔", "刘豫州"],
+    "faction": "蜀",
+    "birth_year": 161,
+    "death_year": 223,
+    "era": ["东汉末年", "三国时期"],
+    "tags": ["君主", "仁德", "桃园结义"],
+    "skills": ["仁德", "激将"],
+    "related_entities": {
+      "relatives": ["刘禅", "刘永", "刘理"],
+      "subordinates": ["诸葛亮", "关羽", "张飞", "赵云", "庞统", "法正"],
+      "rivals": ["曹操", "孙权"]
+    }
+  },
+  {
+    "id": "sunquan",
+    "name": "孙权",
+    "aliases": ["仲谋", "孙仲谋", "吴侯"],
+    "faction": "吴",
+    "birth_year": 182,
+    "death_year": 252,
+    "era": ["东汉末年", "三国时期"],
+    "tags": ["君主", "政治家", "江东之主"],
+    "skills": ["制衡", "救援"],
+    "related_entities": {
+      "relatives": ["孙坚", "孙策", "孙尚香"],
+      "subordinates": ["周瑜", "鲁肃", "吕蒙", "陆逊", "张昭", "甘宁"],
+      "rivals": ["曹操", "刘备"]
+    }
+  },
+  {
+    "id": "guanyu",
+    "name": "关羽",
+    "aliases": ["云长", "关云长", "关公", "武圣"],
+    "faction": "蜀",
+    "birth_year": 160,
+    "death_year": 220,
+    "era": ["东汉末年", "三国时期"],
+    "tags": ["武将", "忠义", "武圣", "桃园结义"],
+    "skills": ["武圣", "义绝"],
+    "related_entities": {
+      "relatives": ["关平", "关兴"],
+      "brothers": ["刘备", "张飞"],
+      "subordinates": ["周仓"],
+      "rivals": ["吕蒙", "陆逊", "曹仁"]
+    }
+  },
+  {
+    "id": "zhangfei",
+    "name": "张飞",
+    "aliases": ["翼德", "张翼德"],
+    "faction": "蜀",
+    "birth_year": 168,
+    "death_year": 221,
+    "era": ["东汉末年", "三国时期"],
+    "tags": ["武将", "勇猛", "桃园结义"],
+    "skills": ["咆哮"],
+    "related_entities": {
+      "relatives": ["张苞", "张绍"],
+      "brothers": ["刘备", "关羽"],
+      "rivals": ["吕布", "张郃"]
+    }
+  },
+  {
+    "id": "zhugeliang",
+    "name": "诸葛亮",
+    "aliases": ["孔明", "诸葛孔明", "卧龙"],
+    "faction": "蜀",
+    "birth_year": 181,
+    "death_year": 234,
+    "era": ["东汉末年", "三国时期"],
+    "tags": ["军师", "政治家", "发明家", "忠臣"],
+    "skills": ["观星", "空城"],
+    "related_entities": {
+      "relatives": ["诸葛瑾", "诸葛均", "黄月英", "诸葛瞻"],
+      "liege": ["刘备", "刘禅"],
+      "colleagues": ["庞统", "法正", "蒋琬", "费祎"],
+      "rivals": ["司马懿", "曹真"]
+    }
+  },
+  {
+    "id": "zhaoyun",
+    "name": "赵云",
+    "aliases": ["子龙", "赵子龙"],
+    "faction": "蜀",
+    "birth_year": 168,
+    "death_year": 229,
+    "era": ["东汉末年", "三国时期"],
+    "tags": ["武将", "忠勇", "单骑救主"],
+    "skills": ["龙胆"],
+    "related_entities": {
+      "liege": ["刘备", "刘禅"],
+      "colleagues": ["关羽", "张飞", "马超", "黄忠"],
+      "relatives": ["赵统", "赵广"]
+    }
+  },
+  {
+    "id": "machao",
+    "name": "马超",
+    "aliases": ["孟起", "马孟起"],
+    "faction": "蜀",
+    "birth_year": 176,
+    "death_year": 222,
+    "era": ["东汉末年", "三国时期"],
+    "tags": ["武将", "勇猛", "西凉锦马超"],
+    "skills": ["铁骑"],
+    "related_entities": {
+      "relatives": ["马腾", "马休", "马铁"],
+      "colleagues": ["关羽", "张飞", "赵云", "黄忠"],
+      "rivals": ["曹操"]
+    }
+  },
+  {
+    "id": "huangzhong",
+    "name": "黄忠",
+    "aliases": ["汉升", "黄汉升"],
+    "faction": "蜀",
+    "birth_year": 147,
+    "death_year": 220,
+    "era": ["东汉末年", "三国时期"],
+    "tags": ["武将", "老将", "神射手"],
+    "skills": ["烈弓"],
+    "related_entities": {
+      "liege": ["刘备"],
+      "colleagues": ["关羽", "张飞", "赵云", "马超"],
+      "rivals": ["夏侯渊"]
+    }
+  },
+  {
+    "id": "lübu",
+    "name": "吕布",
+    "aliases": ["奉先", "吕奉先"],
+    "faction": "群",
+    "birth_year": 156,
+    "death_year": 199,
+    "era": ["东汉末年"],
+    "tags": ["武将", "勇猛", "三姓家奴"],
+    "skills": ["无双"],
+    "related_entities": {
+      "subordinates": ["张辽", "高顺", "陈宫"],
+      "rivals": ["曹操", "刘备"],
+      "liege": ["丁原", "董卓", "袁绍"]
+    }
+  },
+  {
+    "id": "simayi",
+    "name": "司马懿",
+    "aliases": ["仲达", "司马仲达"],
+    "faction": "魏",
+    "birth_year": 179,
+    "death_year": 251,
+    "era": ["东汉末年", "三国时期"],
+    "tags": ["政治家", "军事家", "隐忍", "狼顾"],
+    "skills": ["反馈", "鬼才"],
+    "related_entities": {
+      "relatives": ["司马师", "司马昭", "司马防"],
+      "liege": ["曹操", "曹丕", "曹叡"],
+      "rivals": ["诸葛亮", "曹爽"],
+      "colleagues": ["曹真", "陈群"]
+    }
+  },
+  {
+    "id": "zhouyu",
+    "name": "周瑜",
+    "aliases": ["公瑾", "周公瑾"],
+    "faction": "吴",
+    "birth_year": 175,
+    "death_year": 210,
+    "era": ["东汉末年", "三国时期"],
+    "tags": ["军师", "武将", "音乐家", "赤壁之战"],
+    "skills": ["英姿", "反间"],
+    "related_entities": {
+      "relatives": ["小乔"],
+      "liege": ["孙策", "孙权"],
+      "colleagues": ["鲁肃", "程普", "吕蒙"],
+      "rivals": ["曹操", "曹仁"]
+    }
+  },
+  {
+    "id": "lvmeng",
+    "name": "吕蒙",
+    "aliases": ["子明", "吕子明"],
+    "faction": "吴",
+    "birth_year": 178,
+    "death_year": 220,
+    "era": ["东汉末年", "三国时期"],
+    "tags": ["武将", "都督", "白衣渡江", "士别三日"],
+    "skills": ["克己", "涉猎"],
+    "related_entities": {
+      "liege": ["孙权"],
+      "colleagues": ["鲁肃", "周瑜", "陆逊"],
+      "rivals": ["关羽"]
+    }
+  },
+  {
+    "id": "luxun",
+    "name": "陆逊",
+    "aliases": ["伯言", "陆伯言"],
+    "faction": "吴",
+    "birth_year": 183,
+    "death_year": 245,
+    "era": ["东汉末年", "三国时期"],
+    "tags": ["都督", "谋士", "政治家", "夷陵之战"],
+    "skills": ["谦逊", "连营"],
+    "related_entities": {
+      "relatives": ["陆抗", "陆康"],
+      "liege": ["孙权"],
+      "colleagues": ["吕蒙", "诸葛瑾", "顾雍"],
+      "rivals": ["刘备", "曹休"]
+    }
+  },
+  {
+    "id": "xunyu",
+    "name": "荀彧",
+    "aliases": ["文若", "荀文若", "荀令君"],
+    "faction": "魏",
+    "birth_year": 163,
+    "death_year": 212,
+    "era": ["东汉末年", "三国时期"],
+    "tags": ["谋士", "政治家", "王佐之才", "汉室忠臣"],
+    "skills": ["驱虎", "节命"],
+    "related_entities": {
+      "liege": ["曹操"],
+      "colleagues": ["程昱", "贾诩"],
+      "recommended": ["郭嘉", "钟繇", "陈群"],
+      "rivals": ["袁绍"]
+    }
+  },
+  {
+    "id": "guojia",
+    "name": "郭嘉",
+    "aliases": ["奉孝", "郭奉孝"],
+    "faction": "魏",
+    "birth_year": 170,
+    "death_year": 207,
+    "era": ["东汉末年", "三国时期"],
+    "tags": ["谋士", "鬼才", "英年早逝"],
+    "skills": ["天妒", "遗计"],
+    "related_entities": {
+      "liege": ["曹操"],
+      "recommender": ["荀彧"],
+      "colleagues": ["荀彧", "程昱", "贾诩"],
+      "rivals": ["袁绍", "吕布"]
+    }
+  },
+  {
+    "id": "zhangliao",
+    "name": "张辽",
+    "aliases": ["文远", "张文远"],
+    "faction": "魏",
+    "birth_year": 169,
+    "death_year": 222,
+    "era": ["东汉末年", "三国时期"],
+    "tags": ["武将", "名将", "五子良将", "威震逍遥津"],
+    "skills": ["突袭"],
+    "related_entities": {
+      "liege": ["曹操", "曹丕"],
+      "colleagues": ["乐进", "李典", "徐晃"],
+      "rivals": ["孙权", "吕布"]
+    }
+  },
+  {
+    "id": "caopi",
+    "name": "曹丕",
+    "aliases": ["子桓", "曹子桓", "魏文帝"],
+    "faction": "魏",
+    "birth_year": 187,
+    "death_year": 226,
+    "era": ["东汉末年", "三国时期"],
+    "tags": ["皇帝", "政治家", "文学家", "篡汉"],
+    "skills": ["行殇", "放逐", "颂威"],
+    "related_entities": {
+      "relatives": ["曹操", "曹植", "曹叡"],
+      "colleagues": ["司马懿", "陈群", "贾诩"],
+      "rivals": ["刘备", "孙权", "曹植"]
+    }
+  },
+  {
+    "id": "caozhi",
+    "name": "曹植",
+    "aliases": ["子建", "曹子建", "陈思王"],
+    "faction": "魏",
+    "birth_year": 192,
+    "death_year": 232,
+    "era": ["东汉末年", "三国时期"],
+    "tags": ["文学家", "诗人", "建安风骨", "才高八斗"],
+    "skills": ["落英"],
+    "related_entities": {
+      "relatives": ["曹操", "曹丕", "曹彰"],
+      "friends": ["杨修", "丁仪"],
+      "rivals": ["曹丕"]
+    }
+  },
+  {
+    "id": "diaochan",
+    "name": "貂蝉",
+    "aliases": [],
+    "faction": "群",
+    "birth_year": null,
+    "death_year": null,
+    "era": ["东汉末年"],
+    "tags": ["美女", "间谍", "连环计"],
+    "skills": ["离间", "闭月"],
+    "related_entities": {
+      "liege": ["王允"],
+      "rivals": ["董卓", "吕布"]
+    }
+  },
+  {
+    "id": "yuan_shao",
+    "name": "袁绍",
+    "aliases": ["本初", "袁本初"],
+    "faction": "群",
+    "birth_year": 154,
+    "death_year": 202,
+    "era": ["东汉末年"],
+    "tags": ["诸侯", "军阀", "四世三公"],
+    "skills": ["乱击"],
+    "related_entities": {
+      "relatives": ["袁术", "袁谭", "袁尚"],
+      "subordinates": ["许攸", "张郃", "颜良", "文丑"],
+      "rivals": ["曹操"]
+    }
+  },
+  {
+    "id": "dongzhuo",
+    "name": "董卓",
+    "aliases": ["仲颖", "董仲颖"],
+    "faction": "群",
+    "birth_year": 138,
+    "death_year": 192,
+    "era": ["东汉末年"],
+    "tags": ["军阀", "权臣", "暴虐"],
+    "skills": ["暴虐", "崩坏"],
+    "related_entities": {
+      "subordinates": ["吕布", "李傕", "郭汜"],
+      "rivals": ["袁绍", "曹操", "王允"]
+    }
+  },
+  {
+    "id": "huanggai",
+    "name": "黄盖",
+    "aliases": ["公覆", "黄公覆"],
+    "faction": "吴",
+    "birth_year": 145,
+    "death_year": 220,
+    "era": ["东汉末年", "三国时期"],
+    "tags": ["武将", "老将", "赤壁之战", "苦肉计"],
+    "skills": ["苦肉"],
+    "related_entities": {
+      "liege": ["孙坚", "孙策", "孙权"],
+      "colleagues": ["周瑜", "程普"],
+      "rivals": ["曹操"]
+    }
+  },
+  {
+    "id": "ganning",
+    "name": "甘宁",
+    "aliases": ["兴霸", "甘兴霸"],
+    "faction": "吴",
+    "birth_year": 163,
+    "death_year": 220,
+    "era": ["东汉末年", "三国时期"],
+    "tags": ["武将", "水军", "锦帆贼"],
+    "skills": ["奇袭"],
+    "related_entities": {
+      "liege": ["孙权"],
+      "colleagues": ["周瑜", "吕蒙"],
+      "rivals": ["张辽"]
+    }
+  },
+  {
+    "id": "jiangwei",
+    "name": "姜维",
+    "aliases": ["伯约", "姜伯约"],
+    "faction": "蜀",
+    "birth_year": 202,
+    "death_year": 264,
+    "era": ["三国时期"],
+    "tags": ["武将", "都督", "北伐"],
+    "skills": ["挑衅", "志继"],
+    "related_entities": {
+      "liege": ["诸葛亮", "刘禅"],
+      "colleagues": ["费祎", "蒋琬"],
+      "rivals": ["邓艾", "钟会"]
+    }
+  },
+  {
+    "id": "pangtong",
+    "name": "庞统",
+    "aliases": ["士元", "庞士元", "凤雏"],
+    "faction": "蜀",
+    "birth_year": 179,
+    "death_year": 214,
+    "era": ["东汉末年"],
+    "tags": ["谋士", "凤雏", "连环计"],
+    "skills": ["连环"],
+    "related_entities": {
+      "liege": ["刘备"],
+      "colleagues": ["诸葛亮", "法正"],
+      "rivals": ["张任"]
+    }
+  },
+  {
+    "id": "fazheng",
+    "name": "法正",
+    "aliases": ["孝直", "法孝直"],
+    "faction": "蜀",
+    "birth_year": 176,
+    "death_year": 220,
+    "era": ["东汉末年", "三国时期"],
+    "tags": ["谋士", "政治家"],
+    "skills": ["恩怨", "眩惑"],
+    "related_entities": {
+      "liege": ["刘备"],
+      "colleagues": ["诸葛亮", "庞统"],
+      "rivals": ["夏侯渊"]
+    }
+  }
+]

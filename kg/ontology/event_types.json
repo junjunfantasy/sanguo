@@ -1,0 +1,74 @@
+[
+  {
+    "id": "military",
+    "name": "军事事件",
+    "description": "涉及军事行动和战争的事件",
+    "subtypes": ["战役", "战斗", "围城", "奇袭", "防御战"]
+  },
+  {
+    "id": "political",
+    "name": "政治事件",
+    "description": "涉及政权更迭、权力斗争和政治决策的事件",
+    "subtypes": ["政变", "禅让", "废立", "改革", "迁都"]
+  },
+  {
+    "id": "diplomatic",
+    "name": "外交事件",
+    "description": "涉及各方势力之间外交互动的事件",
+    "subtypes": ["结盟", "和亲", "求和", "割地", "遣使"]
+  },
+  {
+    "id": "economic",
+    "name": "经济事件",
+    "description": "涉及经济活动和政策的事件",
+    "subtypes": ["屯田", "征税", "贸易", "铸造钱币", "开发"]
+  },
+  {
+    "id": "cultural",
+    "name": "文化事件",
+    "description": "涉及文化、文学、艺术和思想的事件",
+    "subtypes": ["文学创作", "学术活动", "音乐", "书法"]
+  },
+  {
+    "id": "social",
+    "name": "社会事件",
+    "description": "涉及社会民众生活和民间活动的事件",
+    "subtypes": ["农民起义", "迁徙", "瘟疫", "天灾"]
+  },
+  {
+    "id": "personal",
+    "name": "个人事件",
+    "description": "涉及个人生平重要经历的事件",
+    "subtypes": ["出生", "死亡", "婚姻", "就职", "举荐"]
+  },
+  {
+    "id": "natural",
+    "name": "自然事件",
+    "description": "涉及自然现象和天灾的事件",
+    "subtypes": ["地震", "洪水", "旱灾", "蝗灾", "瘟疫"]
+  },
+  {
+    "id": "religious",
+    "name": "宗教事件",
+    "description": "涉及宗教活动和信仰的事件",
+    "subtypes": ["创立教派", "祭祀", "符水治病", "预言"]
+  },
+  {
+    "id": "technological",
+    "name": "科技事件",
+    "description": "涉及技术发明和创新的重要事件",
+    "subtypes": ["发明创造", "兵器改良", "工程建造"]
+  },
+  {
+    "id": "geopolitical",
+    "name": "地理政治事件",
+    "description": "涉及领土变更、行政区划调整的事件",
+    "subtypes": ["割据", "分封", "置郡", "迁徙"]
+  },
+  {
+    "id": "legendary",
+    "name": "传奇事件",
+    "description": "《三国演义》中具有文学色彩、未必完全符合史实的事件",
+    "subtypes": ["演义情节", "典故传说", "奇闻异事"]
+  }
+]

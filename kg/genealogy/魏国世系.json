@@ -1,0 +1,21 @@
+{
+  "faction": "魏",
+  "founder": "曹操",
+  "capital": "洛阳",
+  "duration": "220年-266年",
+  "rulers": [
+    {"name": "曹操", "title": "魏王", "years": "?-220", "relation": "奠基人（追尊魏武帝）"},
+    {"name": "曹丕", "title": "魏文帝", "years": "220-226", "relation": "子"},
+    {"name": "曹叡", "title": "魏明帝", "years": "226-239", "relation": "子"},
+    {"name": "曹芳", "title": "魏齐王", "years": "239-254", "relation": "养子"},
+    {"name": "曹髦", "title": "魏高贵乡公", "years": "254-260", "relation": "侄孙"},
+    {"name": "曹奂", "title": "魏元帝", "years": "260-266", "relation": "侄孙"}
+  ],
+  "key_figures": [
+    {"name": "夏侯惇", "role": "大将", "relation": "同族"},
+    {"name": "张辽", "role": "五子良将", "relation": "部下"},
+    {"name": "荀彧", "role": "首席谋士", "relation": "部下"},
+    {"name": "郭嘉", "role": "军师祭酒", "relation": "部下"},
+    {"name": "司马懿", "role": "重臣，晋奠基人", "relation": "部下后篡位"}
+  ]
+}

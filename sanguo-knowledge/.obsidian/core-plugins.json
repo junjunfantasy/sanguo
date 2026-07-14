@@ -1,0 +1,20 @@
+{
+  "active": [
+    "backlink",
+    "bookmarks",
+    "command-palette",
+    "file-explorer",
+    "graph",
+    "global-search",
+    "outgoing-link",
+    "page-preview",
+    "properties",
+    "random-note",
+    "slash-command",
+    "switcher",
+    "tag-pane",
+    "word-count"
+  ],
+  "id": "sanguo-kb-vault",
+  "name": "三国知识库"
+}

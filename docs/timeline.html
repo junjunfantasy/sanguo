@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件时间线 - 三国知识库</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <script src="data/events.js"></script>
+</head>
+<body>
+    <div class="header">
+        <div class="logo"><span class="logo-icon">🏯</span> 三国知识库</div>
+        <nav class="nav">
+            <a href="index.html">首页</a>
+            <a href="characters.html">人物谱</a>
+            <a href="timeline.html" class="active">事件时间线</a>
+            <a href="graph.html">关系图谱</a>
+            <a href="game.html">三国杀</a>
+        </nav>
+    </div>
+
+    <div class="main">
+        <div class="page-title">📅 事件时间线</div>
+        <div class="page-subtitle">从黄巾起义到三国归晋 · 184年 - 280年</div>
+
+        <div class="search-section fade-in">
+            <div class="filter-section">
+                <button class="search-btn" style="padding:6px 16px;font-size:13px;background:rgba(231,76,60,0.2);color:#e74c3c;border:1px solid rgba(231,76,60,0.3)" onclick="filterType('军事')">⚔️ 军事</button>
+                <button class="search-btn" style="padding:6px 16px;font-size:13px;background:rgba(155,89,182,0.2);color:#9b59b6;border:1px solid rgba(155,89,182,0.3)" onclick="filterType('政治')">🏛️ 政治</button>
+                <button class="search-btn" style="padding:6px 16px;font-size:13px;background:rgba(52,152,219,0.2);color:#3498db;border:1px solid rgba(52,152,219,0.3)" onclick="filterType('人事')">👥 人事</button>
+                <button class="search-btn" style="padding:6px 16px;font-size:13px" onclick="filterType('all')">全部</button>
+            </div>
+        </div>
+
+        <div id="eventList" class="fade-in"></div>
+    </div>
+
+    <div class="footer">
+        <p>三国知识库 · 事件数据来源于 Obsidian 笔记</p>
+    </div>
+
+    <script>
+    let currentType = 'all';
+    const typeColors = { '军事': '#e74c3c', '政治': '#9b59b6', '人事': '#3498db' };
+
+    function renderEvents(events) {
+        const container = document.getElementById('eventList');
+        const sorted = [...events].sort((a, b) => a.year - b.year);
+        
+        // Group by year
+        const byYear = {};
+        sorted.forEach(e => {
+            if (!byYear[e.year]) byYear[e.year] = [];
+            byYear[e.year].push(e);
+        });
+
+        let html = '';
+        const years = Object.keys(byYear).sort((a,b) => a-b);
+        years.forEach(year => {
+            const evts = byYear[year];
+            html += `<div style="margin-bottom:20px;">
+                <div style="font-size:20px;font-weight:700;color:var(--accent);margin-bottom:12px;padding-bottom:6px;border-bottom:2px solid var(--accent);">${year}年</div>`;
+            evts.forEach(e => {
+                html += `<div style="background:var(--bg-secondary);border-radius:10px;padding:16px;margin-bottom:10px;border-left:4px solid ${typeColors[e.type] || '#c9a227'};transition:all 0.2s;" 
+                    onmouseover="this.style.background='var(--bg-card-hover)'" onmouseout="this.style.background='var(--bg-secondary)'">
+                    <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+                        <div>
+                            <strong style="color:var(--accent);font-size:16px;">${e.name}</strong>
+                            <span style="margin-left:8px;padding:2px 8px;border-radius:4px;font-size:11px;background:${typeColors[e.type]}22;color:${typeColors[e.type]};border:1px solid ${typeColors[e.type]}44;">${e.type}</span>
+                        </div>
+                        <span style="color:var(--text-muted);font-size:13px;">📍 ${e.location}</span>
+                    </div>
+                    <div style="margin-top:8px;color:var(--text-secondary);font-size:14px;line-height:1.6;">${e.desc}</div>
+                    ${e.participants ? `<div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap;">${e.participants.map(p => `<span style="padding:2px 8px;border-radius:20px;font-size:11px;background:var(--accent-dim);color:var(--accent);">${p}</span>`).join('')}</div>` : ''}
+                </div>`;
+            });
+            html += '</div>';
+        });
+        container.innerHTML = html;
+    }
+
+    function filterType(t) {
+        currentType = t;
+        const events = t === 'all' ? SANGUO_EVENTS : SANGUO_EVENTS.filter(e => e.type === t);
+        renderEvents(events);
+    }
+
+    window.onload = function() {
+        const params = new URLSearchParams(window.location.search);
+        const q = params.get('q');
+        if (q) {
+            const events = SANGUO_EVENTS.filter(e => e.name.includes(q));
+            renderEvents(events.length > 0 ? events : SANGUO_EVENTS);
+        } else {
+            renderEvents(SANGUO_EVENTS);
+        }
+    };
+    </script>
+</body>
+</html>

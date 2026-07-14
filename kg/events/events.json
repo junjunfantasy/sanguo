@@ -1,0 +1,228 @@
+[
+  {
+    "id": "huangjin_uprising",
+    "name": "黄巾起义",
+    "year": 184,
+    "type": "military",
+    "participants": {
+      "张角": "leader",
+      "张宝": "commander",
+      "张梁": "commander",
+      "皇甫嵩": "commander",
+      "朱儁": "commander",
+      "曹操": "participant",
+      "刘备": "participant"
+    },
+    "location": "中原地区（巨鹿、颍川、南阳等）",
+    "result": "被东汉朝廷镇压，但动摇了东汉统治根基",
+    "related_events": ["董卓之乱", "诸侯讨董", "曹操起兵"]
+  },
+  {
+    "id": "dongzhuo_chaos",
+    "name": "董卓之乱",
+    "year": 189,
+    "type": "political",
+    "participants": {
+      "董卓": "instigator",
+      "汉献帝": "victim",
+      "袁绍": "opponent",
+      "曹操": "opponent",
+      "吕布": "assassin",
+      "王允": "conspirator"
+    },
+    "location": "洛阳、长安",
+    "result": "董卓被杀，东汉中央权威彻底瓦解，开启军阀混战",
+    "related_events": ["黄巾起义", "诸侯讨董", "迎奉天子", "曹操起兵"]
+  },
+  {
+    "id": "coalition_against_dongzhuo",
+    "name": "诸侯讨董",
+    "year": 190,
+    "type": "military",
+    "participants": {
+      "袁绍": "盟主",
+      "曹操": "commander",
+      "孙坚": "commander",
+      "袁术": "commander",
+      "董卓": "target"
+    },
+    "location": "酸枣、洛阳周边",
+    "result": "联军内部瓦解，未能消灭董卓，但迫使董卓迁都长安",
+    "related_events": ["董卓之乱", "曹操起兵", "迎奉天子"]
+  },
+  {
+    "id": "caocao_raises_army",
+    "name": "曹操起兵",
+    "year": 190,
+    "type": "military",
+    "participants": {
+      "曹操": "leader",
+      "曹洪": "supporter",
+      "曹仁": "commander",
+      "夏侯惇": "commander",
+      "荀彧": "strategist"
+    },
+    "location": "陈留、兖州、许都",
+    "result": "曹操建立兖州根据地，收编青州兵，迎奉天子，奠定霸业基础",
+    "related_events": ["诸侯讨董", "迎奉天子", "官渡之战"]
+  },
+  {
+    "id": "welcome_emperor",
+    "name": "迎奉天子",
+    "year": 196,
+    "type": "political",
+    "participants": {
+      "曹操": "leader",
+      "汉献帝": "figurehead",
+      "荀彧": "strategist",
+      "董昭": "strategist"
+    },
+    "location": "许都",
+    "result": "曹操挟天子以令诸侯，获得政治优势",
+    "related_events": ["董卓之乱", "诸侯讨董", "曹操起兵"]
+  },
+  {
+    "id": "guandu_battle",
+    "name": "官渡之战",
+    "year": 200,
+    "type": "military",
+    "participants": {
+      "曹操": "commander",
+      "袁绍": "commander"
+    },
+    "location": "官渡",
+    "result": "曹操以少胜多，击败袁绍，奠定北方统一基础",
+    "related_events": ["曹操起兵", "迎奉天子"]
+  },
+  {
+    "id": "chibi_battle",
+    "name": "赤壁之战",
+    "year": 208,
+    "type": "military",
+    "participants": {
+      "曹操": "commander",
+      "周瑜": "commander",
+      "刘备": "commander",
+      "诸葛亮": "strategist",
+      "黄盖": "commander"
+    },
+    "location": "赤壁",
+    "result": "孙刘联军大败曹操，奠定三国鼎立基础",
+    "related_events": ["隆中对", "刘备三顾茅庐"]
+  },
+  {
+    "id": "sangu_maolu",
+    "name": "刘备三顾茅庐",
+    "year": 207,
+    "type": "personal",
+    "participants": {
+      "刘备": "seeker",
+      "诸葛亮": "recruited",
+      "关羽": "companion",
+      "张飞": "companion"
+    },
+    "location": "隆中",
+    "result": "诸葛亮出山辅佐刘备，提出隆中对战略",
+    "related_events": ["隆中对", "赤壁之战"]
+  },
+  {
+    "id": "longzhong_dui",
+    "name": "隆中对",
+    "year": 207,
+    "type": "diplomatic",
+    "participants": {
+      "诸葛亮": "strategist",
+      "刘备": "audience"
+    },
+    "location": "隆中",
+    "result": "提出三分天下战略，成为蜀汉立国纲领",
+    "related_events": ["刘备三顾茅庐", "赤壁之战"]
+  },
+  {
+    "id": "hanzhong_battle",
+    "name": "汉中之战",
+    "year": 217,
+    "type": "military",
+    "participants": {
+      "刘备": "commander",
+      "曹操": "commander",
+      "法正": "strategist",
+      "黄忠": "commander",
+      "赵云": "commander",
+      "夏侯渊": "commander"
+    },
+    "location": "汉中",
+    "result": "刘备夺取汉中，进位汉中王，势力达到鼎盛",
+    "related_events": ["隆中对", "定军山之战"]
+  },
+  {
+    "id": "fancheng_battle",
+    "name": "樊城之战",
+    "year": 219,
+    "type": "military",
+    "participants": {
+      "关羽": "commander",
+      "于禁": "commander",
+      "庞德": "commander",
+      "曹仁": "commander",
+      "吕蒙": "commander",
+      "陆逊": "strategist"
+    },
+    "location": "樊城",
+    "result": "关羽水淹七军后遭东吴偷袭，败走麦城身亡，蜀汉失荆州",
+    "related_events": ["汉中之战", "夷陵之战"]
+  },
+  {
+    "id": "yiling_battle",
+    "name": "夷陵之战",
+    "year": 221,
+    "type": "military",
+    "participants": {
+      "刘备": "commander",
+      "陆逊": "commander"
+    },
+    "location": "夷陵",
+    "result": "陆逊火烧连营大败刘备，蜀汉元气大伤",
+    "related_events": ["关羽失荆州", "白帝城托孤"]
+  },
+  {
+    "id": "jieting_battle",
+    "name": "街亭之战",
+    "year": 228,
+    "type": "military",
+    "participants": {
+      "诸葛亮": "commander",
+      "马谡": "commander",
+      "张郃": "commander"
+    },
+    "location": "街亭",
+    "result": "马谡失街亭，诸葛亮第一次北伐失败",
+    "related_events": ["诸葛亮北伐", "挥泪斩马谡"]
+  },
+  {
+    "id": "wuzhangyuan_battle",
+    "name": "五丈原之战",
+    "year": 234,
+    "type": "military",
+    "participants": {
+      "诸葛亮": "commander",
+      "司马懿": "commander"
+    },
+    "location": "五丈原",
+    "result": "诸葛亮病逝五丈原，北伐终止",
+    "related_events": ["北伐中原", "诸葛亮之死"]
+  },
+  {
+    "id": "gaopingling_coup",
+    "name": "高平陵之变",
+    "year": 249,
+    "type": "political",
+    "participants": {
+      "司马懿": "instigator",
+      "曹爽": "victim"
+    },
+    "location": "洛阳",
+    "result": "司马懿诛杀曹爽，掌握曹魏大权，为晋代魏奠基",
+    "related_events": ["司马懿专权"]
+  }
+]

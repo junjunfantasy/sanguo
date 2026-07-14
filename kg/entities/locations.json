@@ -1,0 +1,74 @@
+[
+  {
+    "id": "luoyang",
+    "name": "洛阳",
+    "type": "都城",
+    "modern_location": "河南省洛阳市",
+    "related_events": ["董卓之乱", "诸侯讨董", "曹魏建国"],
+    "related_characters": ["曹操", "董卓", "汉献帝", "吕布", "王允"]
+  },
+  {
+    "id": "changan",
+    "name": "长安",
+    "type": "都城",
+    "modern_location": "陕西省西安市",
+    "related_events": ["董卓迁都", "王允诛董卓", "李傕郭汜之乱"],
+    "related_characters": ["董卓", "汉献帝", "王允", "吕布", "李傕", "郭汜"]
+  },
+  {
+    "id": "xudu",
+    "name": "许都",
+    "type": "都城",
+    "modern_location": "河南省许昌市",
+    "related_events": ["迎奉天子", "许都屯田", "曹操起兵"],
+    "related_characters": ["曹操", "汉献帝", "荀彧", "郭嘉", "关羽"]
+  },
+  {
+    "id": "chengdu",
+    "name": "成都",
+    "type": "都城",
+    "modern_location": "四川省成都市",
+    "related_events": ["刘备入蜀", "蜀汉建国", "邓艾灭蜀"],
+    "related_characters": ["刘备", "诸葛亮", "刘禅", "姜维"]
+  },
+  {
+    "id": "jianye",
+    "name": "建业",
+    "type": "都城",
+    "modern_location": "江苏省南京市",
+    "related_events": ["孙权迁都建业", "孙权称帝", "西晋灭吴"],
+    "related_characters": ["孙权", "周瑜", "陆逊", "张昭", "鲁肃"]
+  },
+  {
+    "id": "jingzhou",
+    "name": "荆州",
+    "type": "州郡",
+    "modern_location": "湖北省中南部及湖南省北部",
+    "related_events": ["赤壁之战", "刘备借荆州", "关羽失荆州", "夷陵之战"],
+    "related_characters": ["刘表", "曹操", "刘备", "关羽", "周瑜", "吕蒙", "陆逊", "诸葛亮"]
+  },
+  {
+    "id": "chibi",
+    "name": "赤壁",
+    "type": "古战场",
+    "modern_location": "湖北省赤壁市",
+    "related_events": ["赤壁之战"],
+    "related_characters": ["曹操", "周瑜", "刘备", "诸葛亮", "孙权", "黄盖"]
+  },
+  {
+    "id": "guandu",
+    "name": "官渡",
+    "type": "古战场",
+    "modern_location": "河南省中牟县东北",
+    "related_events": ["官渡之战", "乌巢烧粮"],
+    "related_characters": ["曹操", "袁绍", "许攸", "荀彧", "郭嘉", "关羽", "张郃"]
+  },
+  {
+    "id": "jieting",
+    "name": "街亭",
+    "type": "古战场",
+    "modern_location": "甘肃省天水市秦安县东北",
+    "related_events": ["街亭之战", "诸葛亮挥泪斩马谡"],
+    "related_characters": ["诸葛亮", "马谡", "张郃", "王平"]
+  }
+]

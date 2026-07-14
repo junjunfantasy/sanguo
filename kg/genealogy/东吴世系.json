@@ -1,0 +1,21 @@
+{
+  "faction": "吴",
+  "founder": "孙坚/孙策",
+  "capital": "建业",
+  "duration": "229年-280年",
+  "rulers": [
+    {"name": "孙坚", "title": "破虏将军", "years": "?-192", "relation": "奠基人（追尊武烈帝）"},
+    {"name": "孙策", "title": "讨逆将军", "years": "192-200", "relation": "长子，江东基业奠定者"},
+    {"name": "孙权", "title": "吴大帝", "years": "200-252", "relation": "弟，开国皇帝（229年称帝）"},
+    {"name": "孙亮", "title": "吴废帝", "years": "252-258", "relation": "子"},
+    {"name": "孙休", "title": "吴景帝", "years": "258-264", "relation": "子"},
+    {"name": "孙皓", "title": "吴末帝", "years": "264-280", "relation": "孙（孙和之子）"}
+  ],
+  "key_figures": [
+    {"name": "周瑜", "role": "大都督", "relation": "孙策义弟、重臣"},
+    {"name": "鲁肃", "role": "大都督", "relation": "部下"},
+    {"name": "吕蒙", "role": "大都督", "relation": "部下"},
+    {"name": "陆逊", "role": "大都督、丞相", "relation": "部下"},
+    {"name": "张昭", "role": "辅吴将军", "relation": "重臣"}
+  ]
+}

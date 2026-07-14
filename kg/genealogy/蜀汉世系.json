@@ -1,0 +1,19 @@
+{
+  "faction": "蜀",
+  "founder": "刘备",
+  "capital": "成都",
+  "duration": "221年-263年",
+  "rulers": [
+    {"name": "刘备", "title": "昭烈帝", "years": "221-223", "relation": "开国皇帝"},
+    {"name": "刘禅", "title": "后主", "years": "223-263", "relation": "子"}
+  ],
+  "key_figures": [
+    {"name": "关羽", "role": "五虎上将之首", "relation": "义弟"},
+    {"name": "张飞", "role": "五虎上将", "relation": "义弟"},
+    {"name": "诸葛亮", "role": "丞相", "relation": "军师、托孤重臣"},
+    {"name": "赵云", "role": "五虎上将", "relation": "部下"},
+    {"name": "马超", "role": "五虎上将", "relation": "部下"},
+    {"name": "黄忠", "role": "五虎上将", "relation": "部下"},
+    {"name": "姜维", "role": "大将军", "relation": "诸葛亮弟子"}
+  ]
+}

@@ -1,0 +1,86 @@
+[
+  {
+    "id": "character",
+    "name": "人物",
+    "description": "三国历史人物或文学人物，包括君主、将领、谋士、文臣等",
+    "attributes": ["name", "aliases", "birth_year", "death_year", "faction", "era", "tags"],
+    "relations": ["父子", "母子", "夫妻", "兄弟", "君臣", "同僚", "敌对", "结义", "师生", "举荐"]
+  },
+  {
+    "id": "faction",
+    "name": "势力",
+    "description": "三国时期的政治军事集团，如魏、蜀、吴及各割据势力",
+    "attributes": ["name", "leader", "capital", "founded_year", "ended_year", "era"],
+    "relations": ["同盟", "敌对", "依附", "吞并", "继承"]
+  },
+  {
+    "id": "location",
+    "name": "地点",
+    "description": "三国时期的地理位置，包括都城、州郡、古战场、关隘等",
+    "attributes": ["name", "type", "modern_location", "era"],
+    "relations": ["包含", "相邻", "战略要地", "都城"]
+  },
+  {
+    "id": "battle",
+    "name": "战役",
+    "description": "三国时期的重要军事战役和战斗",
+    "attributes": ["name", "year", "location", "attack_faction", "defense_faction", "result", "era"],
+    "relations": ["参与", "发生地点", "导致", "相关事件"]
+  },
+  {
+    "id": "event",
+    "name": "事件",
+    "description": "三国时期的重大历史事件，包括政治、经济、文化等各类事件",
+    "attributes": ["name", "time", "location", "participants", "era"],
+    "relations": ["包含", "导致", "相关人物", "相关地点"]
+  },
+  {
+    "id": "weapon",
+    "name": "武器",
+    "description": "三国时期的兵器装备及名马等",
+    "attributes": ["name", "type", "owner", "description"],
+    "relations": ["使用者", "制造者", "相关人物"]
+  },
+  {
+    "id": "skill",
+    "name": "技能",
+    "description": "三国杀游戏技能或人物特有能力",
+    "attributes": ["name", "type", "description", "related_character"],
+    "relations": ["拥有者", "相关人物"]
+  },
+  {
+    "id": "strategy",
+    "name": "计策",
+    "description": "三国时期使用的军事计谋和策略，包括三十六计相关",
+    "attributes": ["name", "type", "description", "related_event"],
+    "relations": ["使用者", "相关事件", "相关人物"]
+  },
+  {
+    "id": "concept",
+    "name": "概念",
+    "description": "三国相关的成语典故、文化概念和历史评价",
+    "attributes": ["name", "type", "description", "era"],
+    "relations": ["相关人物", "相关事件", "出处"]
+  },
+  {
+    "id": "book",
+    "name": "典籍",
+    "description": "记载三国历史的文献典籍和文学作品",
+    "attributes": ["name", "author", "era", "description"],
+    "relations": ["记载人物", "记载事件", "作者"]
+  },
+  {
+    "id": "relic",
+    "name": "遗迹",
+    "description": "三国时期相关的历史遗迹和文物",
+    "attributes": ["name", "type", "location", "era"],
+    "relations": ["位于", "相关人物", "相关事件"]
+  },
+  {
+    "id": "era",
+    "name": "时代",
+    "description": "三国时期的历史分期和年号纪年",
+    "attributes": ["name", "start_year", "end_year", "description"],
+    "relations": ["包含事件", "包含人物"]
+  }
+]

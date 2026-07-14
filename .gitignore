@@ -1,0 +1,21 @@
+# Obsidian
+.obsidian/workspace
+.obsidian/cache
+.obsidian/plugins
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.env
+venv/
+.venv/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/

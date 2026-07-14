@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>三国知识库 - Three Kingdoms Knowledge Base</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <script src="data/characters.js"></script>
+    <script src="data/events.js"></script>
+</head>
+<body>
+    <div class="header">
+        <div class="logo"><span class="logo-icon">🏯</span> 三国知识库</div>
+        <nav class="nav">
+            <a href="index.html" class="active">首页</a>
+            <a href="characters.html">人物谱</a>
+            <a href="timeline.html">事件时间线</a>
+            <a href="graph.html">关系图谱</a>
+            <a href="game.html">三国杀</a>
+        </nav>
+    </div>
+
+    <div class="main">
+        <div class="page-title">🏯 三国知识库</div>
+        <div class="page-subtitle">基于 Obsidian 笔记的知识管理与可视化平台 · 184年 - 280年</div>
+
+        <!-- Stats -->
+        <div class="stats-grid">
+            <div class="stat-card fade-in">
+                <div class="stat-icon">👤</div>
+                <div class="stat-number" id="stat-characters">0</div>
+                <div class="stat-label">人物</div>
+            </div>
+            <div class="stat-card fade-in">
+                <div class="stat-icon">⚔️</div>
+                <div class="stat-number" id="stat-battles">0</div>
+                <div class="stat-label">战役</div>
+            </div>
+            <div class="stat-card fade-in">
+                <div class="stat-icon">📜</div>
+                <div class="stat-number" id="stat-events">0</div>
+                <div class="stat-label">事件</div>
+            </div>
+            <div class="stat-card fade-in">
+                <div class="stat-icon">🃏</div>
+                <div class="stat-number" id="stat-skills">0</div>
+                <div class="stat-label">三国杀技能</div>
+            </div>
+        </div>
+
+        <!-- Search -->
+        <div class="search-section fade-in">
+            <div class="viz-title">🔍 知识搜索</div>
+            <div class="search-box">
+                <input type="text" class="search-input" id="searchInput" placeholder="搜索人物、事件、地点..." onkeyup="doSearch(event)">
+                <button class="search-btn" onclick="doSearch()">搜索</button>
+            </div>
+            <div class="filter-section">
+                <select class="filter-select" id="typeFilter">
+                    <option value="all">所有类型</option>
+                    <option value="character">人物</option>
+                    <option value="event">事件</option>
+                </select>
+                <select class="filter-select" id="factionFilter">
+                    <option value="all">所有势力</option>
+                    <option value="魏">魏</option>
+                    <option value="蜀">蜀</option>
+                    <option value="吴">吴</option>
+                    <option value="群">群</option>
+                </select>
+            </div>
+            <div class="search-results" id="searchResults"></div>
+        </div>
+
+        <!-- Charts -->
+        <div class="viz-grid">
+            <div class="viz-card fade-in">
+                <div class="viz-title">📊 势力分布</div>
+                <div id="factionChart" class="viz-container"></div>
+            </div>
+            <div class="viz-card fade-in">
+                <div class="viz-title">⚔️ 事件类型分布</div>
+                <div id="eventTypeChart" class="viz-container"></div>
+            </div>
+        </div>
+
+        <!-- Timeline -->
+        <div class="timeline-container fade-in">
+            <div class="viz-title">📅 历史大事时间线</div>
+            <div id="timelineChart" style="height:500px;"></div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>三国知识库 · 基于 Obsidian 笔记 · <a href="https://github.com/junjunfantasy/sanguo" target="_blank">GitHub</a></p>
+            <p style="margin-top:4px;">数据来源于 <strong>sanguo-knowledge</strong> 知识库，共120+篇笔记</p>
+        </div>
+    </div>
+
+    <script>
+    let allSearchData = [];
+
+    function initData() {
+        const chars = SANGUO_CHARACTERS.length;
+        const battles = SANGUO_EVENTS.filter(e => e.type === '军事').length;
+        const events = SANGUO_EVENTS.length;
+        const skills = SANGUO_CHARACTERS.reduce((acc, c) => acc + (c.skills ? c.skills.length : 0), 0);
+        
+        document.getElementById('stat-characters').textContent = chars;
+        document.getElementById('stat-battles').textContent = battles;
+        document.getElementById('stat-events').textContent = events;
+        document.getElementById('stat-skills').textContent = skills;
+
+        allSearchData = [
+            ...SANGUO_CHARACTERS.map(c => ({ name: c.name, faction: c.faction, type: 'character', label: '人物', desc: c.desc })),
+            ...SANGUO_EVENTS.map(e => ({ name: e.name, faction: '', type: 'event', label: '事件', desc: e.desc }))
+        ];
+    }
+
+    function initFactionChart() {
+        const chart = echarts.init(document.getElementById('factionChart'));
+        const count = {};
+        SANGUO_CHARACTERS.forEach(c => { count[c.faction] = (count[c.faction] || 0) + 1; });
+        const colors = { '魏': '#e74c3c', '蜀': '#2ecc71', '吴': '#3498db', '群': '#f39c12' };
+        const data = Object.entries(count).map(([k, v]) => ({ value: v, name: k, itemStyle: { color: colors[k] || '#95a5a6' } }));
+        chart.setOption({
+            tooltip: { trigger: 'item', formatter: '{b}: {c}人 ({d}%)' },
+            legend: { bottom: '5%', textStyle: { color: '#a0a0b0' } },
+            series: [{
+                type: 'pie', radius: ['45%', '70%'], center: ['50%', '45%'],
+                avoidLabelOverlap: false,
+                itemStyle: { borderRadius: 6, borderColor: '#0f0f1a', borderWidth: 3 },
+                label: { show: true, color: '#e8e8e8', formatter: '{b}\n{d}%', fontSize: 12 },
+                emphasis: { label: { show: true, fontSize: 16, fontWeight: 'bold', color: '#c9a227' } },
+                data: data
+            }]
+        });
+        window.addEventListener('resize', () => chart.resize());
+    }
+
+    function initEventTypeChart() {
+        const chart = echarts.init(document.getElementById('eventTypeChart'));
+        const count = {};
+        SANGUO_EVENTS.forEach(e => { count[e.type] = (count[e.type] || 0) + 1; });
+        const colors = { '军事': '#e74c3c', '政治': '#9b59b6', '人事': '#3498db' };
+        chart.setOption({
+            tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+            grid: { left: '3%', right: '4%', bottom: '10%', containLabel: true },
+            xAxis: { type: 'value', axisLabel: { color: '#a0a0b0' }, splitLine: { lineStyle: { color: 'rgba(255,255,255,0.05)' } } },
+            yAxis: { type: 'category', data: Object.keys(count), axisLabel: { color: '#e8e8e8', fontSize: 13 } },
+            series: [{
+                type: 'bar', barWidth: '50%',
+                data: Object.entries(count).map(([k, v]) => ({ value: v, itemStyle: { color: colors[k] || '#c9a227' } })),
+                label: { show: true, position: 'right', color: '#e8e8e8', formatter: '{c}个' }
+            }]
+        });
+        window.addEventListener('resize', () => chart.resize());
+    }
+
+    function initTimeline() {
+        const chart = echarts.init(document.getElementById('timelineChart'));
+        const sorted = [...SANGUO_EVENTS].sort((a, b) => a.year - b.year);
+        const years = [...new Set(sorted.map(e => e.year))].sort((a,b) => a-b);
+        const typeColors = { '军事': '#e74c3c', '政治': '#9b59b6', '人事': '#3498db' };
+
+        const option = {
+            tooltip: {
+                trigger: 'axis',
+                formatter: function(params) {
+                    const p = params[0];
+                    const evt = sorted.find(e => e.year === parseInt(p.name));
+                    if (!evt) return '';
+                    return `<strong style="color:#c9a227">${evt.name}</strong><br/>
+                            <span style="color:#e8e8e8">${evt.year}年 · ${evt.type}</span><br/>
+                            <span style="color:#a0a0b0;font-size:13px">${evt.desc}</span>`;
+                }
+            },
+            grid: { left: '3%', right: '4%', bottom: '15%', containLabel: true },
+            xAxis: {
+                type: 'category',
+                data: years,
+                axisLabel: { color: '#a0a0b0', fontSize: 11 },
+                axisLine: { lineStyle: { color: 'rgba(201,162,39,0.3)' } },
+                axisTick: { alignWithLabel: true }
+            },
+            yAxis: { show: false },
+            visualMap: {
+                show: false,
+                min: 0, max: sorted.length - 1,
+                dimension: 0,
+                pieces: sorted.map((e, i) => ({ value: i, color: typeColors[e.type] || '#c9a227' }))
+            },
+            series: [{
+                type: 'scatter',
+                symbolSize: function(val, params) {
+                    const idx = years.indexOf(params.name);
+                    const evts = sorted.filter(e => e.year === params.name);
+                    return 12 + evts.length * 4;
+                },
+                itemStyle: { color: function(params) {
+                    const evts = sorted.filter(e => e.year === years[params.dataIndex]);
+                    return typeColors[evts[0]?.type] || '#c9a227';
+                }},
+                data: years.map(y => {
+                    const evts = sorted.filter(e => e.year === y);
+                    return { value: [y, 0], name: evts.map(e => e.name).join(', ') };
+                }),
+                label: {
+                    show: true,
+                    position: 'top',
+                    color: '#a0a0b0',
+                    fontSize: 11,
+                    formatter: function(p) {
+                        const evts = sorted.filter(e => e.year === years[p.dataIndex]);
+                        return evts.map(e => e.name).join('\n');
+                    }
+                }
+            }]
+        };
+        chart.setOption(option);
+        window.addEventListener('resize', () => chart.resize());
+    }
+
+    function doSearch(e) {
+        if (e && e.key !== 'Enter') return;
+        const query = document.getElementById('searchInput').value.toLowerCase();
+        const typeFilter = document.getElementById('typeFilter').value;
+        const factionFilter = document.getElementById('factionFilter').value;
+        const results = document.getElementById('searchResults');
+        
+        let filtered = allSearchData;
+        if (query) filtered = filtered.filter(d => d.name.includes(query));
+        if (typeFilter !== 'all') filtered = filtered.filter(d => d.type === typeFilter);
+        if (factionFilter !== 'all') filtered = filtered.filter(d => d.faction === factionFilter);
+        
+        if (filtered.length === 0) {
+            results.innerHTML = '<div class="empty-state"><div class="empty-state-icon">🔍</div>未找到匹配结果</div>';
+            return;
+        }
+        
+        results.innerHTML = filtered.slice(0, 20).map(d => `
+            <div class="result-item" onclick="window.location.href='${d.type === 'character' ? 'characters.html?q=' + d.name : 'timeline.html?q=' + d.name}'">
+                <span class="result-name">${d.name}</span>
+                <span class="result-type">${d.label}</span>
+            </div>
+        `).join('');
+        if (filtered.length > 20) {
+            results.innerHTML += '<div class="loading">...还有 ' + (filtered.length - 20) + ' 条结果</div>';
+        }
+    }
+
+    window.onload = function() {
+        initData();
+        initFactionChart();
+        initEventTypeChart();
+        initTimeline();
+    };
+    </script>
+</body>
+</html>

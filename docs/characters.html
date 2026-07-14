@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>人物谱 - 三国知识库</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="data/characters.js"></script>
+</head>
+<body>
+    <div class="header">
+        <div class="logo"><span class="logo-icon">🏯</span> 三国知识库</div>
+        <nav class="nav">
+            <a href="index.html">首页</a>
+            <a href="characters.html" class="active">人物谱</a>
+            <a href="timeline.html">事件时间线</a>
+            <a href="graph.html">关系图谱</a>
+            <a href="game.html">三国杀</a>
+        </nav>
+    </div>
+
+    <div class="main">
+        <div class="page-title">👤 人物谱</div>
+        <div class="page-subtitle">三国人物总览 · 共 <span id="totalChars">0</span> 人</div>
+
+        <div class="search-section fade-in">
+            <div class="search-box">
+                <input type="text" class="search-input" id="searchInput" placeholder="搜索人物姓名、字、别称..." onkeyup="filterChars()">
+            </div>
+            <div class="filter-section">
+                <button class="search-btn" style="padding:6px 16px;font-size:13px;background:rgba(231,76,60,0.2);color:#e74c3c;border:1px solid rgba(231,76,60,0.3)" onclick="filterFaction('魏')">魏</button>
+                <button class="search-btn" style="padding:6px 16px;font-size:13px;background:rgba(46,204,113,0.2);color:#2ecc71;border:1px solid rgba(46,204,113,0.3)" onclick="filterFaction('蜀')">蜀</button>
+                <button class="search-btn" style="padding:6px 16px;font-size:13px;background:rgba(52,152,219,0.2);color:#3498db;border:1px solid rgba(52,152,219,0.3)" onclick="filterFaction('吴')">吴</button>
+                <button class="search-btn" style="padding:6px 16px;font-size:13px;background:rgba(243,156,18,0.2);color:#f39c12;border:1px solid rgba(243,156,18,0.3)" onclick="filterFaction('群')">群</button>
+                <button class="search-btn" style="padding:6px 16px;font-size:13px" onclick="filterFaction('all')">全部</button>
+            </div>
+        </div>
+
+        <div class="card-grid" id="charGrid"></div>
+    </div>
+
+    <div class="footer">
+        <p>三国知识库 · 人物数据来源于 Obsidian 笔记</p>
+    </div>
+
+    <script>
+    let currentFaction = 'all';
+
+    function renderChars(list) {
+        const grid = document.getElementById('charGrid');
+        grid.innerHTML = list.map(c => {
+            const birthStr = c.birth ? `${c.birth}年` : '?';
+            const deathStr = c.death ? `${c.death}年` : '?';
+            return `<div class="char-card fade-in" onclick="openChar('${c.id}')">
+                <div class="char-avatar">${c.name.charAt(0)}</div>
+                <div class="char-name">${c.name} <span class="faction-badge faction-${c.faction}">${c.faction}</span></div>
+                ${c.alias ? `<div class="char-alias">字 ${c.alias}</div>` : ''}
+                <div class="char-info">📅 ${birthStr} - ${deathStr}</div>
+                <div class="char-info" style="font-size:12px;color:var(--text-muted);margin-top:4px;">${c.desc ? c.desc.substring(0, 40) + '...' : ''}</div>
+                <div class="char-tags">${c.tags.slice(0, 4).map(t => `<span class="char-tag">${t}</span>`).join('')}</div>
+            </div>`;
+        }).join('');
+        document.getElementById('totalChars').textContent = list.length;
+    }
+
+    function filterChars() {
+        const q = document.getElementById('searchInput').value.toLowerCase();
+        let filtered = SANGUO_CHARACTERS;
+        if (q) filtered = filtered.filter(c => 
+            c.name.includes(q) || (c.alias && c.alias.includes(q)) || 
+            c.tags.some(t => t.includes(q))
+        );
+        if (currentFaction !== 'all') filtered = filtered.filter(c => c.faction === currentFaction);
+        renderChars(filtered);
+    }
+
+    function filterFaction(f) {
+        currentFaction = f;
+        document.getElementById('searchInput').value = '';
+        let filtered = f === 'all' ? SANGUO_CHARACTERS : SANGUO_CHARACTERS.filter(c => c.faction === f);
+        renderChars(filtered);
+    }
+
+    function openChar(id) {
+        const url = `https://github.com/junjunfantasy/sanguo/blob/main/sanguo-knowledge/characters/${id}.md`;
+        window.open(url, '_blank');
+    }
+
+    window.onload = function() {
+        // Check URL params
+        const params = new URLSearchParams(window.location.search);
+        const q = params.get('q');
+        if (q) {
+            document.getElementById('searchInput').value = q;
+        }
+        filterChars();
+    };
+    </script>
+</body>
+</html>
