@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>三国知识库 | Three Kingdoms Knowledge Base</title>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7.8.5/dist/d3.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', 'SimHei', Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #e8e8e8;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px 40px;
+            border-bottom: 2px solid #c9a227;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #c9a227;
+        }
+
+        .nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav a {
+            color: #e8e8e8;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+
+        .nav a:hover {
+            background: rgba(201, 162, 39, 0.2);
+        }
+
+        .main {
+            padding: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .search-section {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 12px 20px;
+            border: 1px solid #c9a227;
+            border-radius: 5px;
+            background: rgba(0, 0, 0, 0.3);
+            color: #e8e8e8;
+            font-size: 16px;
+        }
+
+        .search-input::placeholder {
+            color: #888;
+        }
+
+        .search-btn {
+            padding: 12px 30px;
+            background: #c9a227;
+            color: #1a1a2e;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .search-btn:hover {
+            background: #d4af37;
+        }
+
+        .filter-section {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .filter-select {
+            padding: 8px 15px;
+            border: 1px solid #c9a227;
+            border-radius: 5px;
+            background: rgba(0, 0, 0, 0.3);
+            color: #e8e8e8;
+        }
+
+        .visualization-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .viz-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 25px;
+            border-radius: 10px;
+            border: 1px solid rgba(201, 162, 39, 0.3);
+        }
+
+        .viz-title {
+            font-size: 18px;
+            color: #c9a227;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(201, 162, 39, 0.3);
+        }
+
+        .viz-container {
+            height: 400px;
+            width: 100%;
+        }
+
+        .entity-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 4px solid #c9a227;
+        }
+
+        .entity-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: #c9a227;
+            margin-bottom: 10px;
+        }
+
+        .entity-details {
+            font-size: 14px;
+            color: #aaa;
+            line-height: 1.6;
+        }
+
+        .entity-attributes {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .attribute {
+            background: rgba(201, 162, 39, 0.2);
+            padding: 4px 10px;
+            border-radius: 3px;
+            font-size: 12px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: bold;
+            color: #c9a227;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #888;
+            margin-top: 5px;
+        }
+
+        .timeline-container {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .network-container {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .network-canvas {
+            width: 100%;
+            height: 600px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #888;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">🏯 三国知识库</div>
+        <nav class="nav">
+            <a href="#search">搜索</a>
+            <a href="#visualization">可视化</a>
+            <a href="#timeline">时间线</a>
+            <a href="#network">关系网络</a>
+            <a href="#game">策略游戏</a>
+        </nav>
+    </div>
+
+    <div class="main">
+        <!-- Statistics Section -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number" id="stat-characters">0</div>
+                <div class="stat-label">人物实体</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="stat-events">0</div>
+                <div class="stat-label">历史事件</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="stat-locations">0</div>
+                <div class="stat-label">地理地点</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="stat-relations">0</div>
+                <div class="stat-label">关系网络</div>
+            </div>
+        </div>
+
+        <!-- Search Section -->
+        <div class="search-section" id="search">
+            <h2 style="color: #c9a227; margin-bottom: 20px;">🔍 知识搜索</h2>
+            <div class="search-box">
+                <input type="text" class="search-input" id="search-input" placeholder="搜索人物、事件、地点...">
+                <button class="search-btn" onclick="performSearch()">搜索</button>
+            </div>
+            <div class="filter-section">
+                <select class="filter-select" id="type-filter">
+                    <option value="all">所有类型</option>
+                    <option value="character">人物</option>
+                    <option value="event">事件</option>
+                    <option value="location">地点</option>
+                    <option value="faction">势力</option>
+                </select>
+                <select class="filter-select" id="faction-filter">
+                    <option value="all">所有势力</option>
+                    <option value="魏">魏</option>
+                    <option value="蜀">蜀</option>
+                    <option value="吴">吴</option>
+                    <option value="群">群</option>
+                </select>
+                <select class="filter-select" id="time-filter">
+                    <option value="all">所有时期</option>
+                    <option value="早期">早期 (184-200)</option>
+                    <option value="中期">中期 (200-234)</option>
+                    <option value="晚期">晚期 (234-280)</option>
+                </select>
+            </div>
+            <div id="search-results" style="margin-top: 20px;"></div>
+        </div>
+
+        <!-- Visualization Section -->
+        <div class="visualization-grid" id="visualization">
+            <div class="viz-card">
+                <div class="viz-title">📊 势力分布</div>
+                <div id="faction-chart" class="viz-container"></div>
+            </div>
+            <div class="viz-card">
+                <div class="viz-title">⚔️ 事件类型分布</div>
+                <div id="event-chart" class="viz-container"></div>
+            </div>
+            <div class="viz-card">
+                <div class="viz-title">🗺️ 地理分布</div>
+                <div id="geo-chart" class="viz-container"></div>
+            </div>
+            <div class="viz-card">
+                <div class="viz-title">👥 人物能力值</div>
+                <div id="ability-chart" class="viz-container"></div>
+            </div>
+        </div>
+
+        <!-- Timeline Section -->
+        <div class="timeline-container" id="timeline">
+            <div class="viz-title">📅 历史时间线</div>
+            <div id="timeline-chart" style="height: 500px;"></div>
+        </div>
+
+        <!-- Network Section -->
+        <div class="network-container" id="network">
+            <div class="viz-title">🕸️ 关系网络</div>
+            <div class="network-canvas" id="network-graph"></div>
+        </div>
+    </div>
+
+    <script>
+        // Sample data for demonstration
+        const sampleData = {
+            characters: [
+                { name: "刘备", faction: "蜀", strength: 6, intelligence: 8, political: 9 },
+                { name: "曹操", faction: "魏", strength: 7, intelligence: 9, political: 10 },
+                { name: "孙权", faction: "吴", strength: 6, intelligence: 8, political: 9 },
+                { name: "诸葛亮", faction: "蜀", strength: 2, intelligence: 10, political: 9 },
+                { name: "关羽", faction: "蜀", strength: 10, intelligence: 6, political: 5 },
+                { name: "周瑜", faction: "吴", strength: 8, intelligence: 9, political: 7 },
+                { name: "司马懿", faction: "魏", strength: 6, intelligence: 10, political: 9 },
+                { name: "吕布", faction: "群", strength: 10, intelligence: 3, political: 2 }
+            ],
+            events: [
+                { name: "黄巾起义", year: 184, type: "军事" },
+                { name: "官渡之战", year: 200, type: "军事" },
+                { name: "赤壁之战", year: 208, type: "军事" },
+                { name: "三国鼎立", year: 229, type: "政治" },
+                { name: "诸葛亮北伐", year: 228, type: "军事" },
+                { name: "司马氏专权", year: 249, type: "政治" }
+            ],
+            locations: [
+                { name: "洛阳", type: "都城" },
+                { name: "成都", type: "都城" },
+                { name: "建业", type: "都城" },
+                { name: "赤壁", type: "战场" },
+                { name: "荆州", type: "州" }
+            ]
+        };
+
+        // Initialize statistics
+        function initStats() {
+            document.getElementById('stat-characters').textContent = sampleData.characters.length;
+            document.getElementById('stat-events').textContent = sampleData.events.length;
+            document.getElementById('stat-locations').textContent = sampleData.locations.length;
+            document.getElementById('stat-relations').textContent = 156;
+        }
+
+        // Initialize faction chart
+        function initFactionChart() {
+            const chart = echarts.init(document.getElementById('faction-chart'));
+            const factionCount = {};
+            sampleData.characters.forEach(c => {
+                factionCount[c.faction] = (factionCount[c.faction] || 0) + 1;
+            });
+
+            const option = {
+                tooltip: {
+                    trigger: 'item'
+                },
+                legend: {
+                    top: '5%',
+                    left: 'center',
+                    textStyle: { color: '#e8e8e8' }
+                },
+                series: [{
+                    name: '势力分布',
+                    type: 'pie',
+                    radius: ['40%', '70%'],
+                    avoidLabelOverlap: false,
+                    itemStyle: {
+                        borderRadius: 10,
+                        borderColor: '#1a1a2e',
+                        borderWidth: 2
+                    },
+                    label: {
+                        show: false,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        label: {
+                            show: true,
+                            fontSize: 20,
+                            fontWeight: 'bold',
+                            color: '#c9a227'
+                        }
+                    },
+                    labelLine: {
+                        show: false
+                    },
+                    data: Object.keys(factionCount).map(key => ({
+                        value: factionCount[key],
+                        name: key
+                    }))
+                }]
+            };
+            chart.setOption(option);
+        }
+
+        // Initialize event chart
+        function initEventChart() {
+            const chart = echarts.init(document.getElementById('event-chart'));
+            const eventCount = {};
+            sampleData.events.forEach(e => {
+                eventCount[e.type] = (eventCount[e.type] || 0) + 1;
+            });
+
+            const option = {
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'shadow'
+                    }
+                },
+                xAxis: {
+                    type: 'category',
+                    data: Object.keys(eventCount),
+                    axisLabel: { color: '#e8e8e8' }
+                },
+                yAxis: {
+                    type: 'value',
+                    axisLabel: { color: '#e8e8e8' }
+                },
+                series: [{
+                    data: Object.values(eventCount),
+                    type: 'bar',
+                    itemStyle: {
+                        color: '#c9a227'
+                    }
+                }]
+            };
+            chart.setOption(option);
+        }
+
+        // Initialize ability chart
+        function initAbilityChart() {
+            const chart = echarts.init(document.getElementById('ability-chart'));
+            const topCharacters = sampleData.characters.slice(0, 5);
+
+            const option = {
+                tooltip: {
+                    trigger: 'axis'
+                },
+                legend: {
+                    data: ['武力', '智力', '政治'],
+                    textStyle: { color: '#e8e8e8' }
+                },
+                xAxis: {
+                    type: 'category',
+                    data: topCharacters.map(c => c.name),
+                    axisLabel: { color: '#e8e8e8' }
+                },
+                yAxis: {
+                    type: 'value',
+                    max: 10,
+                    axisLabel: { color: '#e8e8e8' }
+                },
+                series: [
+                    {
+                        name: '武力',
+                        type: 'bar',
+                        data: topCharacters.map(c => c.strength),
+                        itemStyle: { color: '#e74c3c' }
+                    },
+                    {
+                        name: '智力',
+                        type: 'bar',
+                        data: topCharacters.map(c => c.intelligence),
+                        itemStyle: { color: '#3498db' }
+                    },
+                    {
+                        name: '政治',
+                        type: 'bar',
+                        data: topCharacters.map(c => c.political),
+                        itemStyle: { color: '#2ecc71' }
+                    }
+                ]
+            };
+            chart.setOption(option);
+        }
+
+        // Initialize timeline chart
+        function initTimelineChart() {
+            const chart = echarts.init(document.getElementById('timeline-chart'));
+            
+            const option = {
+                tooltip: {
+                    trigger: 'axis'
+                },
+                xAxis: {
+                    type: 'category',
+                    data: sampleData.events.map(e => e.year),
+                    axisLabel: { color: '#e8e8e8' }
+                },
+                yAxis: {
+                    type: 'category',
+                    data: sampleData.events.map(e => e.name),
+                    axisLabel: { color: '#e8e8e8' }
+                },
+                series: [{
+                    type: 'line',
+                    data: sampleData.events.map((e, i) => [e.year, i]),
+                    itemStyle: { color: '#c9a227' },
+                    lineStyle: { color: '#c9a227' }
+                }]
+            };
+            chart.setOption(option);
+        }
+
+        // Initialize network graph
+        function initNetworkGraph() {
+            const width = document.getElementById('network-graph').offsetWidth;
+            const height = 600;
+
+            const svg = d3.select('#network-graph')
+                .append('svg')
+                .attr('width', width)
+                .attr('height', height);
+
+            const nodes = sampleData.characters.map(c => ({
+                id: c.name,
+                group: c.faction,
+                radius: c.strength * 3 + 10
+            }));
+
+            const links = [
+                { source: "刘备", target: "关羽" },
+                { source: "刘备", target: "诸葛亮" },
+                { source: "曹操", target: "司马懿" },
+                { source: "孙权", target: "周瑜" },
+                { source: "刘备", target: "曹操", relation: "enemy" },
+                { source: "曹操", target: "孙权", relation: "enemy" }
+            ];
+
+            const simulation = d3.forceSimulation(nodes)
+                .force('link', d3.forceLink(links).id(d => d.id))
+                .force('charge', d3.forceManyBody().strength(-300))
+                .force('center', d3.forceCenter(width / 2, height / 2));
+
+            const link = svg.append('g')
+                .selectAll('line')
+                .data(links)
+                .enter()
+                .append('line')
+                .attr('stroke', '#c9a227')
+                .attr('stroke-width', 2);
+
+            const node = svg.append('g')
+                .selectAll('circle')
+                .data(nodes)
+                .enter()
+                .append('circle')
+                .attr('r', d => d.radius)
+                .attr('fill', d => {
+                    const colors = { '魏': '#e74c3c', '蜀': '#2ecc71', '吴': '#3498db', '群': '#f39c12' };
+                    return colors[d.group] || '#95a5a6';
+                })
+                .call(d3.drag()
+                    .on('start', dragstarted)
+                    .on('drag', dragged)
+                    .on('end', dragended));
+
+            const labels = svg.append('g')
+                .selectAll('text')
+                .data(nodes)
+                .enter()
+                .append('text')
+                .text(d => d.id)
+                .attr('font-size', 12)
+                .attr('fill', '#e8e8e8')
+                .attr('text-anchor', 'middle')
+                .attr('dy', 4);
+
+            simulation.on('tick', () => {
+                link
+                    .attr('x1', d => d.source.x)
+                    .attr('y1', d => d.source.y)
+                    .attr('x2', d => d.target.x)
+                    .attr('y2', d => d.target.y);
+
+                node
+                    .attr('cx', d => d.x)
+                    .attr('cy', d => d.y);
+
+                labels
+                    .attr('x', d => d.x)
+                    .attr('y', d => d.y);
+            });
+
+            function dragstarted(event, d) {
+                if (!event.active) simulation.alphaTarget(0.3).restart();
+                d.fx = d.x;
+                d.fy = d.y;
+            }
+
+            function dragged(event, d) {
+                d.fx = event.x;
+                d.fy = event.y;
+            }
+
+            function dragended(event, d) {
+                if (!event.active) simulation.alphaTarget(0);
+                d.fx = null;
+                d.fy = null;
+            }
+        }
+
+        // Search function
+        function performSearch() {
+            const query = document.getElementById('search-input').value;
+            const typeFilter = document.getElementById('type-filter').value;
+            const factionFilter = document.getElementById('faction-filter').value;
+            
+            let results = [];
+            
+            if (typeFilter === 'all' || typeFilter === 'character') {
+                sampleData.characters.forEach(c => {
+                    if (c.name.includes(query) || query === '') {
+                        if (factionFilter === 'all' || c.faction === factionFilter) {
+                            results.push({
+                                type: 'character',
+                                name: c.name,
+                                details: `势力: ${c.faction} | 武力: ${c.strength} | 智力: ${c.intelligence} | 政治: ${c.political}`
+                            });
+                        }
+                    }
+                });
+            }
+            
+            if (typeFilter === 'all' || typeFilter === 'event') {
+                sampleData.events.forEach(e => {
+                    if (e.name.includes(query) || query === '') {
+                        results.push({
+                            type: 'event',
+                            name: e.name,
+                            details: `年份: ${e.year} | 类型: ${e.type}`
+                        });
+                    }
+                });
+            }
+            
+            displayResults(results);
+        }
+
+        function displayResults(results) {
+            const container = document.getElementById('search-results');
+            container.innerHTML = '';
+            
+            if (results.length === 0) {
+                container.innerHTML = '<div class="loading">未找到匹配结果</div>';
+                return;
+            }
+            
+            results.forEach(result => {
+                const card = document.createElement('div');
+                card.className = 'entity-card';
+                card.innerHTML = `
+                    <div class="entity-name">${result.name}</div>
+                    <div class="entity-details">${result.details}</div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Initialize on load
+        window.onload = function() {
+            initStats();
+            initFactionChart();
+            initEventChart();
+            initAbilityChart();
+            initTimelineChart();
+            initNetworkGraph();
+        };
+
+        // Handle window resize
+        window.onresize = function() {
+            const charts = [
+                echarts.getInstanceBy(document.getElementById('faction-chart')),
+                echarts.getInstanceBy(document.getElementById('event-chart')),
+                echarts.getInstanceBy(document.getElementById('ability-chart')),
+                echarts.getInstanceBy(document.getElementById('timeline-chart'))
+            ];
+            charts.forEach(chart => chart && chart.resize());
+        };
+    </script>
+</body>
+</html>
