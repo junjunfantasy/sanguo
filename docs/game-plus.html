@@ -235,7 +235,8 @@ const SD = {
   宗室:'刘表受到伤害后可判定回血。汉室宗亲，名士风流'
 };
 
-let chars = window.SANGUO_CHARACTERS || [];
+let chars = [];
+try { chars = window.SANGUO_CHARACTERS || SANGUO_CHARACTERS || []; } catch(e) { chars = []; }
 let factionFilter = 'all';
 let team = [];
 
