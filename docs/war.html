@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>三国争霸·策略游戏 - 三国知识库</title>
+<link rel="stylesheet" href="css/style.css">
+<style>
+.game-area { display: grid; grid-template-columns: 1fr 300px; gap: 20px; }
+@media (max-width: 1000px) { .game-area { grid-template-columns: 1fr; } }
+.side-panel { position: sticky; top: calc(var(--header-height) + 24px); }
+.game-log { background: var(--bg-card); border: 1px solid var(--border-light); border-radius: 12px; padding: 16px; max-height: 400px; overflow-y: auto; font-size: 13px; line-height: 1.6; box-shadow: var(--shadow-sm); }
+.game-log .log-entry { padding: 4px 0; border-bottom: 1px solid var(--border-light); color: var(--text-secondary); }
+.game-log .log-entry:last-child { border: none; }
+.game-log .log-entry .log-turn { color: var(--accent); font-weight: 600; }
+.map-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; margin-bottom: 20px; }
+.map-loc { background: var(--bg-card); border: 1px solid var(--border-light); border-radius: 10px; padding: 14px; text-align: center; cursor: default; transition: all 0.2s; box-shadow: var(--shadow-sm); }
+.map-loc:hover { border-color: var(--accent); }
+.map-loc .loc-name { font-weight: 600; color: var(--text-primary); font-size: 14px; }
+.map-loc .loc-owner { font-size: 12px; margin-top: 4px; padding: 2px 8px; border-radius: 4px; display: inline-block; }
+.map-loc .loc-val { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
+.resource-bar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 16px; }
+.res-card { background: var(--bg-card); border: 1px solid var(--border-light); border-radius: 10px; padding: 12px; text-align: center; box-shadow: var(--shadow-sm); }
+.res-card .res-num { font-size: 22px; font-weight: 700; color: var(--accent); }
+.res-card .res-label { font-size: 12px; color: var(--text-secondary); }
+.action-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 16px; }
+.action-btn { padding: 14px; border: 1px solid var(--border); border-radius: 10px; background: var(--bg-card); color: var(--text-primary); cursor: pointer; font-size: 14px; font-weight: 600; transition: all 0.2s; box-shadow: var(--shadow-sm); }
+.action-btn:hover { border-color: var(--accent); background: var(--accent-dim); transform: translateY(-2px); }
+.action-btn .action-icon { font-size: 20px; display: block; margin-bottom: 4px; }
+.action-btn .action-sub { font-size: 11px; color: var(--text-muted); font-weight: 400; }
+.char-status { background: var(--bg-card); border: 1px solid var(--border-light); border-radius: 10px; padding: 14px; margin-bottom: 10px; box-shadow: var(--shadow-sm); }
+.char-status .cs-header { display: flex; justify-content: space-between; margin-bottom: 6px; }
+.char-status .cs-name { font-weight: 600; color: var(--accent); }
+.char-status .cs-hp { font-size: 13px; }
+.char-status .cs-stats { font-size: 12px; color: var(--text-secondary); display: flex; gap: 12px; }
+.turn-banner { background: var(--accent-dim); border: 1px solid var(--border); border-radius: 10px; padding: 10px 16px; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center; }
+.turn-banner .year { font-weight: 700; font-size: 18px; color: var(--accent); }
+.turn-banner .faction-label { font-size: 14px; color: var(--text-secondary); }
+.victory-modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.3); z-index: 2000; align-items: center; justify-content: center; }
+.victory-modal.show { display: flex; }
+.victory-content { background: var(--bg-card); border-radius: 16px; padding: 40px; text-align: center; max-width: 420px; box-shadow: 0 20px 60px rgba(0,0,0,0.15); }
+.victory-content h2 { font-size: 28px; color: var(--accent); margin-bottom: 8px; }
+.victory-content p { color: var(--text-secondary); margin-bottom: 20px; }
+.victory-content button { padding: 12px 32px; background: var(--accent); color: #fff; border: none; border-radius: 8px; cursor: pointer; font-size: 15px; font-weight: 600; }
+.vic-faction { font-size: 48px; margin-bottom: 12px; }
+</style>
+</head>
+<body>
+<div class="header">
+    <div class="logo"><span class="logo-icon">⚔️</span> 三国知识库</div>
+    <nav class="nav">
+        <a href="index.html">首页</a>
+        <a href="characters.html">人物谱</a>
+        <a href="timeline.html">时间线</a>
+        <a href="metro.html">地铁图</a>
+        <a href="graph.html">关系图谱</a>
+        <a href="game.html">三国杀</a>
+        <a href="game-plus.html">武将图鉴</a>
+        <a href="war.html" class="active">争霸</a>
+    </nav>
+</div>
+<div class="main">
+    <div class="page-title">⚔️ 三国争霸·策略游戏</div>
+    <div class="page-subtitle">回合制策略 · 统一天下 · 基于三国知识库人物数据</div>
+
+    <!-- 开局选择 -->
+    <div id="setupScreen" class="search-section fade-in" style="text-align:center;padding:40px;">
+        <div style="font-size:64px;margin-bottom:16px;">🏯</div>
+        <h2 style="color:var(--accent);margin-bottom:8px;">选择你的势力</h2>
+        <p style="color:var(--text-secondary);margin-bottom:20px;">每个势力拥有不同的武将和初始领地，选择你心仪的阵营开始争霸</p>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;max-width:600px;margin:0 auto;">
+            <div class="char-card" onclick="startGame('魏')" style="cursor:pointer;">
+                <div style="font-size:36px;margin-bottom:8px;">🟥</div>
+                <div class="char-name">曹魏</div>
+                <div class="char-alias">曹操 · 司马懿 · 张辽</div>
+                <div class="char-info">武将以多为胜，谋士如云</div>
+            </div>
+            <div class="char-card" onclick="startGame('蜀')" style="cursor:pointer;">
+                <div style="font-size:36px;margin-bottom:8px;">🟩</div>
+                <div class="char-name">蜀汉</div>
+                <div class="char-alias">刘备 · 关羽 · 诸葛亮</div>
+                <div class="char-info">五虎上将，精诚团结</div>
+            </div>
+            <div class="char-card" onclick="startGame('吴')" style="cursor:pointer;">
+                <div style="font-size:36px;margin-bottom:8px;">🟦</div>
+                <div class="char-name">东吴</div>
+                <div class="char-alias">孙权 · 周瑜 · 陆逊</div>
+                <div class="char-info">水军称雄，江东子弟</div>
+            </div>
+            <div class="char-card" onclick="startGame('群')" style="cursor:pointer;">
+                <div style="font-size:36px;margin-bottom:8px;">🟧</div>
+                <div class="char-name">群雄</div>
+                <div class="char-alias">吕布 · 袁绍 · 董卓</div>
+                <div class="char-info">猛将如云，但人心不齐</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 游戏主界面 -->
+    <div id="gameScreen" style="display:none;">
+        <div class="turn-banner fade-in">
+            <div><span class="year" id="yearDisplay">184年</span> <span class="faction-label" id="turnDisplay">第1回合</span></div>
+            <div><span class="faction-label">当前：</span><span id="currentFactionDisplay" class="faction-label" style="font-weight:700;font-size:16px;">蜀</span></div>
+        </div>
+
+        <div class="resource-bar">
+            <div class="res-card"><div class="res-num" id="goldDisplay">10000</div><div class="res-label">💰 黄金</div></div>
+            <div class="res-card"><div class="res-num" id="foodDisplay">10000</div><div class="res-label">🌾 粮草</div></div>
+            <div class="res-card"><div class="res-num" id="popDisplay">100000</div><div class="res-label">👥 人口</div></div>
+        </div>
+
+        <div class="game-area">
+            <div>
+                <!-- 行动按钮 -->
+                <div class="action-grid">
+                    <button class="action-btn" onclick="doAction('military')"><span class="action-icon">⚔️</span>军事征伐<span class="action-sub">攻击敌占城池</span></button>
+                    <button class="action-btn" onclick="doAction('diplomatic')"><span class="action-icon">🤝</span>外交联盟<span class="action-sub">与势力结盟</span></button>
+                    <button class="action-btn" onclick="doAction('economic')"><span class="action-icon">🌾</span>经济发展<span class="action-sub">增加资源收入</span></button>
+                    <button class="action-btn" onclick="doAction('political')"><span class="action-icon">👑</span>内政治理<span class="action-sub">提升忠诚度</span></button>
+                </div>
+                <!-- 地图 -->
+                <div style="background:var(--bg-card);border:1px solid var(--border-light);border-radius:12px;padding:16px;box-shadow:var(--shadow-sm);">
+                    <div class="viz-title">🗺️ 天下地图</div>
+                    <div class="map-grid" id="mapGrid"></div>
+                </div>
+                <!-- 武将 -->
+                <div style="margin-top:16px;">
+                    <div class="viz-title">👤 麾下武将</div>
+                    <div id="charList"></div>
+                </div>
+            </div>
+            <div class="side-panel">
+                <div class="viz-title">📜 战报</div>
+                <div class="game-log" id="gameLog"><div class="log-entry">选择势力开始游戏</div></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer">基于 Obsidian 的三国知识库 · <a href="https://github.com/junjunfantasy/sanguo">GitHub</a></div>
+
+<div class="victory-modal" id="victoryModal">
+    <div class="victory-content">
+        <div class="vic-faction" id="vicEmoji">🏆</div>
+        <h2 id="vicTitle">天下已定</h2>
+        <p id="vicDesc">你的势力统一了天下！</p>
+        <button onclick="location.reload()">重新开始</button>
+    </div>
+</div>
+
+<script>
+// ===== 游戏数据 =====
+const FACTION_COLORS = {魏:'#c0392b',蜀:'#27ae60',吴:'#2980b9',群:'#d68910'};
+const FACTION_EMOJI = {魏:'🟥',蜀:'🟩',吴:'🟦',群:'🟧'};
+
+const ALL_CHARACTERS = {
+    魏: [
+        {name:'曹操',str:7,int:9,pol:10,hp:100},
+        {name:'司马懿',str:6,int:10,pol:9,hp:90},
+        {name:'张辽',str:9,int:7,pol:4,hp:100},
+        {name:'夏侯惇',str:9,int:5,pol:3,hp:110},
+        {name:'许褚',str:10,int:3,pol:2,hp:120},
+        {name:'荀彧',str:2,int:9,pol:10,hp:70},
+        {name:'郭嘉',str:2,int:10,pol:7,hp:60},
+        {name:'曹仁',str:9,int:6,pol:4,hp:100},
+        {name:'张郃',str:8,int:7,pol:4,hp:95},
+        {name:'徐晃',str:9,int:7,pol:4,hp:95}
+    ],
+    蜀: [
+        {name:'刘备',str:6,int:8,pol:9,hp:95},
+        {name:'关羽',str:10,int:6,pol:5,hp:110},
+        {name:'张飞',str:10,int:4,pol:3,hp:115},
+        {name:'诸葛亮',str:2,int:10,pol:9,hp:70},
+        {name:'赵云',str:9,int:7,pol:5,hp:105},
+        {name:'马超',str:10,int:5,pol:3,hp:110},
+        {name:'黄忠',str:9,int:6,pol:3,hp:85},
+        {name:'魏延',str:9,int:6,pol:3,hp:100},
+        {name:'姜维',str:8,int:8,pol:5,hp:95},
+        {name:'庞统',str:3,int:9,pol:7,hp:65}
+    ],
+    吴: [
+        {name:'孙权',str:6,int:8,pol:9,hp:90},
+        {name:'周瑜',str:8,int:9,pol:7,hp:80},
+        {name:'陆逊',str:7,int:9,pol:8,hp:85},
+        {name:'吕蒙',str:8,int:8,pol:5,hp:95},
+        {name:'甘宁',str:9,int:5,pol:2,hp:105},
+        {name:'黄盖',str:8,int:6,pol:3,hp:95},
+        {name:'太史慈',str:9,int:5,pol:3,hp:100},
+        {name:'孙策',str:9,int:7,pol:6,hp:100},
+        {name:'鲁肃',str:4,int:8,pol:9,hp:75},
+        {name:'程普',str:8,int:6,pol:5,hp:90}
+    ],
+    群: [
+        {name:'吕布',str:10,int:3,pol:2,hp:120},
+        {name:'袁绍',str:5,int:6,pol:7,hp:95},
+        {name:'董卓',str:7,int:5,pol:4,hp:110},
+        {name:'张角',str:3,int:7,pol:5,hp:70},
+        {name:'公孙瓒',str:7,int:5,pol:3,hp:95},
+        {name:'华佗',str:1,int:9,pol:2,hp:55},
+        {name:'貂蝉',str:1,int:7,pol:2,hp:50},
+        {name:'颜良',str:9,int:4,pol:2,hp:105},
+        {name:'文丑',str:9,int:3,pol:2,hp:105},
+        {name:'陈宫',str:3,int:8,pol:6,hp:65}
+    ]
+};
+
+const LOCATIONS = [
+    {name:'洛阳',val:10,owner:null},{name:'长安',val:9,owner:null},
+    {name:'许都',val:8,owner:null},{name:'邺城',val:7,owner:null},
+    {name:'成都',val:8,owner:null},{name:'汉中',val:7,owner:null},
+    {name:'建业',val:8,owner:null},{name:'柴桑',val:6,owner:null},
+    {name:'荆州',val:9,owner:null},{name:'襄阳',val:7,owner:null},
+    {name:'徐州',val:5,owner:null},{name:'合肥',val:6,owner:null},
+    {name:'官渡',val:6,owner:null},{name:'赤壁',val:7,owner:null},
+    {name:'蓟城',val:4,owner:null},{name:'宛城',val:5,owner:null}
+];
+
+const INITIAL_TERRITORY = {
+    魏: ['洛阳','许都','邺城','官渡','宛城'],
+    蜀: ['成都','汉中','荆州','襄阳'],
+    吴: ['建业','柴桑','赤壁','合肥'],
+    群: ['长安','徐州','蓟城']
+};
+
+// ===== 游戏状态 =====
+let state = {};
+
+function startGame(faction) {
+    document.getElementById('setupScreen').style.display = 'none';
+    document.getElementById('gameScreen').style.display = 'block';
+
+    state = {
+        turn: 1, year: 184,
+        playerFaction: faction,
+        currentFaction: '魏',
+        factions: ['魏','蜀','吴','群'],
+        characters: JSON.parse(JSON.stringify(ALL_CHARACTERS)),
+        locations: JSON.parse(JSON.stringify(LOCATIONS)),
+        resources: {魏:{gold:10000,food:10000,pop:100000},蜀:{gold:10000,food:10000,pop:100000},吴:{gold:10000,food:10000,pop:100000},群:{gold:10000,food:10000,pop:100000}},
+        diplomacy: {}, // faction: alliedFaction
+        log: [],
+        gameOver: false
+    };
+
+    // 分配初始领地
+    state.locations.forEach(l => {
+        for (let [f, towns] of Object.entries(INITIAL_TERRITORY)) {
+            if (towns.includes(l.name)) { l.owner = f; break; }
+        }
+    });
+
+    addLog(`🏯 ${faction} 起兵争霸天下！`);
+    render();
+}
+
+function addLog(msg) {
+    state.log.push(`[${state.year}年] ${msg}`);
+    const logEl = document.getElementById('gameLog');
+    logEl.innerHTML = state.log.map(m => `<div class="log-entry">${m}</div>`).join('');
+    logEl.scrollTop = logEl.scrollHeight;
+}
+
+function rollD100() { return Math.random() * 100; }
+
+function doAction(type) {
+    if (state.gameOver) return;
+    const f = state.playerFaction;
+    
+    switch(type) {
+        case 'military': militaryAction(f); break;
+        case 'diplomatic': diplomaticAction(f); break;
+        case 'economic': economicAction(f); break;
+        case 'political': politicalAction(f); break;
+    }
+
+    // AI turns
+    state.factions.forEach(af => { if (af !== f) aiTurn(af); });
+
+    // Advance
+    const factions = state.factions;
+    const idx = factions.indexOf(state.currentFaction);
+    state.currentFaction = factions[(idx + 1) % factions.length];
+    if (state.currentFaction === state.factions[0]) {
+        state.turn++;
+        if (state.turn % 4 === 0) state.year++;
+    }
+
+    checkVictory();
+    render();
+}
+
+function militaryAction(f) {
+    const chars = state.characters[f].filter(c => c.hp > 0);
+    if (!chars.length) { addLog(`⚠️ ${f} 无可用武将`); return; }
+    const targets = state.locations.filter(l => l.owner && l.owner !== f);
+    if (!targets.length) { addLog(`🏆 ${f} 已无外敌！`); return; }
+    
+    const gen = chars.sort((a,b)=>b.str - a.str)[0];
+    const target = targets.sort((a,b)=>a.val - b.val)[Math.floor(Math.random()*targets.length)];
+    
+    const power = gen.str * 10 + state.resources[f].gold/1000;
+    const defense = target.val * 8 + (target.owner ? state.resources[target.owner].gold/2000 : 0);
+    const roll = rollD100() + power/10;
+    
+    if (roll > defense) {
+        target.owner = f;
+        state.resources[f].gold += target.val * 500;
+        addLog(`⚔️ ${f}${gen.name} 攻克 ${target.name}！`);
+    } else {
+        gen.hp -= 15 + Math.floor(Math.random()*10);
+        addLog(`💔 ${f}${gen.name} 进攻 ${target.name} 失利，武将受伤`);
+        if (gen.hp <= 0) { addLog(`💀 ${f}${gen.name} 战死沙场！`); }
+    }
+}
+
+function diplomaticAction(f) {
+    const others = state.factions.filter(x => x !== f);
+    const target = others[Math.floor(Math.random()*others.length)];
+    const cost = 2000;
+    
+    if (state.resources[f].gold < cost) { addLog(`⚠️ ${f} 资金不足无法外交`); return; }
+    
+    state.resources[f].gold -= cost;
+    const chance = 30 + state.characters[f].some(c=>c.name.includes('诸葛亮')||c.name.includes('周瑜')||c.name.includes('荀彧')) ? 10 : 0;
+    
+    if (rollD100() < chance) {
+        state.diplomacy[f] = target;
+        addLog(`🤝 ${f} 与 ${target} 缔结同盟！`);
+    } else {
+        addLog(`📩 ${f} 遣使 ${target}，对方未予回应`);
+    }
+}
+
+function economicAction(f) {
+    const gain = 800 + Math.floor(Math.random()*1200);
+    const food = 600 + Math.floor(Math.random()*900);
+    state.resources[f].gold += gain;
+    state.resources[f].food += food;
+    addLog(`🌾 ${f} 发展经济：+${gain}金 +${food}粮`);
+}
+
+function politicalAction(f) {
+    const chars = state.characters[f].filter(c => c.hp > 0 && c.hp < 100);
+    if (!chars.length) { addLog(`👑 ${f} 武将状态良好，无需治理`); return; }
+    const target = chars[Math.floor(Math.random()*chars.length)];
+    const heal = 10 + Math.floor(Math.random()*15);
+    target.hp = Math.min(100, target.hp + heal);
+    state.resources[f].gold -= 500;
+    addLog(`👑 ${f} 抚恤 ${target.name}，恢复${heal}体力`);
+}
+
+function aiTurn(f) {
+    const roll = Math.random();
+    if (roll < 0.35) militaryAction(f);
+    else if (roll < 0.55) economicAction(f);
+    else if (roll < 0.70) politicalAction(f);
+    else diplomaticAction(f);
+}
+
+function checkVictory() {
+    const owned = state.locations.filter(l => l.owner === state.playerFaction).length;
+    const total = state.locations.length;
+    if (owned >= total * 0.6) {
+        state.gameOver = true;
+        document.getElementById('vicEmoji').textContent = '🏆';
+        document.getElementById('vicTitle').textContent = '🎉 天下一统！';
+        document.getElementById('vicDesc').textContent = `你率领的势力在${state.year}年统一了天下！共耗时${state.turn}回合。`;
+        document.getElementById('victoryModal').classList.add('show');
+        addLog(`🏆 ${state.playerFaction} 统一天下！`);
+    } else if (state.year >= 280) {
+        state.gameOver = true;
+        document.getElementById('vicEmoji').textContent = '📜';
+        document.getElementById('vicTitle').textContent = '⏰ 时代落幕';
+        document.getElementById('vicDesc').textContent = `西晋统一在即，你未能完成霸业。占据${owned}/${total}州。`;
+        document.getElementById('victoryModal').classList.add('show');
+    }
+}
+
+function render() {
+    const f = state.playerFaction;
+    document.getElementById('yearDisplay').textContent = `${state.year}年`;
+    document.getElementById('turnDisplay').textContent = `第${state.turn}回合`;
+    document.getElementById('currentFactionDisplay').textContent = state.currentFaction;
+    document.getElementById('currentFactionDisplay').style.color = FACTION_COLORS[state.currentFaction] || '#7a7268';
+    document.getElementById('goldDisplay').textContent = state.resources[f].gold;
+    document.getElementById('foodDisplay').textContent = state.resources[f].food;
+    document.getElementById('popDisplay').textContent = state.resources[f].pop.toLocaleString();
+
+    // 地图
+    const mapEl = document.getElementById('mapGrid');
+    mapEl.innerHTML = state.locations.map(l => `
+        <div class="map-loc">
+            <div class="loc-name">${l.name}</div>
+            <div class="loc-owner" style="background:${l.owner ? FACTION_COLORS[l.owner]+'22' : '#eee'};color:${l.owner ? FACTION_COLORS[l.owner] : '#999'};border:1px solid ${l.owner ? FACTION_COLORS[l.owner]+'44' : '#ddd'}">${l.owner || '🟫 中立'}</div>
+            <div class="loc-val">战略值 ${l.val}</div>
+        </div>
+    `).join('');
+
+    // 武将
+    const charEl = document.getElementById('charList');
+    const chars = state.characters[f].filter(c => c.hp > 0);
+    charEl.innerHTML = chars.length ? chars.map(c => `
+        <div class="char-status">
+            <div class="cs-header">
+                <span class="cs-name">${c.name}</span>
+                <span class="cs-hp" style="color:${c.hp > 60 ? 'var(--success)' : c.hp > 30 ? 'var(--orange)' : 'var(--danger)'}">❤️ ${c.hp}</span>
+            </div>
+            <div class="cs-stats">⚔️${c.str} 🧠${c.int} 👑${c.pol}</div>
+        </div>
+    `).join('') : '<div class="empty-state"><div class="empty-state-icon">💀</div>已无可用武将</div>';
+}
+</script>
+</body>
+</html>
