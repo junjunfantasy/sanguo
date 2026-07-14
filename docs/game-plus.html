@@ -42,6 +42,8 @@
     .skill-content .sm-chip { padding: 3px 12px; border-radius: 20px; font-size: 12px; background: var(--accent-dim); color: var(--accent); border: 1px solid var(--border); }
     /* 计数标签 */
     .filter-count { font-size: 12px; color: var(--text-muted); margin-left: auto; }
+    .enemy-unit { border: 1px solid var(--border-light); }
+    .enemy-unit:hover { border-color: var(--danger) !important; }
     </style>
 </head>
 <body>
@@ -55,6 +57,7 @@
         <a href="graph.html">关系图谱</a>
         <a href="game.html">三国杀</a>
         <a href="game-plus.html" class="active">武将图鉴</a>
+        <a href="culture.html">文化</a>
         <a href="war.html">争霸</a>
     </nav>
 </div>
@@ -494,8 +497,7 @@ function renderBattleField() {
     const hpRatio = c.hp / c.maxHp;
     const hpColor = hpRatio > 0.5 ? 'var(--success)' : hpRatio > 0.25 ? 'var(--orange)' : 'var(--danger)';
     const isTarget = selectedAttacker && selectedAttacker.name;
-    return `<div onclick="${selectedAttacker ? `playerAttackEnemy('${c.name}')` : ''}" style="padding:6px 10px;margin-bottom:4px;background:var(--bg-card);border:1px solid var(--border-light);border-radius:6px;cursor:${selectedAttacker ? 'pointer' : 'default'};display:flex;justify-content:space-between;transition:all 0.15s;"
-      ${selectedAttacker ? 'onmouseover="this.style.borderColor=\\'var(--danger)\'" onmouseout="this.style.borderColor=\\'var(--border-light)\\'"' : ''}>
+    return `<div onclick="${selectedAttacker ? `playerAttackEnemy('${c.name}')` : ''}" class="enemy-unit" style="padding:6px 10px;margin-bottom:4px;background:var(--bg-card);border:1px solid var(--border-light);border-radius:6px;cursor:${selectedAttacker ? 'pointer' : 'default'};display:flex;justify-content:space-between;transition:all 0.15s;">
       <span><span style="font-weight:600;color:#c0392b;font-size:13px;">${c.name}</span>
         <span style="font-size:10px;color:var(--text-muted);margin-left:4px;">⚔${c.mastery?.strength||5}🧠${c.mastery?.intelligence||5}</span></span>
       <div style="text-align:right;">

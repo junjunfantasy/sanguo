@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>三国文化 - 成语·典故·文学 - 三国知识库</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="header">
+    <div class="logo"><span class="logo-icon">📚</span> 三国知识库</div>
+    <nav class="nav">
+        <a href="index.html">首页</a>
+        <a href="characters.html">人物谱</a>
+        <a href="timeline.html">时间线</a>
+        <a href="metro.html">地铁图</a>
+        <a href="graph.html">关系图谱</a>
+        <a href="game-plus.html">武将图鉴</a>
+        <a href="culture.html" class="active">文化</a>
+        <a href="war.html">争霸</a>
+    </nav>
+</div>
+<div class="main">
+    <div class="page-title">📚 三国文化</div>
+    <div class="page-subtitle">成语典故 · 文学作品 · <strong>30则典故 · 15部典籍</strong></div>
+
+    <div class="search-section fade-in" style="padding:16px 20px;">
+        <div class="search-box" style="margin-bottom:12px;">
+            <input type="text" class="search-input" id="searchInput" placeholder="搜索典故、成语、书名..." onkeyup="filterAll()">
+        </div>
+        <div class="quick-filter">
+            <button class="active" onclick="setTab('all',this)">全部</button>
+            <button onclick="setTab('concept',this)">成语典故</button>
+            <button onclick="setTab('book',this)">文学作品</button>
+        </div>
+    </div>
+
+    <div id="conceptGrid" class="card-grid" style="margin-bottom:24px;"></div>
+    <div id="bookGrid" class="card-grid"></div>
+</div>
+<div class="footer">基于 Obsidian 的三国知识库 · <a href="https://github.com/junjunfantasy/sanguo">GitHub</a></div>
+
+<script>
+const CONCEPTS = [
+  {name:'桃园结义',type:'concept',label:'典故',desc:'刘关张结为异姓兄弟，誓同生死',tags:['刘备','关羽','张飞']},
+  {name:'三顾茅庐',type:'concept',label:'典故',desc:'刘备三次拜访诸葛亮，请其出山',tags:['刘备','诸葛亮']},
+  {name:'草船借箭',type:'concept',label:'典故',desc:'诸葛亮用草船向曹操借箭',tags:['诸葛亮','曹操']},
+  {name:'七步诗',type:'concept',label:'典故',desc:'曹植七步成诗，兄弟相残',tags:['曹植','曹丕']},
+  {name:'乐不思蜀',type:'concept',label:'典故',desc:'刘禅在洛阳安享晚年，不思故国',tags:['刘禅']},
+  {name:'刮骨疗毒',type:'concept',label:'典故',desc:'关羽刮骨疗毒，谈笑自若',tags:['关羽','华佗']},
+  {name:'司马昭之心',type:'concept',label:'典故',desc:'司马昭专权，篡位之心路人皆知',tags:['司马昭']},
+  {name:'鞠躬尽瘁',type:'concept',label:'典故',desc:'诸葛亮为国家贡献全部精力',tags:['诸葛亮']},
+  {name:'望梅止渴',type:'concept',label:'典故',desc:'曹操用梅林激励士兵前进',tags:['曹操']},
+  {name:'对酒当歌',type:'concept',label:'典故',desc:'曹操感叹人生短暂当及时行乐',tags:['曹操']},
+  {name:'老骥伏枥',type:'concept',label:'典故',desc:'曹操年迈仍有雄心壮志',tags:['曹操']},
+  {name:'青梅煮酒',type:'concept',label:'典故',desc:'曹操与刘备煮酒论英雄',tags:['曹操','刘备']},
+  {name:'卧龙凤雏',type:'concept',label:'典故',desc:'诸葛亮卧龙、庞统凤雏，两位绝世人才',tags:['诸葛亮','庞统']},
+  {name:'既生瑜何生亮',type:'concept',label:'典故',desc:'周瑜感叹诸葛亮处处胜其一筹',tags:['周瑜','诸葛亮']},
+  {name:'锦囊妙计',type:'concept',label:'典故',desc:'诸葛亮给赵云锦囊应对危机',tags:['诸葛亮','赵云']},
+  {name:'万事俱备只欠东风',type:'concept',label:'典故',desc:'赤壁之战万事具备只差东风',tags:['周瑜','诸葛亮']},
+  {name:'周瑜打黄盖',type:'concept',label:'典故',desc:'黄盖苦肉计诈降曹操',tags:['周瑜','黄盖']},
+  {name:'赔了夫人又折兵',type:'concept',label:'典故',desc:'周瑜设计招亲反失夫人又败兵',tags:['周瑜','刘备','孙权']},
+  {name:'说曹操曹操到',type:'concept',label:'典故',desc:''},
+  {name:'身在曹营心在汉',type:'concept',label:'典故',desc:'徐庶身在曹操处心向刘备',tags:['徐庶','曹操','刘备']},
+  {name:'单刀赴会',type:'concept',label:'典故',desc:'关羽只带单刀赴鲁肃之会',tags:['关羽','鲁肃']},
+  {name:'过五关斩六将',type:'concept',label:'典故',desc:'关羽千里寻兄闯关斩将',tags:['关羽','刘备']},
+  {name:'大意失荆州',type:'concept',label:'典故',desc:'关羽骄傲轻敌丢失荆州',tags:['关羽','吕蒙']},
+  {name:'士别三日当刮目相看',type:'concept',label:'典故',desc:'吕蒙勤学进步令人惊叹',tags:['吕蒙','孙权']},
+  {name:'吴下阿蒙',type:'concept',label:'典故',desc:'吕蒙原来不读书被人轻视',tags:['吕蒙','鲁肃']},
+  {name:'七擒七纵',type:'concept',label:'典故',desc:'诸葛亮七次擒放孟获使其心服',tags:['诸葛亮','孟获']},
+  {name:'空城计',type:'concept',label:'典故',desc:'诸葛亮空城退司马懿',tags:['诸葛亮','司马懿']},
+  {name:'挥泪斩马谡',type:'concept',label:'典故',desc:'诸葛亮含泪杀马谡以正军法',tags:['诸葛亮','马谡']},
+  {name:'蜀中无大将廖化作先锋',type:'concept',label:'典故',desc:'蜀汉后期人才匮乏',tags:['廖化','姜维']},
+  {name:'扶不起的阿斗',type:'concept',label:'典故',desc:'刘禅昏庸无能无法扶持',tags:['刘禅','诸葛亮']},
+];
+
+const BOOKS = [
+  {name:'三国志',type:'book',label:'史书',desc:'陈寿著，记载三国史实的正史，二十四史之一',tags:['陈寿']},
+  {name:'三国演义',type:'book',label:'小说',desc:'罗贯中著，四大名著之一，七分史实三分虚构',tags:['罗贯中']},
+  {name:'后汉书',type:'book',label:'史书',desc:'范晔著，记载东汉历史的纪传体史书',tags:['范晔']},
+  {name:'资治通鉴',type:'book',label:'史书',desc:'司马光著，编年体通史，三国部分为重要史料',tags:['司马光']},
+  {name:'曹操集',type:'book',label:'文集',desc:'曹操诗文合集，含《短歌行》《观沧海》等名篇',tags:['曹操']},
+  {name:'诸葛亮集',type:'book',label:'文集',desc:'诸葛亮文集，含《出师表》《诫子书》等',tags:['诸葛亮']},
+  {name:'文心雕龙',type:'book',label:'文论',desc:'刘勰著，含大量对建安文学的评价',tags:['刘勰']},
+  {name:'建安七子集',type:'book',label:'文集',desc:'孔融、陈琳等七子诗文合集',tags:['孔融','陈琳','王粲']},
+  {name:'世说新语',type:'book',label:'笔记',desc:'刘义庆编，汉末魏晋名士言行轶事',tags:['刘义庆']},
+  {name:'三国志平话',type:'book',label:'话本',desc:'元代讲史话本，三国演义的前身',tags:[]},
+  {name:'华阳国志',type:'book',label:'方志',desc:'常璩著，最早地方志之一，记巴蜀历史',tags:['常璩']},
+  {name:'汉晋春秋',type:'book',label:'史书',desc:'习凿齿著，以蜀汉为正统的三国史',tags:['习凿齿']},
+  {name:'三国志裴松之注',type:'book',label:'注疏',desc:'裴松之为三国志做注，补充大量珍贵史料',tags:['裴松之']},
+  {name:'晋书',type:'book',label:'史书',desc:'房玄龄等编，记载司马氏晋朝历史',tags:['房玄龄']},
+  {name:'读通鉴论',type:'book',label:'史论',desc:'王夫之著，对资治通鉴三国史的评论',tags:['王夫之']},
+];
+
+let tab = 'all';
+
+function setTab(t, btn) {
+  tab = t;
+  document.querySelectorAll('.quick-filter button').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  document.getElementById('searchInput').value = '';
+  filterAll();
+}
+
+function filterAll() {
+  const q = document.getElementById('searchInput').value.trim().toLowerCase();
+  
+  let concepts = CONCEPTS;
+  let books = BOOKS;
+  
+  if (tab === 'book') concepts = [];
+  if (tab === 'concept') books = [];
+  
+  if (q) {
+    concepts = concepts.filter(c => c.name.includes(q) || (c.tags||[]).some(t => t.includes(q)));
+    books = books.filter(b => b.name.includes(q) || (b.tags||[]).some(t => t.includes(q)));
+  }
+  
+  document.getElementById('conceptGrid').style.display = concepts.length ? '' : 'none';
+  document.getElementById('bookGrid').style.display = books.length ? '' : 'none';
+  
+  document.getElementById('conceptGrid').innerHTML = concepts.map(c => `
+    <div class="char-card fade-in" onclick="openDetail('concepts/${c.name}')">
+      <div class="char-avatar" style="font-size:20px;">📖</div>
+      <div class="char-name">${c.name}</div>
+      <div class="char-alias">${c.desc || '—'}</div>
+      <div class="char-tags">${(c.tags||[]).map(t => '<span class="char-tag">' + t + '</span>').join('')}</div>
+    </div>
+  `).join('');
+  
+  document.getElementById('bookGrid').innerHTML = books.map(b => `
+    <div class="char-card fade-in" onclick="openDetail('books/${b.name}')">
+      <div class="char-avatar" style="font-size:20px;">📜</div>
+      <div class="char-name">${b.name}</div>
+      <div class="char-alias">${b.label} · ${b.desc || ''}</div>
+      <div class="char-tags">${(b.tags||[]).map(t => '<span class="char-tag">' + t + '</span>').join('')}</div>
+    </div>
+  `).join('');
+}
+
+function openDetail(path) {
+  window.open('https://github.com/junjunfantasy/sanguo/blob/main/sanguo-knowledge/' + path + '.md', '_blank');
+}
+
+window.onload = filterAll;
+</script>
+</body>
+</html>
