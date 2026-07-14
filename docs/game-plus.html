@@ -336,138 +336,350 @@ function showSkill(name, fromChar) {
 function closeSkill() { document.getElementById('skillModal').classList.remove('show'); }
 document.getElementById('skillModal').addEventListener('click', function(e) { if (e.target === this) closeSkill(); });
 
-// ===== 对战系统 =====
+// ===== 对战系统 v2 =====
+// 核心属性：武力决定基础伤害，智力决定暴击/闪避，政治决定先手
+let _my = [], _en = [];
 let battleLog = [];
 let round = 1;
+let battlePhase = 'idle'; // idle | player_choose | player_skill | enemy_turn | ended
+let selectedAttacker = null;
+let speedOrder = [];
+
+function calcSpeed(c) {
+  // 速度 = 政治*0.4 + 智力*0.3 + 随机(0-5)
+  return ((c.mastery?.political || 5) * 0.4 + (c.mastery?.intelligence || 5) * 0.3 + Math.random() * 5);
+}
+
+function calcDamage(atk, def, isCrit) {
+  const base = (atk.mastery?.strength || 5) * 3 + Math.floor(Math.random() * 10);
+  const critMult = isCrit ? 2.0 : 1.0;
+  const defReduction = (def.mastery?.strength || 5) * 0.3;
+  return Math.max(1, Math.floor(base * critMult - defReduction));
+}
+
+function checkCrit(c) {
+  // 智力>=8 暴击率30%，智力>=6 15%，其他5%
+  const int = c.mastery?.intelligence || 5;
+  const rate = int >= 8 ? 0.30 : int >= 6 ? 0.15 : 0.05;
+  return Math.random() < rate;
+}
+
+function checkDodge(c) {
+  // 智力>=9 闪避率25%，智力>=7 12%，其他3%
+  const int = c.mastery?.intelligence || 5;
+  const rate = int >= 9 ? 0.25 : int >= 7 ? 0.12 : 0.03;
+  return Math.random() < rate;
+}
 
 function startBattle() {
   if (team.length < 2) return;
-  // AI 随机生成5人阵容
   const pool = chars.filter(c => !team.some(t => t.name === c.name));
   const shuffled = [...pool].sort(() => Math.random() - 0.5);
   const enemy = shuffled.slice(0, Math.min(5, shuffled.length));
   
-  // 复制武将状态
-  const myTeam = team.map(c => ({...c, hp: (c.hp||4) * 20, maxHp: (c.hp||4) * 20, alive: true}));
-  const enTeam = enemy.map(c => ({...c, hp: (c.hp||4) * 20, maxHp: (c.hp||4) * 20, alive: true}));
+  const toUnit = c => ({
+    ...c, hp: (c.hp || 4) * 20, maxHp: (c.hp || 4) * 20, alive: true,
+    speed: calcSpeed(c), usedSkill: false, buffs: [], debuffs: []
+  });
+  _my = team.map(toUnit);
+  _en = enemy.map(toUnit);
   
-  battleLog = [];
-  round = 1;
-  
-  // 显示对战弹窗
-  showBattleModal(myTeam, enTeam);
+  battleLog = []; round = 1; battlePhase = 'player_choose';
+  addBattleLog('⚔️ 战斗开始！点击我方武将选择攻击目标');
+  showBattleModal();
+  renderBattleField();
 }
 
-function showBattleModal(my, en) {
+function showBattleModal() {
+  const exists = document.getElementById('battleOverlay');
+  if (exists) exists.remove();
+  
   const overlay = document.createElement('div');
   overlay.id = 'battleOverlay';
   overlay.innerHTML = `<div style="position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.4);z-index:3000;display:flex;align-items:center;justify-content:center;">
-    <div style="background:var(--bg-card);border-radius:16px;padding:24px;max-width:700px;width:92%;max-height:85vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,0.2);">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
-        <h3 style="color:var(--accent);margin:0;">⚔️ 阵容对战</h3>
-        <div style="font-size:13px;color:var(--text-secondary);" id="battleRound">第 ${round} 回合</div>
+    <div style="background:var(--bg-card);border-radius:16px;padding:20px;max-width:780px;width:94%;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,0.2);">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+        <h3 style="color:var(--accent);margin:0;">⚔️ 回合制对战</h3>
+        <div style="display:flex;gap:12px;align-items:center;">
+          <span style="font-size:13px;color:var(--text-secondary);" id="battleRound">第 1 回合</span>
+          <span style="font-size:12px;padding:2px 10px;border-radius:10px;background:var(--accent-dim);color:var(--accent);" id="battlePhaseLabel">选择攻击者</span>
+        </div>
       </div>
-      <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:12px;margin-bottom:16px;">
-        <div><div class="viz-title" style="margin-bottom:8px;">🟦 我方</div><div id="battleMySide"></div></div>
-        <div style="display:flex;align-items:center;font-size:24px;color:var(--accent);">VS</div>
-        <div><div class="viz-title" style="margin-bottom:8px;">🟥 敌方</div><div id="battleEnSide"></div></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:12px;">
+        <div><div class="viz-title" style="margin-bottom:6px;font-size:14px;">🟦 我方阵容</div><div id="battleMySide"></div></div>
+        <div><div class="viz-title" style="margin-bottom:6px;font-size:14px;">🟥 敌方阵容</div><div id="battleEnSide"></div></div>
       </div>
-      <div style="background:var(--bg-primary);border-radius:8px;padding:12px;max-height:200px;overflow-y:auto;font-size:13px;line-height:1.6;margin-bottom:12px;" id="battleLogDiv">${battleLog.length ? battleLog.map(l => '<div style="color:var(--text-secondary);padding:2px 0;border-bottom:1px solid var(--border-light);">' + l + '</div>').join('') : '<div style="color:var(--text-muted);text-align:center;">准备开战...</div>'}</div>
-      <div style="display:flex;gap:8px;">
-        <button onclick="simulateRound()" id="battleNextBtn" style="flex:1;padding:10px;background:var(--accent);color:#fff;border:none;border-radius:8px;cursor:pointer;font-weight:600;">▶️ 下一回合</button>
-        <button onclick="simulateAll()" id="battleAutoBtn" style="flex:1;padding:10px;background:var(--accent-dim);color:var(--accent);border:1px solid var(--accent);border-radius:8px;cursor:pointer;font-weight:600;">⏩ 自动打完</button>
-        <button onclick="closeBattle()" style="padding:10px 16px;background:transparent;color:var(--text-muted);border:1px solid var(--border);border-radius:8px;cursor:pointer;">✕ 关闭</button>
+      <div style="background:var(--bg-primary);border-radius:8px;padding:10px;max-height:180px;overflow-y:auto;font-size:13px;line-height:1.6;margin-bottom:10px;" id="battleLogDiv"><div style="color:var(--text-muted);text-align:center;">点击我方武将选择攻击者</div></div>
+      <div style="display:flex;gap:8px;" id="battleActions">
+        <button onclick="playerSkip()" id="btnSkip" style="flex:1;padding:8px;background:transparent;color:var(--text-muted);border:1px solid var(--border);border-radius:8px;cursor:pointer;font-size:13px;">⏭️ 跳过回合</button>
+        <button onclick="simulateAll()" id="btnAuto" style="flex:1;padding:8px;background:var(--accent-dim);color:var(--accent);border:1px solid var(--accent);border-radius:8px;cursor:pointer;font-size:13px;">⏩ AI自动</button>
+        <button onclick="closeBattle()" style="padding:8px 14px;background:transparent;color:var(--text-muted);border:1px solid var(--border);border-radius:8px;cursor:pointer;font-size:13px;">✕ 关闭</button>
       </div>
     </div>
   </div>`;
   document.body.appendChild(overlay);
-  renderBattleField(my, en);
 }
 
-let _my = [], _en = [];
-
-function renderBattleField(my, en) {
-  _my = my; _en = en;
+function renderBattleField() {
+  document.getElementById('battleRound').textContent = `第 ${round} 回合`;
+  
   const myDiv = document.getElementById('battleMySide');
   const enDiv = document.getElementById('battleEnSide');
-  myDiv.innerHTML = my.filter(c => c.alive).map(c => `<div style="padding:6px 10px;margin-bottom:4px;background:var(--bg-card);border:1px solid var(--border-light);border-radius:6px;display:flex;justify-content:space-between;">
-    <span style="font-weight:600;color:var(--accent);font-size:13px;">${c.name}</span>
-    <span style="font-size:12px;color:${c.hp/c.maxHp > 0.5 ? 'var(--success)' : c.hp/c.maxHp > 0.25 ? 'var(--orange)' : 'var(--danger)'};">❤️${Math.max(0,Math.ceil(c.hp))}</span>
-  </div>`).join('') || '<div style="color:var(--danger);font-weight:600;padding:8px;">💀 全灭</div>';
-  enDiv.innerHTML = en.filter(c => c.alive).map(c => `<div style="padding:6px 10px;margin-bottom:4px;background:var(--bg-card);border:1px solid var(--border-light);border-radius:6px;display:flex;justify-content:space-between;">
-    <span style="font-weight:600;color:#c0392b;font-size:13px;">${c.name}</span>
-    <span style="font-size:12px;color:${c.hp/c.maxHp > 0.5 ? 'var(--success)' : c.hp/c.maxHp > 0.25 ? 'var(--orange)' : 'var(--danger)'};">❤️${Math.max(0,Math.ceil(c.hp))}</span>
-  </div>`).join('') || '<div style="color:var(--success);font-weight:600;padding:8px;">🏆 全灭</div>';
+  
+  myDiv.innerHTML = _my.map(c => {
+    if (!c.alive) return '';
+    const hpRatio = c.hp / c.maxHp;
+    const hpColor = hpRatio > 0.5 ? 'var(--success)' : hpRatio > 0.25 ? 'var(--orange)' : 'var(--danger)';
+    const isSelected = selectedAttacker && selectedAttacker.name === c.name;
+    return `<div onclick="selectAttacker('${c.name}')" style="padding:6px 10px;margin-bottom:4px;background:${isSelected ? 'var(--accent-dim)' : 'var(--bg-card)'};border:${isSelected ? '2px solid var(--accent)' : '1px solid var(--border-light)'};border-radius:6px;cursor:pointer;display:flex;justify-content:space-between;transition:all 0.15s;"
+      onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='${isSelected ? 'var(--accent)' : 'var(--border-light)'}'">
+      <span><span style="font-weight:600;color:var(--accent);font-size:13px;">${c.name}</span>
+        <span style="font-size:10px;color:var(--text-muted);margin-left:4px;">⚔${c.mastery?.strength||5}🧠${c.mastery?.intelligence||5}👑${c.mastery?.political||5}</span></span>
+      <div style="text-align:right;">
+        <span style="font-size:11px;color:${hpColor};">❤️${Math.max(0,Math.ceil(c.hp))}/${c.maxHp}</span>
+        <div style="width:60px;height:4px;background:var(--border-light);border-radius:2px;margin-top:2px;margin-left:auto;">
+          <div style="width:${Math.max(0,hpRatio*100)}%;height:100%;background:${hpColor};border-radius:2px;transition:width 0.3s;"></div>
+        </div>
+      </div>
+    </div>`;
+  }).join('') + (!_my.some(c=>c.alive) ? '<div style="color:var(--danger);font-weight:600;padding:8px;text-align:center;">💀 全军覆没</div>' : '');
+
+  enDiv.innerHTML = _en.map(c => {
+    if (!c.alive) return '';
+    const hpRatio = c.hp / c.maxHp;
+    const hpColor = hpRatio > 0.5 ? 'var(--success)' : hpRatio > 0.25 ? 'var(--orange)' : 'var(--danger)';
+    const isTarget = selectedAttacker && selectedAttacker.name;
+    return `<div onclick="${selectedAttacker ? `playerAttackEnemy('${c.name}')` : ''}" style="padding:6px 10px;margin-bottom:4px;background:var(--bg-card);border:1px solid var(--border-light);border-radius:6px;cursor:${selectedAttacker ? 'pointer' : 'default'};display:flex;justify-content:space-between;transition:all 0.15s;"
+      ${selectedAttacker ? 'onmouseover="this.style.borderColor=\\'var(--danger)\'" onmouseout="this.style.borderColor=\\'var(--border-light)\\'"' : ''}>
+      <span><span style="font-weight:600;color:#c0392b;font-size:13px;">${c.name}</span>
+        <span style="font-size:10px;color:var(--text-muted);margin-left:4px;">⚔${c.mastery?.strength||5}🧠${c.mastery?.intelligence||5}</span></span>
+      <div style="text-align:right;">
+        <span style="font-size:11px;color:${hpColor};">❤️${Math.max(0,Math.ceil(c.hp))}/${c.maxHp}</span>
+        <div style="width:60px;height:4px;background:var(--border-light);border-radius:2px;margin-top:2px;margin-left:auto;">
+          <div style="width:${Math.max(0,hpRatio*100)}%;height:100%;background:${hpColor};border-radius:2px;transition:width 0.3s;"></div>
+        </div>
+      </div>
+    </div>`;
+  }).join('') + (!_en.some(c=>c.alive) ? '<div style="color:var(--success);font-weight:600;padding:8px;text-align:center;">🏆 敌方全灭</div>' : '');
+  
+  updatePhaseLabel();
+}
+
+function updatePhaseLabel() {
+  const el = document.getElementById('battlePhaseLabel');
+  if (!el) return;
+  if (battlePhase === 'player_choose') el.textContent = '选择攻击者';
+  else if (battlePhase === 'player_target') el.textContent = '选择攻击目标';
+  else if (battlePhase === 'enemy_turn') el.textContent = '敌方回合';
+  else if (battlePhase === 'ended') el.textContent = '战斗结束';
+  else el.textContent = '准备';
 }
 
 function addBattleLog(msg) {
   battleLog.push(msg);
   const div = document.getElementById('battleLogDiv');
-  div.innerHTML = battleLog.map(l => '<div style="color:var(--text-secondary);padding:2px 0;border-bottom:1px solid var(--border-light);">' + l + '</div>').join('');
+  if (!div) return;
+  div.innerHTML = battleLog.map(l => '<div style="color:var(--text-secondary);padding:2px 0;border-bottom:1px solid var(--border-light);font-size:13px;">' + l + '</div>').join('');
   div.scrollTop = div.scrollHeight;
 }
 
-function simulateRound() {
-  const myAlive = _my.filter(c => c.alive);
-  const enAlive = _en.filter(c => c.alive);
-  if (!myAlive.length || !enAlive.length) {
-    addBattleLog('⚠️ 战斗已结束');
-    document.getElementById('battleNextBtn').disabled = true;
-    return;
+// ===== 玩家操作 =====
+function selectAttacker(name) {
+  if (battlePhase !== 'player_choose' && battlePhase !== 'player_target') return;
+  const c = _my.find(x => x.name === name);
+  if (!c || !c.alive) return;
+  selectedAttacker = c;
+  battlePhase = 'player_target';
+  addBattleLog(`🎯 选择 ${c.name} 攻击，点击敌方武将发动攻击`);
+  renderBattleField();
+}
+
+function playerAttackEnemy(targetName) {
+  if (battlePhase !== 'player_target' || !selectedAttacker) return;
+  const target = _en.find(c => c.name === targetName);
+  if (!target || !target.alive) return;
+  
+  const atk = selectedAttacker;
+  const isCrit = checkCrit(atk);
+  const isDodge = checkDodge(target);
+  
+  let dmg = 0;
+  if (!isDodge) {
+    dmg = calcDamage(atk, target, isCrit);
+    target.hp -= dmg;
   }
   
-  document.getElementById('battleRound').textContent = `第 ${round} 回合`;
+  let logMsg = `⚔️ ${atk.name} → ${target.name}`;
+  if (isDodge) logMsg += ' ❌ 被闪避！';
+  else if (isCrit) logMsg += ` 💥 暴击! ${dmg} 点伤害`;
+  else logMsg += ` ${dmg} 点伤害`;
+  addBattleLog(logMsg);
   
-  // 我方攻击
-  myAlive.forEach(attacker => {
-    if (!attacker.alive) return;
-    const target = enAlive.filter(t => t.alive);
-    if (!target.length) return;
-    const t = target[Math.floor(Math.random() * target.length)];
-    const baseDmg = (attacker.mastery?.strength || 5) * 2 + Math.floor(Math.random() * 8);
-    const actualDmg = Math.max(1, baseDmg);
-    t.hp -= actualDmg;
-    addBattleLog(`⚔️ ${attacker.name} 攻击 ${t.name}，造成 ${actualDmg} 点伤害`);
-    if (t.hp <= 0) { t.alive = false; t.hp = 0; addBattleLog(`💀 ${t.name} 阵亡！`); }
-  });
+  if (target.hp <= 0) { target.alive = false; target.hp = 0; addBattleLog(`💀 ${target.name} 阵亡！`); }
   
-  // 敌方攻击
-  enAlive.forEach(attacker => {
-    if (!attacker.alive) return;
-    const target = myAlive.filter(t => t.alive);
-    if (!target.length) return;
-    const t = target[Math.floor(Math.random() * target.length)];
-    const baseDmg = (attacker.mastery?.strength || 5) * 2 + Math.floor(Math.random() * 8);
-    const actualDmg = Math.max(1, baseDmg);
-    t.hp -= actualDmg;
-    addBattleLog(`🗡️ ${attacker.name} 攻击 ${t.name}，造成 ${actualDmg} 点伤害`);
-    if (t.hp <= 0) { t.alive = false; t.hp = 0; addBattleLog(`💀 ${t.name} 阵亡！`); }
+  selectedAttacker = null;
+  
+  // 检查是否全部行动完毕
+  const myAlive = _my.filter(c => c.alive);
+  const actionsLeft = myAlive.length;
+  
+  if (checkBattleOver()) return;
+  
+  if (actionsLeft > 0) {
+    battlePhase = 'player_choose';
+    addBattleLog(`👆 还有 ${actionsLeft} 位武将待行动，选择下一位攻击者`);
+  } else {
+    // 进入敌方回合
+    battlePhase = 'enemy_turn';
+    addBattleLog('—' + ' 敌方回合 —');
+    renderBattleField();
+    setTimeout(() => { enemyTurn(); }, 300);
+    return;
+  }
+  renderBattleField();
+}
+
+function playerSkip() {
+  if (battlePhase === 'ended') return;
+  selectedAttacker = null;
+  battlePhase = 'enemy_turn';
+  addBattleLog(`⏭️ 跳过剩余行动，进入敌方回合`);
+  renderBattleField();
+  setTimeout(() => { enemyTurn(); }, 300);
+}
+
+// ===== 敌方AI =====
+function enemyTurn() {
+  const enAlive = _en.filter(c => c.alive);
+  const myAlive = _my.filter(c => c.alive);
+  
+  if (!enAlive.length || !myAlive.length) { checkBattleOver(); return; }
+  
+  // 敌方按速度排序行动
+  enAlive.sort((a,b) => b.speed - a.speed);
+  
+  enAlive.forEach(atk => {
+    if (!atk.alive || !myAlive.some(c=>c.alive)) return;
+    const targets = _my.filter(c => c.alive);
+    // AI策略：优先打血少的
+    const target = targets.sort((a,b) => a.hp - b.hp)[0];
+    if (!target) return;
+    
+    const isCrit = checkCrit(atk);
+    const isDodge = checkDodge(target);
+    let dmg = 0;
+    if (!isDodge) {
+      dmg = calcDamage(atk, target, isCrit);
+      target.hp -= dmg;
+    }
+    
+    let logMsg = `🗡️ ${atk.name} → ${target.name}`;
+    if (isDodge) logMsg += ' ❌ 我方闪避！';
+    else if (isCrit) logMsg += ` 💥 暴击! ${dmg} 伤害`;
+    else logMsg += ` ${dmg} 伤害`;
+    addBattleLog(logMsg);
+    
+    if (target.hp <= 0) { target.alive = false; target.hp = 0; addBattleLog(`💀 ${target.name} 阵亡！`); }
   });
   
   round++;
-  renderBattleField(_my, _en);
+  if (checkBattleOver()) return;
   
-  // 检查结束
-  const myStill = _my.filter(c => c.alive).length;
-  const enStill = _en.filter(c => c.alive).length;
-  if (myStill === 0 && enStill === 0) addBattleLog('🤝 双方同归于尽！');
-  else if (myStill === 0) addBattleLog('😵 我方全军覆没...');
-  else if (enStill === 0) addBattleLog('🎉 我方获胜！');
-  
-  if (myStill === 0 || enStill === 0) {
-    document.getElementById('battleNextBtn').disabled = true;
-  }
+  // 进入玩家回合
+  battlePhase = 'player_choose';
+  addBattleLog(`— 第 ${round} 回合，选择攻击者 —`);
+  renderBattleField();
 }
 
+// ===== 战果判定 =====
+function checkBattleOver() {
+  const myAlive = _my.filter(c => c.alive).length;
+  const enAlive = _en.filter(c => c.alive).length;
+  
+  if (myAlive === 0 && enAlive === 0) addBattleLog('🤝 双方同归于尽！');
+  else if (myAlive === 0) addBattleLog('😵 我方全军覆没...');
+  else if (enAlive === 0) addBattleLog('🎉 我方获胜！');
+  
+  if (myAlive === 0 || enAlive === 0) {
+    battlePhase = 'ended';
+    document.getElementById('btnSkip').disabled = true;
+    document.getElementById('btnAuto').disabled = true;
+    renderBattleField();
+    return true;
+  }
+  renderBattleField();
+  return false;
+}
+
+// ===== AI自动 =====
 function simulateAll() {
-  document.getElementById('battleNextBtn').disabled = true;
-  document.getElementById('battleAutoBtn').disabled = true;
-  const timer = setInterval(() => {
-    const myAlive = _my.filter(c => c.alive).length;
-    const enAlive = _en.filter(c => c.alive).length;
-    if (myAlive === 0 || enAlive === 0) { clearInterval(timer); return; }
-    simulateRound();
-  }, 400);
+  if (battlePhase === 'ended') return;
+  document.getElementById('btnSkip').disabled = true;
+  document.getElementById('btnAuto').disabled = true;
+  addBattleLog('⏩ AI接管战斗...');
+  
+  function autoStep() {
+    const myAlive = _my.filter(c => c.alive);
+    const enAlive = _en.filter(c => c.alive);
+    if (!myAlive.length || !enAlive.length) { checkBattleOver(); return; }
+    
+    // AI自动选择我方武将攻击
+    myAlive.sort((a,b) => b.speed - a.speed);
+    myAlive.forEach(atk => {
+      if (!atk.alive || !_en.some(c=>c.alive)) return;
+      const targets = _en.filter(c => c.alive);
+      const target = targets.sort((a,b) => a.hp - b.hp)[0];
+      if (!target) return;
+      
+      const isCrit = checkCrit(atk);
+      const isDodge = checkDodge(target);
+      let dmg = 0;
+      if (!isDodge) {
+        dmg = calcDamage(atk, target, isCrit);
+        target.hp -= dmg;
+      }
+      
+      let logMsg = `⚔️ ${atk.name} → ${target.name}`;
+      if (isDodge) logMsg += ' ❌ 被闪避';
+      else if (isCrit) logMsg += ` 💥 ${dmg}`;
+      else logMsg += ` ${dmg}`;
+      addBattleLog(logMsg);
+      
+      if (target.hp <= 0) { target.alive = false; target.hp = 0; addBattleLog(`💀 ${target.name} 阵亡`); }
+    });
+    
+    if (checkBattleOver()) return;
+    
+    // 敌方回合
+    const enAlive2 = _en.filter(c => c.alive);
+    enAlive2.sort((a,b) => b.speed - a.speed);
+    enAlive2.forEach(atk => {
+      if (!atk.alive || !_my.some(c=>c.alive)) return;
+      const targets = _my.filter(c => c.alive);
+      const target = targets.sort((a,b) => a.hp - b.hp)[0];
+      if (!target) return;
+      const isCrit = checkCrit(atk);
+      const isDodge = checkDodge(target);
+      let dmg = 0;
+      if (!isDodge) {
+        dmg = calcDamage(atk, target, isCrit);
+        target.hp -= dmg;
+      }
+      let logMsg = `🗡️ ${atk.name} → ${target.name}`;
+      if (isDodge) logMsg += ' ❌ 闪避';
+      else if (isCrit) logMsg += ` 💥 ${dmg}`;
+      else logMsg += ` ${dmg}`;
+      addBattleLog(logMsg);
+      if (target.hp <= 0) { target.alive = false; target.hp = 0; addBattleLog(`💀 ${target.name} 阵亡`); }
+    });
+    
+    round++;
+    if (checkBattleOver()) return;
+    
+    setTimeout(autoStep, 350);
+  }
+  
+  setTimeout(autoStep, 200);
 }
 
 function closeBattle() {
