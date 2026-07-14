@@ -10,7 +10,6 @@ Build Wiki: 扫描 sanguo-knowledge/ 目录，生成 docs/wiki/pages.json 注册
 import os
 import re
 import json
-import shutil
 import sys
 
 # === 路径配置 ===
@@ -199,6 +198,7 @@ def process_all_pages():
                 'tags': tags,
                 'aliases': aliases,
                 'era': era,
+                'raw': raw,  # 嵌入原始 Markdown 内容，避免独立 .md fetch
             }
 
             # 人物特有字段
@@ -220,35 +220,6 @@ def process_all_pages():
                     alias_index[a] = page_id
 
     return pages, alias_index, errors
-
-
-def copy_md_files():
-    """将 .md 文件复制到 docs/wiki/pages/ 目录，确保 GitHub Pages 可访问。"""
-    count = 0
-    errors = []
-
-    # 清空并重建 pages 目录
-    if os.path.exists(PAGES_DIR):
-        shutil.rmtree(PAGES_DIR)
-    os.makedirs(PAGES_DIR, exist_ok=True)
-
-    for root, dirs, files in os.walk(KNOWLEDGE_DIR):
-        if '.obsidian' in root.split(os.sep):
-            continue
-        for fname in files:
-            if not fname.endswith('.md') or fname.startswith('.'):
-                continue
-
-            src = os.path.join(root, fname)
-            dst = os.path.join(PAGES_DIR, fname)
-
-            try:
-                shutil.copy2(src, dst)
-                count += 1
-            except Exception as e:
-                errors.append(f"Copy error: {src} -> {dst}: {e}")
-
-    return count, errors
 
 
 def main():
@@ -294,20 +265,12 @@ def main():
     json_size = os.path.getsize(json_path)
     print(f"  已写入 {json_path} ({json_size:,} bytes)")
 
-    # Step 3: 复制 .md 文件
-    print()
-    print("[3/3] 复制 .md 到 wiki/pages/...")
-    copied, copy_errors = copy_md_files()
-    print(f"  已复制 {copied} 个 .md 文件到 {PAGES_DIR}")
-    if copy_errors:
-        for e in copy_errors[:5]:
-            print(f"  ⚠️  {e}")
+    # Step 3 (removed): 不再复制 .md 文件 — 内容已嵌入 pages.json
 
     print()
     print("✅ Wiki 构建完成!")
     print(f"  页面总数: {len(pages)}")
     print(f"  pages.json: {json_size:,} bytes")
-    print(f"  已复制 .md: {copied} 文件")
     print()
     print(f"  请在浏览器访问: /wiki/ 查看效果 (需刷新 GitHub Pages)")
 

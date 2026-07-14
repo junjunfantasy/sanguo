@@ -71,12 +71,11 @@ export async function renderPage(core, pid) {
   document.getElementById('status').textContent = '载入…';
 
   try {
-    const bust = `?v=${Math.floor(Date.now() / 30000)}`;
-    const mdUrl = `pages/${encodeURIComponent(pid)}.md${bust}`;
-    const r = await fetch(mdUrl);
-    if (!r.ok) throw new Error(`HTTP ${r.status}`);
-
-    const mdText = await r.text();
+    // 从 pages.json 的 entry.raw 获取 Markdown 内容（无需独立 .md fetch）
+    const mdText = entry.raw;
+    if (!mdText) {
+      throw new Error('该页面没有正文内容');
+    }
     const { front, html, broken } = await parseMarkdown(core, mdText, { pid, meta: entry });
 
     const icon = entry.icon || '📄';
