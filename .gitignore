@@ -3,6 +3,7 @@
 .obsidian/cache
 .obsidian/plugins
 .obsidian/graph.json
+sanguo-knowledge/.obsidian/
 
 # Python
 __pycache__/
@@ -20,5 +21,3 @@ Thumbs.db
 # IDE
 .vscode/
 .idea/
-.obsidian/workspace.json
-.obsidian/graph.json

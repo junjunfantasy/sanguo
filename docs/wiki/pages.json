@@ -1,0 +1,4344 @@
+{
+  "pages": {
+    "伏皇后": {
+      "id": "伏皇后",
+      "name": "伏皇后",
+      "type": "unknown",
+      "label": "unknown",
+      "icon": "📄",
+      "file": "伏皇后.md",
+      "tags": [],
+      "aliases": [],
+      "era": ""
+    },
+    "README": {
+      "id": "README",
+      "name": "README",
+      "type": "unknown",
+      "label": "unknown",
+      "icon": "📄",
+      "file": "README.md",
+      "tags": [],
+      "aliases": [],
+      "era": ""
+    },
+    "反间计": {
+      "id": "反间计",
+      "name": "反间计",
+      "type": "离间计",
+      "label": "计策",
+      "icon": "🎯",
+      "file": "strategies/反间计.md",
+      "tags": [
+        "离间",
+        "反间",
+        "赤壁之战",
+        "蒋干盗书"
+      ],
+      "aliases": [],
+      "era": "东汉末年"
+    },
+    "借刀杀人": {
+      "id": "借刀杀人",
+      "name": "借刀杀人",
+      "type": "借力计",
+      "label": "计策",
+      "icon": "🎯",
+      "file": "strategies/借刀杀人.md",
+      "tags": [
+        "借刀杀人",
+        "计谋",
+        "三十六计"
+      ],
+      "aliases": [],
+      "era": "东汉末年"
+    },
+    "连环计": {
+      "id": "连环计",
+      "name": "连环计",
+      "type": "离间计",
+      "label": "计策",
+      "icon": "🎯",
+      "file": "strategies/连环计.md",
+      "tags": [
+        "离间",
+        "美人计",
+        "诛杀董卓"
+      ],
+      "aliases": [],
+      "era": "东汉末年"
+    },
+    "空城计": {
+      "id": "空城计",
+      "name": "空城计",
+      "type": "成语典故",
+      "label": "典故",
+      "icon": "📖",
+      "file": "concepts/空城计.md",
+      "tags": [
+        "诸葛亮",
+        "司马懿",
+        "空城",
+        "计谋",
+        "蜀"
+      ],
+      "aliases": [],
+      "era": "三国时期"
+    },
+    "苦肉计": {
+      "id": "苦肉计",
+      "name": "苦肉计",
+      "type": "诈降计",
+      "label": "计策",
+      "icon": "🎯",
+      "file": "strategies/苦肉计.md",
+      "tags": [
+        "诈降",
+        "火攻",
+        "赤壁之战"
+      ],
+      "aliases": [],
+      "era": "东汉末年"
+    },
+    "围魏救赵": {
+      "id": "围魏救赵",
+      "name": "围魏救赵",
+      "type": "围点打援",
+      "label": "计策",
+      "icon": "🎯",
+      "file": "strategies/围魏救赵.md",
+      "tags": [
+        "围魏救赵",
+        "三十六计",
+        "攻其必救"
+      ],
+      "aliases": [],
+      "era": "战国时期（典故）/ 三国时期（应用）"
+    },
+    "丈八蛇矛": {
+      "id": "丈八蛇矛",
+      "name": "丈八蛇矛",
+      "type": "冷兵器/长矛",
+      "label": "兵器",
+      "icon": "🗡️",
+      "file": "weapons/丈八蛇矛.md",
+      "tags": [
+        "武器",
+        "张飞",
+        "蛇矛"
+      ],
+      "aliases": [],
+      "era": ""
+    },
+    "倚天剑": {
+      "id": "倚天剑",
+      "name": "倚天剑",
+      "type": "冷兵器/剑",
+      "label": "兵器",
+      "icon": "🗡️",
+      "file": "weapons/倚天剑.md",
+      "tags": [
+        "武器",
+        "曹操",
+        "倚天剑"
+      ],
+      "aliases": [],
+      "era": ""
+    },
+    "青釭剑": {
+      "id": "青釭剑",
+      "name": "青釭剑",
+      "type": "冷兵器/剑",
+      "label": "兵器",
+      "icon": "🗡️",
+      "file": "weapons/青釭剑.md",
+      "tags": [
+        "武器",
+        "曹操",
+        "赵云",
+        "青釭剑"
+      ],
+      "aliases": [],
+      "era": ""
+    },
+    "青龙偃月刀": {
+      "id": "青龙偃月刀",
+      "name": "青龙偃月刀",
+      "type": "冷兵器/长柄刀",
+      "label": "兵器",
+      "icon": "🗡️",
+      "file": "weapons/青龙偃月刀.md",
+      "tags": [
+        "武器",
+        "关羽",
+        "青龙刀"
+      ],
+      "aliases": [],
+      "era": ""
+    },
+    "赤兔马": {
+      "id": "赤兔马",
+      "name": "赤兔马",
+      "type": "战马",
+      "label": "战马",
+      "icon": "🐎",
+      "file": "weapons/赤兔马.md",
+      "tags": [
+        "战马",
+        "吕布",
+        "关羽",
+        "赤兔"
+      ],
+      "aliases": [],
+      "era": ""
+    },
+    "方天画戟": {
+      "id": "方天画戟",
+      "name": "方天画戟",
+      "type": "冷兵器/长柄戟",
+      "label": "兵器",
+      "icon": "🗡️",
+      "file": "weapons/方天画戟.md",
+      "tags": [
+        "武器",
+        "吕布",
+        "方天画戟"
+      ],
+      "aliases": [],
+      "era": ""
+    },
+    "06-spatial-normalization": {
+      "id": "06-spatial-normalization",
+      "name": "空间归一化",
+      "type": "methodology",
+      "label": "方法论",
+      "icon": "🔧",
+      "file": "skills-methodology/06-spatial-normalization.md",
+      "tags": [
+        "地名处理",
+        "空间映射",
+        "政区变迁",
+        "GIS"
+      ],
+      "aliases": [],
+      "era": ""
+    },
+    "01-text-preprocessing": {
+      "id": "01-text-preprocessing",
+      "name": "文本预处理",
+      "type": "methodology",
+      "label": "方法论",
+      "icon": "🔧",
+      "file": "skills-methodology/01-text-preprocessing.md",
+      "tags": [
+        "文本清洗",
+        "分段",
+        "标注",
+        "古籍处理"
+      ],
+      "aliases": [],
+      "era": ""
+    },
+    "09-game-integration": {
+      "id": "09-game-integration",
+      "name": "三国杀游戏整合",
+      "type": "methodology",
+      "label": "方法论",
+      "icon": "🔧",
+      "file": "skills-methodology/09-game-integration.md",
+      "tags": [
+        "游戏整合",
+        "卡牌映射",
+        "技能设计",
+        "三国杀"
+      ],
+      "aliases": [],
+      "era": ""
+    },
+    "03-event-extraction": {
+      "id": "03-event-extraction",
+      "name": "事件提取",
+      "type": "methodology",
+      "label": "方法论",
+      "icon": "🔧",
+      "file": "skills-methodology/03-event-extraction.md",
+      "tags": [
+        "事件抽取",
+        "时间归一化",
+        "因果关系",
+        "结构化"
+      ],
+      "aliases": [],
+      "era": ""
+    },
+    "08-knowledge-graph-construction": {
+      "id": "08-knowledge-graph-construction",
+      "name": "知识图谱构建",
+      "type": "methodology",
+      "label": "方法论",
+      "icon": "🔧",
+      "file": "skills-methodology/08-knowledge-graph-construction.md",
+      "tags": [
+        "知识图谱",
+        "图数据库",
+        "Schema设计",
+        "Neo4j",
+        "查询优化"
+      ],
+      "aliases": [],
+      "era": ""
+    },
+    "02-entity-extraction": {
+      "id": "02-entity-extraction",
+      "name": "实体提取",
+      "type": "methodology",
+      "label": "方法论",
+      "icon": "🔧",
+      "file": "skills-methodology/02-entity-extraction.md",
+      "tags": [
+        "实体识别",
+        "NER",
+        "命名实体",
+        "知识抽取"
+      ],
+      "aliases": [],
+      "era": ""
+    },
+    "04-relationship-extraction": {
+      "id": "04-relationship-extraction",
+      "name": "关系提取",
+      "type": "methodology",
+      "label": "方法论",
+      "icon": "🔧",
+      "file": "skills-methodology/04-relationship-extraction.md",
+      "tags": [
+        "关系抽取",
+        "人物关系",
+        "知识图谱",
+        "交叉验证"
+      ],
+      "aliases": [],
+      "era": ""
+    },
+    "07-data-validation": {
+      "id": "07-data-validation",
+      "name": "数据验证",
+      "type": "methodology",
+      "label": "方法论",
+      "icon": "🔧",
+      "file": "skills-methodology/07-data-validation.md",
+      "tags": [
+        "数据质检",
+        "一致性检查",
+        "完整性验证",
+        "交叉引用"
+      ],
+      "aliases": [],
+      "era": ""
+    },
+    "05-temporal-normalization": {
+      "id": "05-temporal-normalization",
+      "name": "时间归一化",
+      "type": "methodology",
+      "label": "方法论",
+      "icon": "🔧",
+      "file": "skills-methodology/05-temporal-normalization.md",
+      "tags": [
+        "时间处理",
+        "年号转换",
+        "干支纪年",
+        "历史纪年"
+      ],
+      "aliases": [],
+      "era": ""
+    },
+    "三国演义": {
+      "id": "三国演义",
+      "name": "三国演义",
+      "type": "book",
+      "label": "文献",
+      "icon": "📜",
+      "file": "books/三国演义.md",
+      "tags": [
+        "四大名著",
+        "章回小说",
+        "历史演义"
+      ],
+      "aliases": [],
+      "era": "元末明初"
+    },
+    "资治通鉴": {
+      "id": "资治通鉴",
+      "name": "资治通鉴",
+      "type": "book",
+      "label": "文献",
+      "icon": "📜",
+      "file": "books/资治通鉴.md",
+      "tags": [
+        "编年体",
+        "通史",
+        "史学经典"
+      ],
+      "aliases": [],
+      "era": "北宋"
+    },
+    "诸葛亮集": {
+      "id": "诸葛亮集",
+      "name": "诸葛亮集",
+      "type": "book",
+      "label": "文献",
+      "icon": "📜",
+      "file": "books/诸葛亮集.md",
+      "tags": [
+        "文集",
+        "蜀汉",
+        "名臣"
+      ],
+      "aliases": [],
+      "era": "三国·蜀"
+    },
+    "三国志平话": {
+      "id": "三国志平话",
+      "name": "三国志平话",
+      "type": "book",
+      "label": "文献",
+      "icon": "📜",
+      "file": "books/三国志平话.md",
+      "tags": [
+        "话本",
+        "讲史",
+        "三国演义前身"
+      ],
+      "aliases": [],
+      "era": "元"
+    },
+    "后汉书": {
+      "id": "后汉书",
+      "name": "后汉书",
+      "type": "book",
+      "label": "文献",
+      "icon": "📜",
+      "file": "books/后汉书.md",
+      "tags": [
+        "正史",
+        "纪传体",
+        "二十四史"
+      ],
+      "aliases": [],
+      "era": "南朝宋"
+    },
+    "晋书": {
+      "id": "晋书",
+      "name": "晋书",
+      "type": "book",
+      "label": "文献",
+      "icon": "📜",
+      "file": "books/晋书.md",
+      "tags": [
+        "正史",
+        "纪传体",
+        "二十四史",
+        "司马氏"
+      ],
+      "aliases": [],
+      "era": "唐"
+    },
+    "三国志裴松之注": {
+      "id": "三国志裴松之注",
+      "name": "三国志裴松之注",
+      "type": "book",
+      "label": "文献",
+      "icon": "📜",
+      "file": "books/三国志裴松之注.md",
+      "tags": [
+        "史注",
+        "三国志",
+        "史料补充"
+      ],
+      "aliases": [],
+      "era": "南朝·宋"
+    },
+    "建安七子集": {
+      "id": "建安七子集",
+      "name": "建安七子集",
+      "type": "book",
+      "label": "文献",
+      "icon": "📜",
+      "file": "books/建安七子集.md",
+      "tags": [
+        "文集",
+        "建安文学",
+        "诗歌"
+      ],
+      "aliases": [],
+      "era": "东汉末"
+    },
+    "文心雕龙": {
+      "id": "文心雕龙",
+      "name": "文心雕龙",
+      "type": "book",
+      "label": "文献",
+      "icon": "📜",
+      "file": "books/文心雕龙.md",
+      "tags": [
+        "文学理论",
+        "文评",
+        "建安文学"
+      ],
+      "aliases": [],
+      "era": "南朝·齐梁"
+    },
+    "华阳国志": {
+      "id": "华阳国志",
+      "name": "华阳国志",
+      "type": "book",
+      "label": "文献",
+      "icon": "📜",
+      "file": "books/华阳国志.md",
+      "tags": [
+        "地方志",
+        "巴蜀史",
+        "民族史"
+      ],
+      "aliases": [],
+      "era": "东晋"
+    },
+    "世说新语": {
+      "id": "世说新语",
+      "name": "世说新语",
+      "type": "book",
+      "label": "文献",
+      "icon": "📜",
+      "file": "books/世说新语.md",
+      "tags": [
+        "轶事",
+        "笔记小说",
+        "魏晋风流"
+      ],
+      "aliases": [],
+      "era": "南朝·宋"
+    },
+    "曹操集": {
+      "id": "曹操集",
+      "name": "曹操集",
+      "type": "book",
+      "label": "文献",
+      "icon": "📜",
+      "file": "books/曹操集.md",
+      "tags": [
+        "文集",
+        "建安文学",
+        "诗歌"
+      ],
+      "aliases": [],
+      "era": "东汉末"
+    },
+    "读通鉴论": {
+      "id": "读通鉴论",
+      "name": "读通鉴论",
+      "type": "book",
+      "label": "文献",
+      "icon": "📜",
+      "file": "books/读通鉴论.md",
+      "tags": [
+        "史论",
+        "资治通鉴",
+        "三国评论文选"
+      ],
+      "aliases": [],
+      "era": "清初"
+    },
+    "三国志": {
+      "id": "三国志",
+      "name": "三国志",
+      "type": "book",
+      "label": "文献",
+      "icon": "📜",
+      "file": "books/三国志.md",
+      "tags": [
+        "正史",
+        "纪传体",
+        "二十四史"
+      ],
+      "aliases": [],
+      "era": "西晋"
+    },
+    "汉晋春秋": {
+      "id": "汉晋春秋",
+      "name": "汉晋春秋",
+      "type": "book",
+      "label": "文献",
+      "icon": "📜",
+      "file": "books/汉晋春秋.md",
+      "tags": [
+        "编年史",
+        "蜀汉正统",
+        "三国"
+      ],
+      "aliases": [],
+      "era": "东晋"
+    },
+    "洛阳": {
+      "id": "洛阳",
+      "name": "洛阳",
+      "type": "都城",
+      "label": "都城",
+      "icon": "🏰",
+      "file": "locations/洛阳.md",
+      "tags": [
+        "都城",
+        "东汉",
+        "曹魏"
+      ],
+      "aliases": [],
+      "era": "东汉-三国"
+    },
+    "建业": {
+      "id": "建业",
+      "name": "建业",
+      "type": "都城",
+      "label": "都城",
+      "icon": "🏰",
+      "file": "locations/建业.md",
+      "tags": [
+        "都城",
+        "东吴",
+        "江东"
+      ],
+      "aliases": [],
+      "era": "三国"
+    },
+    "荆州": {
+      "id": "荆州",
+      "name": "荆州",
+      "type": "州郡",
+      "label": "州郡",
+      "icon": "🏘️",
+      "file": "locations/荆州.md",
+      "tags": [
+        "荆州",
+        "战略要地",
+        "魏蜀吴"
+      ],
+      "aliases": [],
+      "era": "东汉-三国"
+    },
+    "成都": {
+      "id": "成都",
+      "name": "成都",
+      "type": "都城",
+      "label": "都城",
+      "icon": "🏰",
+      "file": "locations/成都.md",
+      "tags": [
+        "都城",
+        "蜀汉",
+        "西南"
+      ],
+      "aliases": [],
+      "era": "三国"
+    },
+    "赤壁": {
+      "id": "赤壁",
+      "name": "赤壁",
+      "type": "古战场",
+      "label": "古战场",
+      "icon": "🏟️",
+      "file": "locations/赤壁.md",
+      "tags": [
+        "古战场",
+        "赤壁之战",
+        "长江"
+      ],
+      "aliases": [],
+      "era": "东汉末年"
+    },
+    "许都": {
+      "id": "许都",
+      "name": "许都",
+      "type": "都城",
+      "label": "都城",
+      "icon": "🏰",
+      "file": "locations/许都.md",
+      "tags": [
+        "都城",
+        "曹操",
+        "东汉"
+      ],
+      "aliases": [],
+      "era": "东汉-三国"
+    },
+    "长安": {
+      "id": "长安",
+      "name": "长安",
+      "type": "都城",
+      "label": "都城",
+      "icon": "🏰",
+      "file": "locations/长安.md",
+      "tags": [
+        "都城",
+        "西汉",
+        "长安"
+      ],
+      "aliases": [],
+      "era": "东汉-三国"
+    },
+    "官渡": {
+      "id": "官渡",
+      "name": "官渡",
+      "type": "古战场",
+      "label": "古战场",
+      "icon": "🏟️",
+      "file": "locations/官渡.md",
+      "tags": [
+        "古战场",
+        "官渡之战",
+        "黄河"
+      ],
+      "aliases": [],
+      "era": "东汉末年"
+    },
+    "街亭": {
+      "id": "街亭",
+      "name": "街亭",
+      "type": "古战场",
+      "label": "古战场",
+      "icon": "🏟️",
+      "file": "locations/街亭.md",
+      "tags": [
+        "古战场",
+        "蜀汉",
+        "诸葛亮北伐"
+      ],
+      "aliases": [],
+      "era": "三国"
+    },
+    "五丈原之战": {
+      "id": "五丈原之战",
+      "name": "五丈原之战",
+      "type": "battle",
+      "label": "战役",
+      "icon": "⚔️",
+      "file": "battles/五丈原之战.md",
+      "tags": [
+        "北伐",
+        "诸葛亮",
+        "最后一战"
+      ],
+      "aliases": [],
+      "era": "三国时期"
+    },
+    "赤壁之战": {
+      "id": "赤壁之战",
+      "name": "赤壁之战",
+      "type": "battle",
+      "label": "战役",
+      "icon": "⚔️",
+      "file": "battles/赤壁之战.md",
+      "tags": [
+        "以少胜多",
+        "水战",
+        "三分天下"
+      ],
+      "aliases": [],
+      "era": "东汉末年"
+    },
+    "汉中之战": {
+      "id": "汉中之战",
+      "name": "汉中之战",
+      "type": "battle",
+      "label": "战役",
+      "icon": "⚔️",
+      "file": "battles/汉中之战.md",
+      "tags": [
+        "持久战",
+        "山地战",
+        "蜀汉崛起"
+      ],
+      "aliases": [],
+      "era": "东汉末年"
+    },
+    "官渡之战": {
+      "id": "官渡之战",
+      "name": "官渡之战",
+      "type": "battle",
+      "label": "战役",
+      "icon": "⚔️",
+      "file": "battles/官渡之战.md",
+      "tags": [
+        "以少胜多",
+        "北方统一",
+        "决定性战役"
+      ],
+      "aliases": [],
+      "era": "东汉末年"
+    },
+    "樊城之战": {
+      "id": "樊城之战",
+      "name": "樊城之战",
+      "type": "battle",
+      "label": "战役",
+      "icon": "⚔️",
+      "file": "battles/樊城之战.md",
+      "tags": [
+        "水淹七军",
+        "北伐",
+        "荆州之争"
+      ],
+      "aliases": [],
+      "era": "东汉末年"
+    },
+    "合肥之战": {
+      "id": "合肥之战",
+      "name": "合肥之战",
+      "type": "battle",
+      "label": "战役",
+      "icon": "⚔️",
+      "file": "battles/合肥之战.md",
+      "tags": [
+        "攻城战",
+        "张辽威震逍遥津",
+        "持久战"
+      ],
+      "aliases": [],
+      "era": "三国时期"
+    },
+    "夷陵之战": {
+      "id": "夷陵之战",
+      "name": "夷陵之战",
+      "type": "battle",
+      "label": "战役",
+      "icon": "⚔️",
+      "file": "battles/夷陵之战.md",
+      "tags": [
+        "以少胜多",
+        "防御反击",
+        "火烧连营"
+      ],
+      "aliases": [],
+      "era": "三国时期"
+    },
+    "街亭之战": {
+      "id": "街亭之战",
+      "name": "街亭之战",
+      "type": "battle",
+      "label": "战役",
+      "icon": "⚔️",
+      "file": "battles/街亭之战.md",
+      "tags": [
+        "北伐",
+        "马谡失守",
+        "防守要地"
+      ],
+      "aliases": [],
+      "era": "三国时期"
+    },
+    "周瑜打黄盖": {
+      "id": "周瑜打黄盖",
+      "name": "周瑜打黄盖",
+      "type": "成语典故",
+      "label": "典故",
+      "icon": "📖",
+      "file": "concepts/周瑜打黄盖.md",
+      "tags": [
+        "周瑜",
+        "黄盖",
+        "苦肉计",
+        "赤壁之战"
+      ],
+      "aliases": [],
+      "era": "东汉末年"
+    },
+    "士别三日当刮目相看": {
+      "id": "士别三日当刮目相看",
+      "name": "士别三日当刮目相看",
+      "type": "成语典故",
+      "label": "典故",
+      "icon": "📖",
+      "file": "concepts/士别三日当刮目相看.md",
+      "tags": [
+        "吕蒙",
+        "孙权",
+        "勤学",
+        "吴"
+      ],
+      "aliases": [],
+      "era": "东汉末年"
+    },
+    "对酒当歌": {
+      "id": "对酒当歌",
+      "name": "对酒当歌",
+      "type": "成语典故",
+      "label": "典故",
+      "icon": "📖",
+      "file": "concepts/对酒当歌.md",
+      "tags": [
+        "曹操",
+        "短歌行",
+        "诗歌",
+        "魏"
+      ],
+      "aliases": [],
+      "era": "东汉末年"
+    },
+    "桃园结义": {
+      "id": "桃园结义",
+      "name": "桃园结义",
+      "type": "典故",
+      "label": "典故",
+      "icon": "📖",
+      "file": "concepts/桃园结义.md",
+      "tags": [
+        "结义",
+        "兄弟情",
+        "刘备",
+        "关羽",
+        "张飞"
+      ],
+      "aliases": [],
+      "era": "东汉末年"
+    },
+    "吴下阿蒙": {
+      "id": "吴下阿蒙",
+      "name": "吴下阿蒙",
+      "type": "成语典故",
+      "label": "典故",
+      "icon": "📖",
+      "file": "concepts/吴下阿蒙.md",
+      "tags": [
+        "吕蒙",
+        "学识",
+        "勉学",
+        "吴"
+      ],
+      "aliases": [],
+      "era": "东汉末年"
+    },
+    "蜀中无大将廖化作先锋": {
+      "id": "蜀中无大将廖化作先锋",
+      "name": "蜀中无大将廖化作先锋",
+      "type": "成语典故",
+      "label": "典故",
+      "icon": "📖",
+      "file": "concepts/蜀中无大将廖化作先锋.md",
+      "tags": [
+        "廖化",
+        "蜀汉",
+        "人才凋零",
+        "无奈"
+      ],
+      "aliases": [],
+      "era": "三国时期"
+    },
+    "万事俱备只欠东风": {
+      "id": "万事俱备只欠东风",
+      "name": "万事俱备只欠东风",
+      "type": "成语典故",
+      "label": "典故",
+      "icon": "📖",
+      "file": "concepts/万事俱备只欠东风.md",
+      "tags": [
+        "诸葛亮",
+        "赤壁之战",
+        "东风",
+        "火攻"
+      ],
+      "aliases": [],
+      "era": "东汉末年"
+    },
+    "挥泪斩马谡": {
+      "id": "挥泪斩马谡",
+      "name": "挥泪斩马谡",
+      "type": "成语典故",
+      "label": "典故",
+      "icon": "📖",
+      "file": "concepts/挥泪斩马谡.md",
+      "tags": [
+        "诸葛亮",
+        "马谡",
+        "军法",
+        "执法",
+        "蜀"
+      ],
+      "aliases": [],
+      "era": "三国时期"
+    },
+    "大意失荆州": {
+      "id": "大意失荆州",
+      "name": "大意失荆州",
+      "type": "成语典故",
+      "label": "典故",
+      "icon": "📖",
+      "file": "concepts/大意失荆州.md",
+      "tags": [
+        "关羽",
+        "荆州",
+        "骄傲",
+        "失守"
+      ],
+      "aliases": [],
+      "era": "东汉末年"
+    },
+    "三顾茅庐": {
+      "id": "三顾茅庐",
+      "name": "三顾茅庐",
+      "type": "典故",
+      "label": "典故",
+      "icon": "📖",
+      "file": "concepts/三顾茅庐.md",
+      "tags": [
+        "求贤",
+        "诸葛亮",
+        "刘备",
+        "诚意"
+      ],
+      "aliases": [],
+      "era": "东汉末年"
+    },
+    "身在曹营心在汉": {
+      "id": "身在曹营心在汉",
+      "name": "身在曹营心在汉",
+      "type": "成语典故",
+      "label": "典故",
+      "icon": "📖",
+      "file": "concepts/身在曹营心在汉.md",
+      "tags": [
+        "徐庶",
+        "曹操",
+        "刘备",
+        "忠义"
+      ],
+      "aliases": [],
+      "era": "东汉末年"
+    },
+    "老骥伏枥": {
+      "id": "老骥伏枥",
+      "name": "老骥伏枥",
+      "type": "成语典故",
+      "label": "典故",
+      "icon": "📖",
+      "file": "concepts/老骥伏枥.md",
+      "tags": [
+        "曹操",
+        "龟虽寿",
+        "雄心壮志",
+        "魏"
+      ],
+      "aliases": [],
+      "era": "东汉末年"
+    },
+    "说曹操曹操到": {
+      "id": "说曹操曹操到",
+      "name": "说曹操曹操到",
+      "type": "成语典故",
+      "label": "典故",
+      "icon": "📖",
+      "file": "concepts/说曹操曹操到.md",
+      "tags": [
+        "曹操",
+        "俗语",
+        "巧合"
+      ],
+      "aliases": [],
+      "era": "东汉末年"
+    },
+    "七步诗": {
+      "id": "七步诗",
+      "name": "七步诗",
+      "type": "典故",
+      "label": "典故",
+      "icon": "📖",
+      "file": "concepts/七步诗.md",
+      "tags": [
+        "曹植",
+        "曹丕",
+        "兄弟相残",
+        "诗才"
+      ],
+      "aliases": [],
+      "era": "三国时期"
+    },
+    "既生瑜何生亮": {
+      "id": "既生瑜何生亮",
+      "name": "既生瑜何生亮",
+      "type": "成语典故",
+      "label": "典故",
+      "icon": "📖",
+      "file": "concepts/既生瑜何生亮.md",
+      "tags": [
+        "周瑜",
+        "诸葛亮",
+        "既生瑜何生亮",
+        "遗憾"
+      ],
+      "aliases": [],
+      "era": "东汉末年"
+    },
+    "望梅止渴": {
+      "id": "望梅止渴",
+      "name": "望梅止渴",
+      "type": "成语典故",
+      "label": "典故",
+      "icon": "📖",
+      "file": "concepts/望梅止渴.md",
+      "tags": [
+        "曹操",
+        "望梅止渴",
+        "心理暗示",
+        "魏"
+      ],
+      "aliases": [],
+      "era": "东汉末年"
+    },
+    "七擒七纵": {
+      "id": "七擒七纵",
+      "name": "七擒七纵",
+      "type": "成语典故",
+      "label": "典故",
+      "icon": "📖",
+      "file": "concepts/七擒七纵.md",
+      "tags": [
+        "诸葛亮",
+        "孟获",
+        "南中",
+        "攻心"
+      ],
+      "aliases": [],
+      "era": "三国时期"
+    },
+    "青梅煮酒": {
+      "id": "青梅煮酒",
+      "name": "青梅煮酒",
+      "type": "成语典故",
+      "label": "典故",
+      "icon": "📖",
+      "file": "concepts/青梅煮酒.md",
+      "tags": [
+        "曹操",
+        "刘备",
+        "煮酒论英雄",
+        "青梅"
+      ],
+      "aliases": [],
+      "era": "东汉末年"
+    },
+    "过五关斩六将": {
+      "id": "过五关斩六将",
+      "name": "过五关斩六将",
+      "type": "成语典故",
+      "label": "典故",
+      "icon": "📖",
+      "file": "concepts/过五关斩六将.md",
+      "tags": [
+        "关羽",
+        "千里走单骑",
+        "过关斩将",
+        "蜀"
+      ],
+      "aliases": [],
+      "era": "东汉末年"
+    },
+    "锦囊妙计": {
+      "id": "锦囊妙计",
+      "name": "锦囊妙计",
+      "type": "成语典故",
+      "label": "典故",
+      "icon": "📖",
+      "file": "concepts/锦囊妙计.md",
+      "tags": [
+        "诸葛亮",
+        "锦囊",
+        "计谋",
+        "蜀"
+      ],
+      "aliases": [],
+      "era": "东汉末年"
+    },
+    "鞠躬尽瘁": {
+      "id": "鞠躬尽瘁",
+      "name": "鞠躬尽瘁",
+      "type": "典故",
+      "label": "典故",
+      "icon": "📖",
+      "file": "concepts/鞠躬尽瘁.md",
+      "tags": [
+        "诸葛亮",
+        "忠诚",
+        "奉献",
+        "名言"
+      ],
+      "aliases": [],
+      "era": "三国时期"
+    },
+    "赔了夫人又折兵": {
+      "id": "赔了夫人又折兵",
+      "name": "赔了夫人又折兵",
+      "type": "成语典故",
+      "label": "典故",
+      "icon": "📖",
+      "file": "concepts/赔了夫人又折兵.md",
+      "tags": [
+        "周瑜",
+        "孙权",
+        "刘备",
+        "计谋失败"
+      ],
+      "aliases": [],
+      "era": "东汉末年"
+    },
+    "刮骨疗毒": {
+      "id": "刮骨疗毒",
+      "name": "刮骨疗毒",
+      "type": "典故",
+      "label": "典故",
+      "icon": "📖",
+      "file": "concepts/刮骨疗毒.md",
+      "tags": [
+        "关羽",
+        "勇武",
+        "刮骨",
+        "疗毒"
+      ],
+      "aliases": [],
+      "era": "东汉末年"
+    },
+    "扶不起的阿斗": {
+      "id": "扶不起的阿斗",
+      "name": "扶不起的阿斗",
+      "type": "成语典故",
+      "label": "典故",
+      "icon": "📖",
+      "file": "concepts/扶不起的阿斗.md",
+      "tags": [
+        "刘禅",
+        "阿斗",
+        "扶不起",
+        "蜀"
+      ],
+      "aliases": [],
+      "era": "三国时期"
+    },
+    "单刀赴会": {
+      "id": "单刀赴会",
+      "name": "单刀赴会",
+      "type": "成语典故",
+      "label": "典故",
+      "icon": "📖",
+      "file": "concepts/单刀赴会.md",
+      "tags": [
+        "关羽",
+        "鲁肃",
+        "单刀赴会",
+        "蜀",
+        "吴"
+      ],
+      "aliases": [],
+      "era": "东汉末年"
+    },
+    "草船借箭": {
+      "id": "草船借箭",
+      "name": "草船借箭",
+      "type": "典故",
+      "label": "典故",
+      "icon": "📖",
+      "file": "concepts/草船借箭.md",
+      "tags": [
+        "诸葛亮",
+        "借箭",
+        "智慧",
+        "赤壁之战"
+      ],
+      "aliases": [],
+      "era": "东汉末年"
+    },
+    "乐不思蜀": {
+      "id": "乐不思蜀",
+      "name": "乐不思蜀",
+      "type": "典故",
+      "label": "典故",
+      "icon": "📖",
+      "file": "concepts/乐不思蜀.md",
+      "tags": [
+        "刘禅",
+        "亡国",
+        "安乐",
+        "讽刺"
+      ],
+      "aliases": [],
+      "era": "三国时期"
+    },
+    "司马昭之心": {
+      "id": "司马昭之心",
+      "name": "司马昭之心",
+      "type": "典故",
+      "label": "典故",
+      "icon": "📖",
+      "file": "concepts/司马昭之心.md",
+      "tags": [
+        "司马昭",
+        "曹髦",
+        "篡位",
+        "路人皆知"
+      ],
+      "aliases": [],
+      "era": "三国时期"
+    },
+    "卧龙凤雏": {
+      "id": "卧龙凤雏",
+      "name": "卧龙凤雏",
+      "type": "成语典故",
+      "label": "典故",
+      "icon": "📖",
+      "file": "concepts/卧龙凤雏.md",
+      "tags": [
+        "诸葛亮",
+        "庞统",
+        "司马徽",
+        "人才",
+        "蜀"
+      ],
+      "aliases": [],
+      "era": "东汉末年"
+    },
+    "袁绍": {
+      "id": "袁绍",
+      "name": "袁绍",
+      "type": "faction",
+      "label": "势力",
+      "icon": "🏛️",
+      "file": "factions/袁绍.md",
+      "tags": [
+        "东汉末年",
+        "诸侯",
+        "河北"
+      ],
+      "aliases": [],
+      "era": "东汉末年"
+    },
+    "袁术": {
+      "id": "袁术",
+      "name": "袁术",
+      "type": "faction",
+      "label": "势力",
+      "icon": "🏛️",
+      "file": "factions/袁术.md",
+      "tags": [
+        "东汉末年",
+        "诸侯",
+        "淮南"
+      ],
+      "aliases": [],
+      "era": "东汉末年"
+    },
+    "吕布": {
+      "id": "吕布",
+      "name": "吕布",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/吕布.md",
+      "tags": [
+        "武将",
+        "勇猛",
+        "三姓家奴"
+      ],
+      "aliases": [
+        "奉先",
+        "吕奉先"
+      ],
+      "era": "东汉末年",
+      "faction": "群",
+      "birth": "156",
+      "death": "199"
+    },
+    "东吴": {
+      "id": "东吴",
+      "name": "东吴",
+      "type": "faction",
+      "label": "势力",
+      "icon": "🏛️",
+      "file": "factions/东吴.md",
+      "tags": [
+        "三国",
+        "东吴",
+        "江东政权"
+      ],
+      "aliases": [],
+      "era": "三国"
+    },
+    "董卓": {
+      "id": "董卓",
+      "name": "董卓",
+      "type": "faction",
+      "label": "势力",
+      "icon": "🏛️",
+      "file": "factions/董卓.md",
+      "tags": [
+        "东汉末年",
+        "权臣",
+        "凉州军阀"
+      ],
+      "aliases": [],
+      "era": "东汉末年"
+    },
+    "曹魏": {
+      "id": "曹魏",
+      "name": "曹魏",
+      "type": "faction",
+      "label": "势力",
+      "icon": "🏛️",
+      "file": "factions/曹魏.md",
+      "tags": [
+        "三国",
+        "魏国",
+        "北方政权"
+      ],
+      "aliases": [],
+      "era": "三国"
+    },
+    "蜀汉": {
+      "id": "蜀汉",
+      "name": "蜀汉",
+      "type": "faction",
+      "label": "势力",
+      "icon": "🏛️",
+      "file": "factions/蜀汉.md",
+      "tags": [
+        "三国",
+        "蜀汉",
+        "西南政权"
+      ],
+      "aliases": [],
+      "era": "三国"
+    },
+    "公孙瓒": {
+      "id": "公孙瓒",
+      "name": "公孙瓒",
+      "type": "faction",
+      "label": "势力",
+      "icon": "🏛️",
+      "file": "factions/公孙瓒.md",
+      "tags": [
+        "东汉末年",
+        "诸侯",
+        "幽州"
+      ],
+      "aliases": [],
+      "era": "东汉末年"
+    },
+    "英魂": {
+      "id": "英魂",
+      "name": "英魂",
+      "type": "skill",
+      "label": "三国杀技能",
+      "icon": "🃏",
+      "file": "skills/英魂.md",
+      "tags": [
+        "吴",
+        "辅助",
+        "摸牌"
+      ],
+      "aliases": [],
+      "era": ""
+    },
+    "救援": {
+      "id": "救援",
+      "name": "救援",
+      "type": "skill",
+      "label": "三国杀技能",
+      "icon": "🃏",
+      "file": "skills/救援.md",
+      "tags": [
+        "吴",
+        "主公技能",
+        "回复"
+      ],
+      "aliases": [],
+      "era": ""
+    },
+    "奇袭": {
+      "id": "奇袭",
+      "name": "奇袭",
+      "type": "skill",
+      "label": "三国杀技能",
+      "icon": "🃏",
+      "file": "skills/奇袭.md",
+      "tags": [
+        "吴",
+        "核心技能",
+        "控制"
+      ],
+      "aliases": [],
+      "era": ""
+    },
+    "激将": {
+      "id": "激将",
+      "name": "激将",
+      "type": "skill",
+      "label": "三国杀技能",
+      "icon": "🃏",
+      "file": "skills/激将.md",
+      "tags": [
+        "蜀",
+        "主公技能",
+        "输出"
+      ],
+      "aliases": [],
+      "era": ""
+    },
+    "洛神": {
+      "id": "洛神",
+      "name": "洛神",
+      "type": "skill",
+      "label": "三国杀技能",
+      "icon": "🃏",
+      "file": "skills/洛神.md",
+      "tags": [
+        "魏",
+        "核心技能",
+        "判定",
+        "摸牌"
+      ],
+      "aliases": [],
+      "era": ""
+    },
+    "反馈": {
+      "id": "反馈",
+      "name": "反馈",
+      "type": "skill",
+      "label": "三国杀技能",
+      "icon": "🃏",
+      "file": "skills/反馈.md",
+      "tags": [
+        "魏",
+        "防御",
+        "拿牌"
+      ],
+      "aliases": [],
+      "era": ""
+    },
+    "观星": {
+      "id": "观星",
+      "name": "观星",
+      "type": "skill",
+      "label": "三国杀技能",
+      "icon": "🃏",
+      "file": "skills/观星.md",
+      "tags": [
+        "蜀",
+        "核心技能",
+        "控牌"
+      ],
+      "aliases": [],
+      "era": ""
+    },
+    "克己": {
+      "id": "克己",
+      "name": "克己",
+      "type": "skill",
+      "label": "三国杀技能",
+      "icon": "🃏",
+      "file": "skills/克己.md",
+      "tags": [
+        "吴",
+        "核心技能",
+        "屯牌"
+      ],
+      "aliases": [],
+      "era": ""
+    },
+    "连营": {
+      "id": "连营",
+      "name": "连营",
+      "type": "skill",
+      "label": "三国杀技能",
+      "icon": "🃏",
+      "file": "skills/连营.md",
+      "tags": [
+        "吴",
+        "核心技能",
+        "爆发",
+        "摸牌"
+      ],
+      "aliases": [],
+      "era": ""
+    },
+    "义绝": {
+      "id": "义绝",
+      "name": "义绝",
+      "type": "skill",
+      "label": "三国杀技能",
+      "icon": "🃏",
+      "file": "skills/义绝.md",
+      "tags": [
+        "蜀",
+        "控制",
+        "拼点"
+      ],
+      "aliases": [],
+      "era": ""
+    },
+    "仁德": {
+      "id": "仁德",
+      "name": "仁德",
+      "type": "skill",
+      "label": "三国杀技能",
+      "icon": "🃏",
+      "file": "skills/仁德.md",
+      "tags": [
+        "蜀",
+        "核心技能",
+        "辅助"
+      ],
+      "aliases": [],
+      "era": ""
+    },
+    "倾国": {
+      "id": "倾国",
+      "name": "倾国",
+      "type": "skill",
+      "label": "三国杀技能",
+      "icon": "🃏",
+      "file": "skills/倾国.md",
+      "tags": [
+        "群雄",
+        "防御",
+        "转化"
+      ],
+      "aliases": [],
+      "era": ""
+    },
+    "奸雄": {
+      "id": "奸雄",
+      "name": "奸雄",
+      "type": "skill",
+      "label": "三国杀技能",
+      "icon": "🃏",
+      "file": "skills/奸雄.md",
+      "tags": [
+        "魏",
+        "核心技能",
+        "受伤收益"
+      ],
+      "aliases": [],
+      "era": ""
+    },
+    "武圣": {
+      "id": "武圣",
+      "name": "武圣",
+      "type": "skill",
+      "label": "三国杀技能",
+      "icon": "🃏",
+      "file": "skills/武圣.md",
+      "tags": [
+        "蜀",
+        "核心技能",
+        "输出"
+      ],
+      "aliases": [],
+      "era": ""
+    },
+    "据守": {
+      "id": "据守",
+      "name": "据守",
+      "type": "skill",
+      "label": "三国杀技能",
+      "icon": "🃏",
+      "file": "skills/据守.md",
+      "tags": [
+        "魏",
+        "防御",
+        "摸牌"
+      ],
+      "aliases": [],
+      "era": ""
+    },
+    "英姿": {
+      "id": "英姿",
+      "name": "英姿",
+      "type": "skill",
+      "label": "三国杀技能",
+      "icon": "🃏",
+      "file": "skills/英姿.md",
+      "tags": [
+        "吴",
+        "核心技能",
+        "摸牌"
+      ],
+      "aliases": [],
+      "era": ""
+    },
+    "苦肉": {
+      "id": "苦肉",
+      "name": "苦肉",
+      "type": "skill",
+      "label": "三国杀技能",
+      "icon": "🃏",
+      "file": "skills/苦肉.md",
+      "tags": [
+        "吴",
+        "核心技能",
+        "爆发",
+        "自伤"
+      ],
+      "aliases": [],
+      "era": ""
+    },
+    "鬼才": {
+      "id": "鬼才",
+      "name": "鬼才",
+      "type": "skill",
+      "label": "三国杀技能",
+      "icon": "🃏",
+      "file": "skills/鬼才.md",
+      "tags": [
+        "魏",
+        "核心技能",
+        "改判"
+      ],
+      "aliases": [],
+      "era": ""
+    },
+    "龙胆": {
+      "id": "龙胆",
+      "name": "龙胆",
+      "type": "skill",
+      "label": "三国杀技能",
+      "icon": "🃏",
+      "file": "skills/龙胆.md",
+      "tags": [
+        "蜀",
+        "核心技能",
+        "攻防一体"
+      ],
+      "aliases": [],
+      "era": ""
+    },
+    "离间": {
+      "id": "离间",
+      "name": "离间",
+      "type": "skill",
+      "label": "三国杀技能",
+      "icon": "🃏",
+      "file": "skills/离间.md",
+      "tags": [
+        "群雄",
+        "核心技能",
+        "控制"
+      ],
+      "aliases": [],
+      "era": ""
+    },
+    "突袭": {
+      "id": "突袭",
+      "name": "突袭",
+      "type": "skill",
+      "label": "三国杀技能",
+      "icon": "🃏",
+      "file": "skills/突袭.md",
+      "tags": [
+        "魏",
+        "核心技能",
+        "控制",
+        "摸牌"
+      ],
+      "aliases": [],
+      "era": ""
+    },
+    "谦逊": {
+      "id": "谦逊",
+      "name": "谦逊",
+      "type": "skill",
+      "label": "三国杀技能",
+      "icon": "🃏",
+      "file": "skills/谦逊.md",
+      "tags": [
+        "吴",
+        "防御",
+        "免控"
+      ],
+      "aliases": [],
+      "era": ""
+    },
+    "无双": {
+      "id": "无双",
+      "name": "无双",
+      "type": "skill",
+      "label": "三国杀技能",
+      "icon": "🃏",
+      "file": "skills/无双.md",
+      "tags": [
+        "群雄",
+        "核心技能",
+        "强命"
+      ],
+      "aliases": [],
+      "era": ""
+    },
+    "空城": {
+      "id": "空城",
+      "name": "空城",
+      "type": "skill",
+      "label": "三国杀技能",
+      "icon": "🃏",
+      "file": "skills/空城.md",
+      "tags": [
+        "蜀",
+        "防御",
+        "空手牌"
+      ],
+      "aliases": [],
+      "era": ""
+    },
+    "刚烈": {
+      "id": "刚烈",
+      "name": "刚烈",
+      "type": "skill",
+      "label": "三国杀技能",
+      "icon": "🃏",
+      "file": "skills/刚烈.md",
+      "tags": [
+        "魏",
+        "防御",
+        "反击"
+      ],
+      "aliases": [],
+      "era": ""
+    },
+    "制衡": {
+      "id": "制衡",
+      "name": "制衡",
+      "type": "skill",
+      "label": "三国杀技能",
+      "icon": "🃏",
+      "file": "skills/制衡.md",
+      "tags": [
+        "吴",
+        "核心技能",
+        "换牌"
+      ],
+      "aliases": [],
+      "era": ""
+    },
+    "裸衣": {
+      "id": "裸衣",
+      "name": "裸衣",
+      "type": "skill",
+      "label": "三国杀技能",
+      "icon": "🃏",
+      "file": "skills/裸衣.md",
+      "tags": [
+        "魏",
+        "核心技能",
+        "爆发"
+      ],
+      "aliases": [],
+      "era": ""
+    },
+    "护驾": {
+      "id": "护驾",
+      "name": "护驾",
+      "type": "skill",
+      "label": "三国杀技能",
+      "icon": "🃏",
+      "file": "skills/护驾.md",
+      "tags": [
+        "魏",
+        "主公技能",
+        "护卫"
+      ],
+      "aliases": [],
+      "era": ""
+    },
+    "迎奉天子": {
+      "id": "迎奉天子",
+      "name": "迎奉天子",
+      "type": "event",
+      "label": "事件",
+      "icon": "📅",
+      "file": "events/迎奉天子.md",
+      "tags": [
+        "政治事件",
+        "挟天子",
+        "权力转移"
+      ],
+      "aliases": [],
+      "era": "东汉末年"
+    },
+    "刘备三顾茅庐": {
+      "id": "刘备三顾茅庐",
+      "name": "刘备三顾茅庐",
+      "type": "event",
+      "label": "事件",
+      "icon": "📅",
+      "file": "events/刘备三顾茅庐.md",
+      "tags": [
+        "人事",
+        "求贤",
+        "君臣际遇"
+      ],
+      "aliases": [],
+      "era": "东汉末年"
+    },
+    "诸侯讨董": {
+      "id": "诸侯讨董",
+      "name": "诸侯讨董",
+      "type": "event",
+      "label": "事件",
+      "icon": "📅",
+      "file": "events/诸侯讨董.md",
+      "tags": [
+        "军事联盟",
+        "讨伐",
+        "军阀混战"
+      ],
+      "aliases": [],
+      "era": "东汉末年"
+    },
+    "董卓之乱": {
+      "id": "董卓之乱",
+      "name": "董卓之乱",
+      "type": "event",
+      "label": "事件",
+      "icon": "📅",
+      "file": "events/董卓之乱.md",
+      "tags": [
+        "政变",
+        "废立",
+        "军阀割据"
+      ],
+      "aliases": [],
+      "era": "东汉末年"
+    },
+    "黄巾起义": {
+      "id": "黄巾起义",
+      "name": "黄巾起义",
+      "type": "event",
+      "label": "事件",
+      "icon": "📅",
+      "file": "events/黄巾起义.md",
+      "tags": [
+        "农民起义",
+        "宗教运动",
+        "三国序幕"
+      ],
+      "aliases": [],
+      "era": "东汉末年"
+    },
+    "曹操起兵": {
+      "id": "曹操起兵",
+      "name": "曹操起兵",
+      "type": "event",
+      "label": "事件",
+      "icon": "📅",
+      "file": "events/曹操起兵.md",
+      "tags": [
+        "创业",
+        "军事扩张",
+        "军阀崛起"
+      ],
+      "aliases": [],
+      "era": "东汉末年"
+    },
+    "辕门射戟": {
+      "id": "辕门射戟",
+      "name": "辕门射戟",
+      "type": "event",
+      "label": "事件",
+      "icon": "📅",
+      "file": "events/辕门射戟.md",
+      "tags": [
+        "军事",
+        "外交",
+        "和解"
+      ],
+      "aliases": [],
+      "era": "东汉末年"
+    },
+    "隆中对": {
+      "id": "隆中对",
+      "name": "隆中对",
+      "type": "event",
+      "label": "事件",
+      "icon": "📅",
+      "file": "events/隆中对.md",
+      "tags": [
+        "战略规划",
+        "政治决策",
+        "三分天下"
+      ],
+      "aliases": [],
+      "era": "东汉末年"
+    },
+    "徐庶": {
+      "id": "徐庶",
+      "name": "徐庶",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/徐庶.md",
+      "tags": [
+        "谋士",
+        "孝子",
+        "身在曹营"
+      ],
+      "aliases": [
+        "元直",
+        "徐福"
+      ],
+      "era": "东汉末年",
+      "faction": "蜀",
+      "birth": "170",
+      "death": "230"
+    },
+    "严颜": {
+      "id": "严颜",
+      "name": "严颜",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/严颜.md",
+      "tags": [
+        "武将",
+        "蜀汉老将",
+        "宁死不屈",
+        "巴郡"
+      ],
+      "aliases": [
+        "巴郡太守"
+      ],
+      "era": "东汉末年",
+      "faction": "蜀",
+      "birth": "150",
+      "death": "220"
+    },
+    "孟获": {
+      "id": "孟获",
+      "name": "孟获",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/孟获.md",
+      "tags": [
+        "武将",
+        "南中首领",
+        "七擒七纵"
+      ],
+      "aliases": [
+        "南中王",
+        "南蛮首领"
+      ],
+      "era": "东汉末年",
+      "faction": "蜀",
+      "birth": "185",
+      "death": "230"
+    },
+    "刘备": {
+      "id": "刘备",
+      "name": "刘备",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/刘备.md",
+      "tags": [
+        "君主",
+        "仁德",
+        "桃园结义"
+      ],
+      "aliases": [
+        "玄德",
+        "刘皇叔",
+        "刘豫州"
+      ],
+      "era": "东汉末年",
+      "faction": "蜀",
+      "birth": "161",
+      "death": "223"
+    },
+    "何进": {
+      "id": "何进",
+      "name": "何进",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/何进.md",
+      "tags": [
+        "外戚",
+        "大将军",
+        "东汉",
+        "召董卓入京"
+      ],
+      "aliases": [
+        "遂高",
+        "何遂高"
+      ],
+      "era": "东汉末年",
+      "faction": "汉",
+      "birth": "158",
+      "death": "189"
+    },
+    "徐晃": {
+      "id": "徐晃",
+      "name": "徐晃",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/徐晃.md",
+      "tags": [
+        "武将",
+        "五子良将",
+        "曹魏名将",
+        "解樊城之围"
+      ],
+      "aliases": [
+        "公明",
+        "徐公明"
+      ],
+      "era": "东汉末年",
+      "faction": "魏",
+      "birth": "174",
+      "death": "227"
+    },
+    "曹真": {
+      "id": "曹真",
+      "name": "曹真",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/曹真.md",
+      "tags": [
+        "武将",
+        "曹魏宗亲",
+        "托孤重臣",
+        "北伐"
+      ],
+      "aliases": [
+        "子丹",
+        "曹子丹"
+      ],
+      "era": "东汉末年",
+      "faction": "魏",
+      "birth": "185",
+      "death": "231"
+    },
+    "王平": {
+      "id": "王平",
+      "name": "王平",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/王平.md",
+      "tags": [
+        "武将",
+        "蜀汉名将",
+        "街亭",
+        "劝马谡"
+      ],
+      "aliases": [
+        "子均",
+        "王子均"
+      ],
+      "era": "东汉末年",
+      "faction": "蜀",
+      "birth": "190",
+      "death": "248"
+    },
+    "黄月英": {
+      "id": "黄月英",
+      "name": "黄月英",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/黄月英.md",
+      "tags": [
+        "才女",
+        "发明家",
+        "诸葛亮之妻"
+      ],
+      "aliases": [
+        "月英",
+        "黄硕"
+      ],
+      "era": "东汉末年",
+      "faction": "蜀",
+      "birth": "185",
+      "death": "234"
+    },
+    "陆逊": {
+      "id": "陆逊",
+      "name": "陆逊",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/陆逊.md",
+      "tags": [
+        "都督",
+        "谋士",
+        "政治家",
+        "夷陵之战"
+      ],
+      "aliases": [
+        "伯言",
+        "陆伯言"
+      ],
+      "era": "东汉末年",
+      "faction": "吴",
+      "birth": "183",
+      "death": "245"
+    },
+    "周瑜": {
+      "id": "周瑜",
+      "name": "周瑜",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/周瑜.md",
+      "tags": [
+        "军师",
+        "武将",
+        "音乐家",
+        "赤壁之战"
+      ],
+      "aliases": [
+        "公瑾",
+        "周公瑾"
+      ],
+      "era": "东汉末年",
+      "faction": "吴",
+      "birth": "175",
+      "death": "210"
+    },
+    "曹叡": {
+      "id": "曹叡",
+      "name": "曹叡",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/曹叡.md",
+      "tags": [
+        "皇帝",
+        "政治家",
+        "曹魏",
+        "明君"
+      ],
+      "aliases": [
+        "元仲",
+        "曹元仲",
+        "魏明帝"
+      ],
+      "era": "东汉末年",
+      "faction": "魏",
+      "birth": "204",
+      "death": "239"
+    },
+    "刘禅": {
+      "id": "刘禅",
+      "name": "刘禅",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/刘禅.md",
+      "tags": [
+        "皇帝",
+        "后主",
+        "蜀汉",
+        "乐不思蜀"
+      ],
+      "aliases": [
+        "阿斗",
+        "刘阿斗",
+        "后主",
+        "安乐公"
+      ],
+      "era": "三国时期",
+      "faction": "蜀",
+      "birth": "207",
+      "death": "271"
+    },
+    "华佗": {
+      "id": "华佗",
+      "name": "华佗",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/华佗.md",
+      "tags": [
+        "神医",
+        "医学家",
+        "外科",
+        "麻醉"
+      ],
+      "aliases": [
+        "元化",
+        "华元化",
+        "华旉"
+      ],
+      "era": "东汉末年",
+      "faction": "",
+      "birth": "145",
+      "death": "208"
+    },
+    "田丰": {
+      "id": "田丰",
+      "name": "田丰",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/田丰.md",
+      "tags": [
+        "谋士",
+        "袁绍谋士",
+        "刚直",
+        "多谋",
+        "官渡"
+      ],
+      "aliases": [
+        "元皓",
+        "田元皓"
+      ],
+      "era": "东汉末年",
+      "faction": "群",
+      "birth": "153",
+      "death": "200"
+    },
+    "关羽": {
+      "id": "关羽",
+      "name": "关羽",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/关羽.md",
+      "tags": [
+        "武将",
+        "忠义",
+        "武圣",
+        "桃园结义"
+      ],
+      "aliases": [
+        "云长",
+        "关云长",
+        "关公",
+        "武圣"
+      ],
+      "era": "东汉末年",
+      "faction": "蜀",
+      "birth": "160",
+      "death": "220"
+    },
+    "许褚": {
+      "id": "许褚",
+      "name": "许褚",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/许褚.md",
+      "tags": [
+        "武将",
+        "护卫",
+        "虎痴",
+        "曹操亲卫"
+      ],
+      "aliases": [
+        "仲康",
+        "许仲康",
+        "虎痴"
+      ],
+      "era": "东汉末年",
+      "faction": "魏",
+      "birth": "170",
+      "death": "227"
+    },
+    "诸葛亮": {
+      "id": "诸葛亮",
+      "name": "诸葛亮",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/诸葛亮.md",
+      "tags": [
+        "军师",
+        "政治家",
+        "发明家",
+        "忠臣"
+      ],
+      "aliases": [
+        "孔明",
+        "诸葛孔明",
+        "卧龙"
+      ],
+      "era": "东汉末年",
+      "faction": "蜀",
+      "birth": "181",
+      "death": "234"
+    },
+    "费祎": {
+      "id": "费祎",
+      "name": "费祎",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/费祎.md",
+      "tags": [
+        "政治家",
+        "蜀汉四相",
+        "外交家"
+      ],
+      "aliases": [
+        "文伟"
+      ],
+      "era": "东汉末年",
+      "faction": "蜀",
+      "birth": "193",
+      "death": "253"
+    },
+    "程普": {
+      "id": "程普",
+      "name": "程普",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/程普.md",
+      "tags": [
+        "武将",
+        "东吴老将",
+        "程公",
+        "孙坚旧部"
+      ],
+      "aliases": [
+        "德谋",
+        "程德谋",
+        "程公"
+      ],
+      "era": "东汉末年",
+      "faction": "吴",
+      "birth": "160",
+      "death": "210"
+    },
+    "张角": {
+      "id": "张角",
+      "name": "张角",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/张角.md",
+      "tags": [
+        "黄巾军",
+        "太平道",
+        "起义领袖",
+        "天公将军"
+      ],
+      "aliases": [
+        "太平道人",
+        "大贤良师",
+        "天公将军"
+      ],
+      "era": "东汉末年",
+      "faction": "群",
+      "birth": "143",
+      "death": "184"
+    },
+    "文丑": {
+      "id": "文丑",
+      "name": "文丑",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/文丑.md",
+      "tags": [
+        "武将",
+        "袁绍大将",
+        "河北猛将",
+        "勇冠三军"
+      ],
+      "aliases": [
+        "文丑"
+      ],
+      "era": "东汉末年",
+      "faction": "群",
+      "birth": "155",
+      "death": "200"
+    },
+    "马良": {
+      "id": "马良",
+      "name": "马良",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/马良.md",
+      "tags": [
+        "文臣",
+        "蜀汉名臣",
+        "马谡之兄",
+        "白眉最良"
+      ],
+      "aliases": [
+        "季常",
+        "马季常",
+        "白眉"
+      ],
+      "era": "东汉末年",
+      "faction": "蜀",
+      "birth": "187",
+      "death": "222"
+    },
+    "曹冲": {
+      "id": "曹冲",
+      "name": "曹冲",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/曹冲.md",
+      "tags": [
+        "神童",
+        "早夭",
+        "曹操之子",
+        "称象"
+      ],
+      "aliases": [
+        "仓舒",
+        "曹仓舒"
+      ],
+      "era": "东汉末年",
+      "faction": "魏",
+      "birth": "196",
+      "death": "208"
+    },
+    "曹丕": {
+      "id": "曹丕",
+      "name": "曹丕",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/曹丕.md",
+      "tags": [
+        "皇帝",
+        "政治家",
+        "文学家",
+        "篡汉"
+      ],
+      "aliases": [
+        "子桓",
+        "曹子桓",
+        "魏文帝"
+      ],
+      "era": "东汉末年",
+      "faction": "魏",
+      "birth": "187",
+      "death": "226"
+    },
+    "诸葛瑾": {
+      "id": "诸葛瑾",
+      "name": "诸葛瑾",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/诸葛瑾.md",
+      "tags": [
+        "文臣",
+        "东吴重臣",
+        "诸葛亮之兄",
+        "兄弟各为其主"
+      ],
+      "aliases": [
+        "子瑜",
+        "诸葛子瑜"
+      ],
+      "era": "东汉末年",
+      "faction": "吴",
+      "birth": "175",
+      "death": "241"
+    },
+    "张辽": {
+      "id": "张辽",
+      "name": "张辽",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/张辽.md",
+      "tags": [
+        "武将",
+        "名将",
+        "五子良将",
+        "威震逍遥津"
+      ],
+      "aliases": [
+        "文远",
+        "张文远"
+      ],
+      "era": "东汉末年",
+      "faction": "魏",
+      "birth": "169",
+      "death": "222"
+    },
+    "蔡邕": {
+      "id": "蔡邕",
+      "name": "蔡邕",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/蔡邕.md",
+      "tags": [
+        "文学家",
+        "书法家",
+        "音乐家",
+        "史学家"
+      ],
+      "aliases": [
+        "伯喈",
+        "蔡伯喈"
+      ],
+      "era": "东汉末年",
+      "faction": "",
+      "birth": "133",
+      "death": "192"
+    },
+    "左慈": {
+      "id": "左慈",
+      "name": "左慈",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/左慈.md",
+      "tags": [
+        "方士",
+        "术士",
+        "奇人",
+        "道教"
+      ],
+      "aliases": [
+        "元放",
+        "左元放"
+      ],
+      "era": "东汉末年",
+      "faction": "",
+      "birth": "156",
+      "death": "220"
+    },
+    "臧霸": {
+      "id": "臧霸",
+      "name": "臧霸",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/臧霸.md",
+      "tags": [
+        "武将",
+        "曹魏名将",
+        "泰山贼",
+        "青徐都督"
+      ],
+      "aliases": [
+        "宣高",
+        "臧宣高"
+      ],
+      "era": "东汉末年",
+      "faction": "魏",
+      "birth": "165",
+      "death": "230"
+    },
+    "廖化": {
+      "id": "廖化",
+      "name": "廖化",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/廖化.md",
+      "tags": [
+        "武将",
+        "长寿将军",
+        "蜀汉宿将"
+      ],
+      "aliases": [
+        "元俭",
+        "廖淳"
+      ],
+      "era": "东汉末年",
+      "faction": "蜀",
+      "birth": "190",
+      "death": "264"
+    },
+    "马谡": {
+      "id": "马谡",
+      "name": "马谡",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/马谡.md",
+      "tags": [
+        "谋士",
+        "参军",
+        "失街亭"
+      ],
+      "aliases": [
+        "幼常"
+      ],
+      "era": "东汉末年",
+      "faction": "蜀",
+      "birth": "190",
+      "death": "228"
+    },
+    "贾充": {
+      "id": "贾充",
+      "name": "贾充",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/贾充.md",
+      "tags": [
+        "文臣",
+        "司马昭心腹",
+        "弑曹髦",
+        "西晋开国功臣"
+      ],
+      "aliases": [
+        "公闾",
+        "贾公闾"
+      ],
+      "era": "三国时期",
+      "faction": "晋",
+      "birth": "217",
+      "death": "282"
+    },
+    "曹仁": {
+      "id": "曹仁",
+      "name": "曹仁",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/曹仁.md",
+      "tags": [
+        "武将",
+        "曹魏名将",
+        "曹操族弟",
+        "大将军"
+      ],
+      "aliases": [
+        "子孝",
+        "曹子孝"
+      ],
+      "era": "东汉末年",
+      "faction": "魏",
+      "birth": "168",
+      "death": "223"
+    },
+    "荀攸": {
+      "id": "荀攸",
+      "name": "荀攸",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/荀攸.md",
+      "tags": [
+        "谋士",
+        "曹操谋士",
+        "谋主",
+        "智谋"
+      ],
+      "aliases": [
+        "公达",
+        "荀公达"
+      ],
+      "era": "东汉末年",
+      "faction": "魏",
+      "birth": "157",
+      "death": "214"
+    },
+    "曹植": {
+      "id": "曹植",
+      "name": "曹植",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/曹植.md",
+      "tags": [
+        "文学家",
+        "诗人",
+        "建安风骨",
+        "才高八斗"
+      ],
+      "aliases": [
+        "子建",
+        "曹子建",
+        "陈思王"
+      ],
+      "era": "东汉末年",
+      "faction": "魏",
+      "birth": "192",
+      "death": "232"
+    },
+    "孙策": {
+      "id": "孙策",
+      "name": "孙策",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/孙策.md",
+      "tags": [
+        "诸侯",
+        "小霸王",
+        "江东奠基者",
+        "东吴"
+      ],
+      "aliases": [
+        "伯符",
+        "孙伯符",
+        "小霸王"
+      ],
+      "era": "东汉末年",
+      "faction": "吴",
+      "birth": "175",
+      "death": "200"
+    },
+    "朱桓": {
+      "id": "朱桓",
+      "name": "朱桓",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/朱桓.md",
+      "tags": [
+        "武将",
+        "东吴猛将",
+        "以少胜多",
+        "濡须之战"
+      ],
+      "aliases": [
+        "休穆",
+        "朱休穆"
+      ],
+      "era": "东汉末年",
+      "faction": "吴",
+      "birth": "180",
+      "death": "249"
+    },
+    "高顺": {
+      "id": "高顺",
+      "name": "高顺",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/高顺.md",
+      "tags": [
+        "武将",
+        "吕布部将",
+        "陷阵营",
+        "忠义",
+        "刚烈"
+      ],
+      "aliases": [
+        "高顺"
+      ],
+      "era": "东汉末年",
+      "faction": "群",
+      "birth": "156",
+      "death": "198"
+    },
+    "王允": {
+      "id": "王允",
+      "name": "王允",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/王允.md",
+      "tags": [
+        "文臣",
+        "东汉司徒",
+        "连环计",
+        "诛董卓"
+      ],
+      "aliases": [
+        "子师",
+        "王子师"
+      ],
+      "era": "东汉末年",
+      "faction": "汉",
+      "birth": "137",
+      "death": "192"
+    },
+    "陆抗": {
+      "id": "陆抗",
+      "name": "陆抗",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/陆抗.md",
+      "tags": [
+        "武将",
+        "东吴名将",
+        "陆逊之子",
+        "西陵之战"
+      ],
+      "aliases": [
+        "幼节",
+        "陆幼节"
+      ],
+      "era": "三国时期",
+      "faction": "吴",
+      "birth": "226",
+      "death": "274"
+    },
+    "顾雍": {
+      "id": "顾雍",
+      "name": "顾雍",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/顾雍.md",
+      "tags": [
+        "文臣",
+        "东吴丞相",
+        "沉默寡言",
+        "政务通达"
+      ],
+      "aliases": [
+        "元叹",
+        "顾元叹"
+      ],
+      "era": "东汉末年",
+      "faction": "吴",
+      "birth": "168",
+      "death": "243"
+    },
+    "韩当": {
+      "id": "韩当",
+      "name": "韩当",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/韩当.md",
+      "tags": [
+        "武将",
+        "东吴老将",
+        "孙坚旧部",
+        "水战"
+      ],
+      "aliases": [
+        "义公",
+        "韩义公"
+      ],
+      "era": "东汉末年",
+      "faction": "吴",
+      "birth": "162",
+      "death": "220"
+    },
+    "钟会": {
+      "id": "钟会",
+      "name": "钟会",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/钟会.md",
+      "tags": [
+        "武将",
+        "曹魏名将",
+        "灭蜀",
+        "谋反被杀"
+      ],
+      "aliases": [
+        "士季",
+        "钟士季"
+      ],
+      "era": "三国时期",
+      "faction": "魏",
+      "birth": "225",
+      "death": "264"
+    },
+    "周泰": {
+      "id": "周泰",
+      "name": "周泰",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/周泰.md",
+      "tags": [
+        "武将",
+        "东吴猛将",
+        "护卫",
+        "遍体鳞伤"
+      ],
+      "aliases": [
+        "幼平",
+        "周幼平"
+      ],
+      "era": "东汉末年",
+      "faction": "吴",
+      "birth": "180",
+      "death": "230"
+    },
+    "马超": {
+      "id": "马超",
+      "name": "马超",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/马超.md",
+      "tags": [
+        "武将",
+        "勇猛",
+        "西凉锦马超"
+      ],
+      "aliases": [
+        "孟起",
+        "马孟起"
+      ],
+      "era": "东汉末年",
+      "faction": "蜀",
+      "birth": "176",
+      "death": "222"
+    },
+    "张苞": {
+      "id": "张苞",
+      "name": "张苞",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/张苞.md",
+      "tags": [
+        "武将",
+        "张飞之子",
+        "蜀汉后期将领"
+      ],
+      "aliases": [
+        "张苞公子"
+      ],
+      "era": "东汉末年",
+      "faction": "蜀",
+      "birth": "195",
+      "death": "228"
+    },
+    "孙权": {
+      "id": "孙权",
+      "name": "孙权",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/孙权.md",
+      "tags": [
+        "君主",
+        "政治家",
+        "江东之主"
+      ],
+      "aliases": [
+        "仲谋",
+        "孙仲谋",
+        "吴侯"
+      ],
+      "era": "东汉末年",
+      "faction": "吴",
+      "birth": "182",
+      "death": "252"
+    },
+    "刘协": {
+      "id": "刘协",
+      "name": "刘协",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/刘协.md",
+      "tags": [
+        "皇帝",
+        "汉朝末代",
+        "傀儡",
+        "汉献帝"
+      ],
+      "aliases": [
+        "汉献帝",
+        "刘伯和"
+      ],
+      "era": "东汉末年",
+      "faction": "汉",
+      "birth": "181",
+      "death": "234"
+    },
+    "甘宁": {
+      "id": "甘宁",
+      "name": "甘宁",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/甘宁.md",
+      "tags": [
+        "武将",
+        "猛将",
+        "锦帆贼",
+        "水军"
+      ],
+      "aliases": [
+        "兴霸",
+        "甘兴霸"
+      ],
+      "era": "东汉末年",
+      "faction": "吴",
+      "birth": "163",
+      "death": "220"
+    },
+    "典韦": {
+      "id": "典韦",
+      "name": "典韦",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/典韦.md",
+      "tags": [
+        "武将",
+        "曹操护卫",
+        "恶来",
+        "宛城之战"
+      ],
+      "aliases": [
+        "古之恶来"
+      ],
+      "era": "东汉末年",
+      "faction": "魏",
+      "birth": "173",
+      "death": "197"
+    },
+    "魏延": {
+      "id": "魏延",
+      "name": "魏延",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/魏延.md",
+      "tags": [
+        "武将",
+        "蜀汉名将",
+        "镇北将军"
+      ],
+      "aliases": [
+        "文长"
+      ],
+      "era": "东汉末年",
+      "faction": "蜀",
+      "birth": "186",
+      "death": "234"
+    },
+    "孙坚": {
+      "id": "孙坚",
+      "name": "孙坚",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/孙坚.md",
+      "tags": [
+        "诸侯",
+        "讨董先锋",
+        "江东猛虎",
+        "孙策之父"
+      ],
+      "aliases": [
+        "文台",
+        "孙文台",
+        "破虏将军"
+      ],
+      "era": "东汉末年",
+      "faction": "吴",
+      "birth": "155",
+      "death": "191"
+    },
+    "丁奉": {
+      "id": "丁奉",
+      "name": "丁奉",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/丁奉.md",
+      "tags": [
+        "武将",
+        "东吴名将",
+        "雪中奋短兵",
+        "东吴后期支柱"
+      ],
+      "aliases": [
+        "承渊",
+        "丁承渊"
+      ],
+      "era": "三国时期",
+      "faction": "吴",
+      "birth": "186",
+      "death": "271"
+    },
+    "鲁肃": {
+      "id": "鲁肃",
+      "name": "鲁肃",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/鲁肃.md",
+      "tags": [
+        "谋士",
+        "外交家",
+        "都督",
+        "孙刘联盟"
+      ],
+      "aliases": [
+        "子敬",
+        "鲁子敬"
+      ],
+      "era": "东汉末年",
+      "faction": "吴",
+      "birth": "172",
+      "death": "217"
+    },
+    "郭嘉": {
+      "id": "郭嘉",
+      "name": "郭嘉",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/郭嘉.md",
+      "tags": [
+        "谋士",
+        "鬼才",
+        "英年早逝",
+        "曹操"
+      ],
+      "aliases": [
+        "奉孝",
+        "郭奉孝"
+      ],
+      "era": "东汉末年",
+      "faction": "魏",
+      "birth": "170",
+      "death": "207"
+    },
+    "贾诩": {
+      "id": "贾诩",
+      "name": "贾诩",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/贾诩.md",
+      "tags": [
+        "谋士",
+        "毒士",
+        "三国第一谋士",
+        "善终"
+      ],
+      "aliases": [
+        "文和",
+        "贾文和"
+      ],
+      "era": "东汉末年",
+      "faction": "魏",
+      "birth": "147",
+      "death": "223"
+    },
+    "诸葛恪": {
+      "id": "诸葛恪",
+      "name": "诸葛恪",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/诸葛恪.md",
+      "tags": [
+        "文臣",
+        "东吴权臣",
+        "聪明绝顶",
+        "刚愎自用"
+      ],
+      "aliases": [
+        "元逊",
+        "诸葛元逊"
+      ],
+      "era": "三国时期",
+      "faction": "吴",
+      "birth": "203",
+      "death": "253"
+    },
+    "张嶷": {
+      "id": "张嶷",
+      "name": "张嶷",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/张嶷.md",
+      "tags": [
+        "武将",
+        "蜀汉将领",
+        "南中",
+        "治理越巂"
+      ],
+      "aliases": [
+        "子嶷",
+        "张子嶷"
+      ],
+      "era": "东汉末年",
+      "faction": "蜀",
+      "birth": "193",
+      "death": "254"
+    },
+    "邓艾": {
+      "id": "邓艾",
+      "name": "邓艾",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/邓艾.md",
+      "tags": [
+        "武将",
+        "曹魏名将",
+        "灭蜀",
+        "偷渡阴平"
+      ],
+      "aliases": [
+        "士载",
+        "邓士载"
+      ],
+      "era": "三国时期",
+      "faction": "魏",
+      "birth": "197",
+      "death": "264"
+    },
+    "太史慈": {
+      "id": "太史慈",
+      "name": "太史慈",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/太史慈.md",
+      "tags": [
+        "武将",
+        "东吴猛将",
+        "信义无双",
+        "神射手"
+      ],
+      "aliases": [
+        "子义",
+        "太史子义"
+      ],
+      "era": "东汉末年",
+      "faction": "吴",
+      "birth": "166",
+      "death": "206"
+    },
+    "李儒": {
+      "id": "李儒",
+      "name": "李儒",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/李儒.md",
+      "tags": [
+        "谋士",
+        "董卓心腹",
+        "毒杀少帝",
+        "迁都长安"
+      ],
+      "aliases": [
+        "文优",
+        "李文优"
+      ],
+      "era": "东汉末年",
+      "faction": "董卓",
+      "birth": "160",
+      "death": "192"
+    },
+    "黄忠": {
+      "id": "黄忠",
+      "name": "黄忠",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/黄忠.md",
+      "tags": [
+        "武将",
+        "老将",
+        "神射手"
+      ],
+      "aliases": [
+        "汉升",
+        "黄汉升"
+      ],
+      "era": "东汉末年",
+      "faction": "蜀",
+      "birth": "147",
+      "death": "220"
+    },
+    "羊祜": {
+      "id": "羊祜",
+      "name": "羊祜",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/羊祜.md",
+      "tags": [
+        "武将",
+        "西晋名将",
+        "荆州对峙",
+        "灭吴奠基"
+      ],
+      "aliases": [
+        "叔子",
+        "羊叔子"
+      ],
+      "era": "三国时期",
+      "faction": "晋",
+      "birth": "221",
+      "death": "278"
+    },
+    "赵云": {
+      "id": "赵云",
+      "name": "赵云",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/赵云.md",
+      "tags": [
+        "武将",
+        "忠勇",
+        "单骑救主"
+      ],
+      "aliases": [
+        "子龙",
+        "赵子龙"
+      ],
+      "era": "东汉末年",
+      "faction": "蜀",
+      "birth": "168",
+      "death": "229"
+    },
+    "荀彧": {
+      "id": "荀彧",
+      "name": "荀彧",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/荀彧.md",
+      "tags": [
+        "谋士",
+        "政治家",
+        "王佐之才",
+        "汉室忠臣"
+      ],
+      "aliases": [
+        "文若",
+        "荀文若",
+        "荀令君"
+      ],
+      "era": "东汉末年",
+      "faction": "魏",
+      "birth": "163",
+      "death": "212"
+    },
+    "曹操": {
+      "id": "曹操",
+      "name": "曹操",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/曹操.md",
+      "tags": [
+        "政治家",
+        "军事家",
+        "文学家",
+        "奸雄"
+      ],
+      "aliases": [
+        "孟德",
+        "曹孟德",
+        "曹公"
+      ],
+      "era": "东汉末年",
+      "faction": "魏",
+      "birth": "155",
+      "death": "220"
+    },
+    "陈宫": {
+      "id": "陈宫",
+      "name": "陈宫",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/陈宫.md",
+      "tags": [
+        "谋士",
+        "吕布谋士",
+        "刚烈",
+        "忠义"
+      ],
+      "aliases": [
+        "公台",
+        "陈公台"
+      ],
+      "era": "东汉末年",
+      "faction": "群",
+      "birth": "160",
+      "death": "198"
+    },
+    "刘封": {
+      "id": "刘封",
+      "name": "刘封",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/刘封.md",
+      "tags": [
+        "武将",
+        "刘备养子",
+        "拒不发兵",
+        "赐死"
+      ],
+      "aliases": [
+        "刘封"
+      ],
+      "era": "东汉末年",
+      "faction": "蜀",
+      "birth": "190",
+      "death": "220"
+    },
+    "凌统": {
+      "id": "凌统",
+      "name": "凌统",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/凌统.md",
+      "tags": [
+        "武将",
+        "东吴猛将",
+        "逍遥津",
+        "救孙权"
+      ],
+      "aliases": [
+        "公绩",
+        "凌公绩"
+      ],
+      "era": "东汉末年",
+      "faction": "吴",
+      "birth": "189",
+      "death": "217"
+    },
+    "李典": {
+      "id": "李典",
+      "name": "李典",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/李典.md",
+      "tags": [
+        "武将",
+        "儒将",
+        "曹魏名将",
+        "好学"
+      ],
+      "aliases": [
+        "曼成",
+        "李曼成"
+      ],
+      "era": "东汉末年",
+      "faction": "魏",
+      "birth": "180",
+      "death": "215"
+    },
+    "庞统": {
+      "id": "庞统",
+      "name": "庞统",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/庞统.md",
+      "tags": [
+        "军师",
+        "谋士",
+        "凤雏"
+      ],
+      "aliases": [
+        "士元",
+        "凤雏"
+      ],
+      "era": "东汉末年",
+      "faction": "蜀",
+      "birth": "179",
+      "death": "214"
+    },
+    "张郃": {
+      "id": "张郃",
+      "name": "张郃",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/张郃.md",
+      "tags": [
+        "武将",
+        "五子良将",
+        "曹魏名将",
+        "街亭"
+      ],
+      "aliases": [
+        "儁乂",
+        "张儁乂"
+      ],
+      "era": "东汉末年",
+      "faction": "魏",
+      "birth": "166",
+      "death": "231"
+    },
+    "姜维": {
+      "id": "姜维",
+      "name": "姜维",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/姜维.md",
+      "tags": [
+        "武将",
+        "蜀汉大将军",
+        "北伐"
+      ],
+      "aliases": [
+        "伯约"
+      ],
+      "era": "东汉末年",
+      "faction": "蜀",
+      "birth": "202",
+      "death": "264"
+    },
+    "马岱": {
+      "id": "马岱",
+      "name": "马岱",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/马岱.md",
+      "tags": [
+        "武将",
+        "蜀汉将领",
+        "马超从弟",
+        "斩魏延"
+      ],
+      "aliases": [
+        "马岱"
+      ],
+      "era": "东汉末年",
+      "faction": "蜀",
+      "birth": "185",
+      "death": "250"
+    },
+    "关平": {
+      "id": "关平",
+      "name": "关平",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/关平.md",
+      "tags": [
+        "武将",
+        "关羽之子",
+        "蜀汉将领",
+        "荆州"
+      ],
+      "aliases": [
+        "关平公子"
+      ],
+      "era": "东汉末年",
+      "faction": "蜀",
+      "birth": "192",
+      "death": "220"
+    },
+    "刘表": {
+      "id": "刘表",
+      "name": "刘表",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/刘表.md",
+      "tags": [
+        "诸侯",
+        "荆州牧",
+        "八骏",
+        "坐拥荆襄"
+      ],
+      "aliases": [
+        "景升",
+        "刘景升"
+      ],
+      "era": "东汉末年",
+      "faction": "群",
+      "birth": "142",
+      "death": "208"
+    },
+    "法正": {
+      "id": "法正",
+      "name": "法正",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/法正.md",
+      "tags": [
+        "谋士",
+        "军师",
+        "奇谋"
+      ],
+      "aliases": [
+        "孝直"
+      ],
+      "era": "东汉末年",
+      "faction": "蜀",
+      "birth": "176",
+      "death": "220"
+    },
+    "黄盖": {
+      "id": "黄盖",
+      "name": "黄盖",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/黄盖.md",
+      "tags": [
+        "武将",
+        "老将",
+        "苦肉计",
+        "赤壁之战"
+      ],
+      "aliases": [
+        "公覆",
+        "黄公覆"
+      ],
+      "era": "东汉末年",
+      "faction": "吴",
+      "birth": "155",
+      "death": "220"
+    },
+    "于吉": {
+      "id": "于吉",
+      "name": "于吉",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/于吉.md",
+      "tags": [
+        "道士",
+        "方士",
+        "符水",
+        "太平道"
+      ],
+      "aliases": [
+        "于吉道人"
+      ],
+      "era": "东汉末年",
+      "faction": "",
+      "birth": "140",
+      "death": "200"
+    },
+    "司马懿": {
+      "id": "司马懿",
+      "name": "司马懿",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/司马懿.md",
+      "tags": [
+        "政治家",
+        "军事家",
+        "隐忍",
+        "狼顾"
+      ],
+      "aliases": [
+        "仲达",
+        "司马仲达"
+      ],
+      "era": "东汉末年",
+      "faction": "魏",
+      "birth": "179",
+      "death": "251"
+    },
+    "乐进": {
+      "id": "乐进",
+      "name": "乐进",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/乐进.md",
+      "tags": [
+        "武将",
+        "五子良将",
+        "曹魏名将",
+        "勇猛"
+      ],
+      "aliases": [
+        "文谦",
+        "乐文谦"
+      ],
+      "era": "东汉末年",
+      "faction": "魏",
+      "birth": "160",
+      "death": "218"
+    },
+    "张昭": {
+      "id": "张昭",
+      "name": "张昭",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/张昭.md",
+      "tags": [
+        "文臣",
+        "东吴重臣",
+        "托孤之臣",
+        "主降派"
+      ],
+      "aliases": [
+        "子布",
+        "张子布"
+      ],
+      "era": "东汉末年",
+      "faction": "吴",
+      "birth": "156",
+      "death": "236"
+    },
+    "徐盛": {
+      "id": "徐盛",
+      "name": "徐盛",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/徐盛.md",
+      "tags": [
+        "武将",
+        "东吴名将",
+        "火烧曹丕",
+        "以少胜多"
+      ],
+      "aliases": [
+        "文向",
+        "徐文向"
+      ],
+      "era": "东汉末年",
+      "faction": "吴",
+      "birth": "175",
+      "death": "230"
+    },
+    "于禁": {
+      "id": "于禁",
+      "name": "于禁",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/于禁.md",
+      "tags": [
+        "武将",
+        "五子良将",
+        "曹魏名将",
+        "水淹七军"
+      ],
+      "aliases": [
+        "文则",
+        "于文则"
+      ],
+      "era": "东汉末年",
+      "faction": "魏",
+      "birth": "166",
+      "death": "221"
+    },
+    "夏侯渊": {
+      "id": "夏侯渊",
+      "name": "夏侯渊",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/夏侯渊.md",
+      "tags": [
+        "武将",
+        "曹魏名将",
+        "夏侯惇族弟",
+        "定军山"
+      ],
+      "aliases": [
+        "妙才",
+        "夏侯妙才"
+      ],
+      "era": "东汉末年",
+      "faction": "魏",
+      "birth": "161",
+      "death": "219"
+    },
+    "程昱": {
+      "id": "程昱",
+      "name": "程昱",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/程昱.md",
+      "tags": [
+        "谋士",
+        "刚毅",
+        "有谋",
+        "曹操"
+      ],
+      "aliases": [
+        "仲德",
+        "程仲德"
+      ],
+      "era": "东汉末年",
+      "faction": "魏",
+      "birth": "141",
+      "death": "220"
+    },
+    "祝融夫人": {
+      "id": "祝融夫人",
+      "name": "祝融夫人",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/祝融夫人.md",
+      "tags": [
+        "武将",
+        "女将",
+        "南中",
+        "孟获之妻"
+      ],
+      "aliases": [
+        "祝融",
+        "南中女将"
+      ],
+      "era": "东汉末年",
+      "faction": "蜀",
+      "birth": "190",
+      "death": "230"
+    },
+    "吕蒙": {
+      "id": "吕蒙",
+      "name": "吕蒙",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/吕蒙.md",
+      "tags": [
+        "武将",
+        "都督",
+        "白衣渡江",
+        "士别三日"
+      ],
+      "aliases": [
+        "子明",
+        "吕子明"
+      ],
+      "era": "东汉末年",
+      "faction": "吴",
+      "birth": "178",
+      "death": "220"
+    },
+    "张飞": {
+      "id": "张飞",
+      "name": "张飞",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/张飞.md",
+      "tags": [
+        "武将",
+        "勇猛",
+        "桃园结义"
+      ],
+      "aliases": [
+        "翼德",
+        "张翼德"
+      ],
+      "era": "东汉末年",
+      "faction": "蜀",
+      "birth": "168",
+      "death": "221"
+    },
+    "蒋琬": {
+      "id": "蒋琬",
+      "name": "蒋琬",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/蒋琬.md",
+      "tags": [
+        "政治家",
+        "蜀汉四相",
+        "诸葛亮继承人"
+      ],
+      "aliases": [
+        "公琰"
+      ],
+      "era": "东汉末年",
+      "faction": "蜀",
+      "birth": "190",
+      "death": "246"
+    },
+    "夏侯惇": {
+      "id": "夏侯惇",
+      "name": "夏侯惇",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/夏侯惇.md",
+      "tags": [
+        "武将",
+        "独目将军",
+        "曹操族兄弟",
+        "曹魏元老"
+      ],
+      "aliases": [
+        "元让",
+        "夏侯元让"
+      ],
+      "era": "东汉末年",
+      "faction": "魏",
+      "birth": "157",
+      "death": "220"
+    },
+    "杜预": {
+      "id": "杜预",
+      "name": "杜预",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/杜预.md",
+      "tags": [
+        "武将",
+        "西晋名将",
+        "灭吴统帅",
+        "博学多才",
+        "杜武库"
+      ],
+      "aliases": [
+        "元凯",
+        "杜元凯",
+        "杜武库"
+      ],
+      "era": "三国时期",
+      "faction": "晋",
+      "birth": "222",
+      "death": "285"
+    },
+    "周仓": {
+      "id": "周仓",
+      "name": "周仓",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/周仓.md",
+      "tags": [
+        "武将",
+        "关羽部将",
+        "扛刀护卫",
+        "忠义"
+      ],
+      "aliases": [
+        "周仓"
+      ],
+      "era": "东汉末年",
+      "faction": "蜀",
+      "birth": "175",
+      "death": "219"
+    },
+    "颜良": {
+      "id": "颜良",
+      "name": "颜良",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/颜良.md",
+      "tags": [
+        "武将",
+        "袁绍大将",
+        "河北猛将",
+        "勇猛无敌"
+      ],
+      "aliases": [
+        "颜良"
+      ],
+      "era": "东汉末年",
+      "faction": "群",
+      "birth": "155",
+      "death": "200"
+    },
+    "张翼": {
+      "id": "张翼",
+      "name": "张翼",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/张翼.md",
+      "tags": [
+        "武将",
+        "蜀汉将领",
+        "北伐",
+        "姜维搭档"
+      ],
+      "aliases": [
+        "伯恭",
+        "张伯恭"
+      ],
+      "era": "东汉末年",
+      "faction": "蜀",
+      "birth": "190",
+      "death": "264"
+    },
+    "貂蝉": {
+      "id": "貂蝉",
+      "name": "貂蝉",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/貂蝉.md",
+      "tags": [
+        "美女",
+        "连环计",
+        "间谍",
+        "四大美女"
+      ],
+      "aliases": [
+        "任红昌",
+        "蝉",
+        "古代四大美女"
+      ],
+      "era": "东汉末年",
+      "faction": "群",
+      "birth": "174",
+      "death": "200"
+    },
+    "李严": {
+      "id": "李严",
+      "name": "李严",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/李严.md",
+      "tags": [
+        "文臣",
+        "武将",
+        "蜀汉重臣",
+        "托孤",
+        "被废"
+      ],
+      "aliases": [
+        "正方",
+        "李正方"
+      ],
+      "era": "东汉末年",
+      "faction": "蜀",
+      "birth": "185",
+      "death": "240"
+    },
+    "曹洪": {
+      "id": "曹洪",
+      "name": "曹洪",
+      "type": "character",
+      "label": "人物",
+      "icon": "👤",
+      "file": "characters/曹洪.md",
+      "tags": [
+        "武将",
+        "曹魏宗亲",
+        "元老",
+        "救曹操"
+      ],
+      "aliases": [
+        "子廉",
+        "曹子廉"
+      ],
+      "era": "东汉末年",
+      "faction": "魏",
+      "birth": "168",
+      "death": "232"
+    }
+  },
+  "alias_index": {
+    "元直": "徐庶",
+    "徐福": "徐庶",
+    "巴郡太守": "严颜",
+    "南中王": "孟获",
+    "南蛮首领": "孟获",
+    "玄德": "刘备",
+    "刘皇叔": "刘备",
+    "刘豫州": "刘备",
+    "遂高": "何进",
+    "何遂高": "何进",
+    "公明": "徐晃",
+    "徐公明": "徐晃",
+    "子丹": "曹真",
+    "曹子丹": "曹真",
+    "子均": "王平",
+    "王子均": "王平",
+    "月英": "黄月英",
+    "黄硕": "黄月英",
+    "伯言": "陆逊",
+    "陆伯言": "陆逊",
+    "公瑾": "周瑜",
+    "周公瑾": "周瑜",
+    "元仲": "曹叡",
+    "曹元仲": "曹叡",
+    "魏明帝": "曹叡",
+    "阿斗": "刘禅",
+    "刘阿斗": "刘禅",
+    "后主": "刘禅",
+    "安乐公": "刘禅",
+    "元化": "华佗",
+    "华元化": "华佗",
+    "华旉": "华佗",
+    "元皓": "田丰",
+    "田元皓": "田丰",
+    "云长": "关羽",
+    "关云长": "关羽",
+    "关公": "关羽",
+    "武圣": "关羽",
+    "仲康": "许褚",
+    "许仲康": "许褚",
+    "虎痴": "许褚",
+    "孔明": "诸葛亮",
+    "诸葛孔明": "诸葛亮",
+    "卧龙": "诸葛亮",
+    "文伟": "费祎",
+    "德谋": "程普",
+    "程德谋": "程普",
+    "程公": "程普",
+    "太平道人": "张角",
+    "大贤良师": "张角",
+    "天公将军": "张角",
+    "奉先": "吕布",
+    "吕奉先": "吕布",
+    "季常": "马良",
+    "马季常": "马良",
+    "白眉": "马良",
+    "仓舒": "曹冲",
+    "曹仓舒": "曹冲",
+    "子桓": "曹丕",
+    "曹子桓": "曹丕",
+    "魏文帝": "曹丕",
+    "子瑜": "诸葛瑾",
+    "诸葛子瑜": "诸葛瑾",
+    "文远": "张辽",
+    "张文远": "张辽",
+    "伯喈": "蔡邕",
+    "蔡伯喈": "蔡邕",
+    "元放": "左慈",
+    "左元放": "左慈",
+    "宣高": "臧霸",
+    "臧宣高": "臧霸",
+    "元俭": "廖化",
+    "廖淳": "廖化",
+    "幼常": "马谡",
+    "公闾": "贾充",
+    "贾公闾": "贾充",
+    "子孝": "曹仁",
+    "曹子孝": "曹仁",
+    "公达": "荀攸",
+    "荀公达": "荀攸",
+    "子建": "曹植",
+    "曹子建": "曹植",
+    "陈思王": "曹植",
+    "伯符": "孙策",
+    "孙伯符": "孙策",
+    "小霸王": "孙策",
+    "休穆": "朱桓",
+    "朱休穆": "朱桓",
+    "子师": "王允",
+    "王子师": "王允",
+    "幼节": "陆抗",
+    "陆幼节": "陆抗",
+    "元叹": "顾雍",
+    "顾元叹": "顾雍",
+    "义公": "韩当",
+    "韩义公": "韩当",
+    "士季": "钟会",
+    "钟士季": "钟会",
+    "幼平": "周泰",
+    "周幼平": "周泰",
+    "孟起": "马超",
+    "马孟起": "马超",
+    "张苞公子": "张苞",
+    "仲谋": "孙权",
+    "孙仲谋": "孙权",
+    "吴侯": "孙权",
+    "汉献帝": "刘协",
+    "刘伯和": "刘协",
+    "兴霸": "甘宁",
+    "甘兴霸": "甘宁",
+    "古之恶来": "典韦",
+    "文长": "魏延",
+    "文台": "孙坚",
+    "孙文台": "孙坚",
+    "破虏将军": "孙坚",
+    "承渊": "丁奉",
+    "丁承渊": "丁奉",
+    "子敬": "鲁肃",
+    "鲁子敬": "鲁肃",
+    "奉孝": "郭嘉",
+    "郭奉孝": "郭嘉",
+    "文和": "贾诩",
+    "贾文和": "贾诩",
+    "元逊": "诸葛恪",
+    "诸葛元逊": "诸葛恪",
+    "子嶷": "张嶷",
+    "张子嶷": "张嶷",
+    "士载": "邓艾",
+    "邓士载": "邓艾",
+    "子义": "太史慈",
+    "太史子义": "太史慈",
+    "文优": "李儒",
+    "李文优": "李儒",
+    "汉升": "黄忠",
+    "黄汉升": "黄忠",
+    "叔子": "羊祜",
+    "羊叔子": "羊祜",
+    "子龙": "赵云",
+    "赵子龙": "赵云",
+    "文若": "荀彧",
+    "荀文若": "荀彧",
+    "荀令君": "荀彧",
+    "孟德": "曹操",
+    "曹孟德": "曹操",
+    "曹公": "曹操",
+    "公台": "陈宫",
+    "陈公台": "陈宫",
+    "公绩": "凌统",
+    "凌公绩": "凌统",
+    "曼成": "李典",
+    "李曼成": "李典",
+    "士元": "庞统",
+    "凤雏": "庞统",
+    "儁乂": "张郃",
+    "张儁乂": "张郃",
+    "伯约": "姜维",
+    "关平公子": "关平",
+    "景升": "刘表",
+    "刘景升": "刘表",
+    "孝直": "法正",
+    "公覆": "黄盖",
+    "黄公覆": "黄盖",
+    "于吉道人": "于吉",
+    "仲达": "司马懿",
+    "司马仲达": "司马懿",
+    "文谦": "乐进",
+    "乐文谦": "乐进",
+    "子布": "张昭",
+    "张子布": "张昭",
+    "文向": "徐盛",
+    "徐文向": "徐盛",
+    "文则": "于禁",
+    "于文则": "于禁",
+    "妙才": "夏侯渊",
+    "夏侯妙才": "夏侯渊",
+    "仲德": "程昱",
+    "程仲德": "程昱",
+    "祝融": "祝融夫人",
+    "南中女将": "祝融夫人",
+    "子明": "吕蒙",
+    "吕子明": "吕蒙",
+    "翼德": "张飞",
+    "张翼德": "张飞",
+    "公琰": "蒋琬",
+    "元让": "夏侯惇",
+    "夏侯元让": "夏侯惇",
+    "元凯": "杜预",
+    "杜元凯": "杜预",
+    "杜武库": "杜预",
+    "伯恭": "张翼",
+    "张伯恭": "张翼",
+    "任红昌": "貂蝉",
+    "蝉": "貂蝉",
+    "古代四大美女": "貂蝉",
+    "正方": "李严",
+    "李正方": "李严",
+    "子廉": "曹洪",
+    "曹子廉": "曹洪"
+  },
+  "total": 227,
+  "generated_at": "build_wiki.py"
+}

@@ -18,6 +18,7 @@
         <a href="game-plus.html">武将图鉴</a>
         <a href="culture.html" class="active">文化</a>
         <a href="war.html">争霸</a>
+    <a href="wiki/index.html">📖 WiKi</a>
     </nav>
 </div>
 <div class="main">
@@ -139,7 +140,7 @@ function filterAll() {
 }
 
 function openDetail(path) {
-  window.open('https://github.com/junjunfantasy/sanguo/blob/main/sanguo-knowledge/' + path + '.md', '_blank');
+  window.location.href = 'wiki/index.html#' + encodeURIComponent(path.replace('concepts/', '').replace('books/', ''));
 }
 
 window.onload = filterAll;
