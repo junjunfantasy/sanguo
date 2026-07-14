@@ -25,7 +25,7 @@
 
     <div class="main">
         <div class="page-title">🕸️ 人物关系图谱</div>
-        <div class="page-subtitle">拖动缩放 · 悬停查看人物信息 · 颜色按势力区分</div>
+        <div class="page-subtitle">拖动缩放 · 悬停查看人物信息 · 颜色按势力区分 · <strong>86位人物 / 154条关系</strong></div>
 
         <div class="network-container fade-in">
             <div class="viz-title" style="margin-bottom:0;border-bottom:none;">
@@ -58,8 +58,8 @@
 
     <script>
     function initGraph() {
-        const factionColors = { '魏': '#e74c3c', '蜀': '#2ecc71', '吴': '#3498db', '群': '#f39c12' };
-        const relationColors = { '兄弟': '#e8e8e8', '君臣': '#8e44ad', '师徒': '#1abc9c', '夫妻': '#e91e63', '同僚': '#95a5a6', '敌对': '#e74c3c', '盟友': '#2ecc71', '宗亲': '#f1c40f', '医患': '#7f8c8d', '父子': '#c9a227' };
+        const factionColors = { '魏': '#c0392b', '蜀': '#27ae60', '吴': '#2980b9', '群': '#d68910' };
+        const relationColors = { '兄弟': '#7a7268', '君臣': '#8e44ad', '师徒': '#1abc9c', '夫妻': '#e91e63', '同僚': '#95a5a6', '敌对': '#c0392b', '盟友': '#27ae60', '宗亲': '#d4a017', '父子': '#b8860b' };
         
         const charMap = {};
         SANGUO_CHARACTERS.forEach(c => { charMap[c.id] = c; });
@@ -128,11 +128,11 @@
             .append('circle')
             .attr('r', d => d.r)
             .attr('fill', d => factionColors[d.faction] || '#95a5a6')
-            .attr('stroke', '#0f0f1a')
+            .attr('stroke', '#faf8f2')
             .attr('stroke-width', 2)
             .style('cursor', 'pointer')
             .on('mouseover', function(event, d) {
-                d3.select(this).attr('stroke', '#c9a227').attr('stroke-width', 3);
+                d3.select(this).attr('stroke', '#b8860b').attr('stroke-width', 3);
                 tooltip.style('display', 'block')
                     .html(`<div class="tt-name">${d.name}</div>
                            <div class="tt-detail">势力: ${d.faction}</div>
@@ -142,7 +142,7 @@
                     .style('top', (event.offsetY - 10) + 'px');
             })
             .on('mouseout', function() {
-                d3.select(this).attr('stroke', '#0f0f1a').attr('stroke-width', 2);
+                d3.select(this).attr('stroke', '#faf8f2').attr('stroke-width', 2);
                 tooltip.style('display', 'none');
             })
             .call(d3.drag()
@@ -168,12 +168,12 @@
             .append('text')
             .text(d => d.name)
             .attr('font-size', d => Math.min(14, d.r * 0.8 + 6) + 'px')
-            .attr('fill', '#e8e8e8')
+            .attr('fill', '#3a3530')
             .attr('font-weight', 'bold')
             .attr('text-anchor', 'middle')
             .attr('dy', d => d.r + 15)
             .style('pointer-events', 'none')
-            .style('text-shadow', '0 1px 3px rgba(0,0,0,0.8)');
+            .style('text-shadow', '0 1px 2px rgba(255,255,255,0.5)');
 
         simulation.on('tick', () => {
             link
