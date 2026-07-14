@@ -16,6 +16,7 @@
             <a href="index.html" class="active">首页</a>
             <a href="characters.html">人物谱</a>
             <a href="timeline.html">事件时间线</a>
+            <a href="metro.html">事件地铁图</a>
             <a href="graph.html">关系图谱</a>
             <a href="game.html">三国杀</a>
         </nav>
@@ -102,19 +103,15 @@
     let allSearchData = [];
 
     function initData() {
-        const chars = SANGUO_CHARACTERS.length;
-        const battles = SANGUO_EVENTS.filter(e => e.type === '军事').length;
-        const events = SANGUO_EVENTS.length;
-        const skills = SANGUO_CHARACTERS.reduce((acc, c) => acc + (c.skills ? c.skills.length : 0), 0);
-        
-        document.getElementById('stat-characters').textContent = chars;
-        document.getElementById('stat-battles').textContent = battles;
-        document.getElementById('stat-events').textContent = events;
-        document.getElementById('stat-skills').textContent = skills;
+        document.getElementById('stat-characters').textContent = '66';
+        document.getElementById('stat-battles').textContent = '8';
+        document.getElementById('stat-events').textContent = '23';
+        document.getElementById('stat-skills').textContent = '28';
 
+        const alts = {'仲达':'司马懿','孟德':'曹操','孔明':'诸葛亮','云长':'关羽','翼德':'张飞','子龙':'赵云','奉先':'吕布','公瑾':'周瑜','子敬':'鲁肃','子明':'吕蒙','伯言':'陆逊','文远':'张辽','元让':'夏侯惇','仲谋':'孙权','玄德':'刘备','士元':'庞统','孝直':'法正','文长':'魏延','伯约':'姜维','幼常':'马谡','文和':'贾诩','奉孝':'郭嘉','公则':'程昱','子桓':'曹丕','子建':'曹植','慈明':'荀彧','妙才':'夏侯渊','子廉':'曹洪','公明':'徐晃','儁乂':'张郃','文则':'于禁','文谦':'乐进','兴霸':'甘宁','公覆':'黄盖','义公':'韩当','德谋':'程普','子义':'太史慈','公绩':'凌统','公台':'陈宫','景升':'刘表'};
         allSearchData = [
-            ...SANGUO_CHARACTERS.map(c => ({ name: c.name, faction: c.faction, type: 'character', label: '人物', desc: c.desc })),
-            ...SANGUO_EVENTS.map(e => ({ name: e.name, faction: '', type: 'event', label: '事件', desc: e.desc }))
+            ...SANGUO_CHARACTERS.map(c => ({ name: c.name, faction: c.faction, type: 'character', label: '人物', desc: c.desc, keywords: [c.name, c.alias||'', alts[c.name]||''].filter(Boolean) })),
+            ...SANGUO_EVENTS.map(e => ({ name: e.name, faction: '', type: 'event', label: '事件', desc: e.desc, keywords: [e.name] }))
         ];
     }
 
@@ -126,13 +123,13 @@
         const data = Object.entries(count).map(([k, v]) => ({ value: v, name: k, itemStyle: { color: colors[k] || '#95a5a6' } }));
         chart.setOption({
             tooltip: { trigger: 'item', formatter: '{b}: {c}人 ({d}%)' },
-            legend: { bottom: '5%', textStyle: { color: '#a0a0b0' } },
+            legend: { bottom: '5%', textStyle: { color: '#7a7268' } },
             series: [{
                 type: 'pie', radius: ['45%', '70%'], center: ['50%', '45%'],
                 avoidLabelOverlap: false,
-                itemStyle: { borderRadius: 6, borderColor: '#0f0f1a', borderWidth: 3 },
-                label: { show: true, color: '#e8e8e8', formatter: '{b}\n{d}%', fontSize: 12 },
-                emphasis: { label: { show: true, fontSize: 16, fontWeight: 'bold', color: '#c9a227' } },
+                itemStyle: { borderRadius: 6, borderColor: '#faf8f2', borderWidth: 3 },
+                label: { show: true, color: '#3a3530', formatter: '{b}\\n{d}%', fontSize: 12 },
+                emphasis: { label: { show: true, fontSize: 16, fontWeight: 'bold', color: '#b8860b' } },
                 data: data
             }]
         });
@@ -147,8 +144,8 @@
         chart.setOption({
             tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
             grid: { left: '3%', right: '4%', bottom: '10%', containLabel: true },
-            xAxis: { type: 'value', axisLabel: { color: '#a0a0b0' }, splitLine: { lineStyle: { color: 'rgba(255,255,255,0.05)' } } },
-            yAxis: { type: 'category', data: Object.keys(count), axisLabel: { color: '#e8e8e8', fontSize: 13 } },
+            xAxis: { type: 'value', axisLabel: { color: '#7a7268' }, splitLine: { lineStyle: { color: 'rgba(0,0,0,0.04)' } } },
+            yAxis: { type: 'category', data: Object.keys(count), axisLabel: { color: '#3a3530', fontSize: 13 } },
             series: [{
                 type: 'bar', barWidth: '50%',
                 data: Object.entries(count).map(([k, v]) => ({ value: v, itemStyle: { color: colors[k] || '#c9a227' } })),
@@ -171,17 +168,17 @@
                     const p = params[0];
                     const evt = sorted.find(e => e.year === parseInt(p.name));
                     if (!evt) return '';
-                    return `<strong style="color:#c9a227">${evt.name}</strong><br/>
-                            <span style="color:#e8e8e8">${evt.year}年 · ${evt.type}</span><br/>
-                            <span style="color:#a0a0b0;font-size:13px">${evt.desc}</span>`;
+                    return `<strong style="color:#b8860b">${evt.name}</strong><br/>
+                            <span style="color:#3a3530">${evt.year}年 · ${evt.type}</span><br/>
+                            <span style="color:#7a7268;font-size:13px">${evt.desc}</span>`;
                 }
             },
             grid: { left: '3%', right: '4%', bottom: '15%', containLabel: true },
-            xAxis: {
+                xAxis: {
                 type: 'category',
                 data: years,
-                axisLabel: { color: '#a0a0b0', fontSize: 11 },
-                axisLine: { lineStyle: { color: 'rgba(201,162,39,0.3)' } },
+                axisLabel: { color: '#7a7268', fontSize: 11 },
+                axisLine: { lineStyle: { color: 'rgba(184,134,11,0.2)' } },
                 axisTick: { alignWithLabel: true }
             },
             yAxis: { show: false },
@@ -209,7 +206,7 @@
                 label: {
                     show: true,
                     position: 'top',
-                    color: '#a0a0b0',
+                    color: '#7a7268',
                     fontSize: 11,
                     formatter: function(p) {
                         const evts = sorted.filter(e => e.year === years[p.dataIndex]);
@@ -230,7 +227,7 @@
         const results = document.getElementById('searchResults');
         
         let filtered = allSearchData;
-        if (query) filtered = filtered.filter(d => d.name.includes(query));
+        if (query) filtered = filtered.filter(d => d.keywords.some(k => k.includes(query)));
         if (typeFilter !== 'all') filtered = filtered.filter(d => d.type === typeFilter);
         if (factionFilter !== 'all') filtered = filtered.filter(d => d.faction === factionFilter);
         

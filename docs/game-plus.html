@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>三国杀·武将图鉴 - 三国知识库</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="data/characters.js"></script>
+    <style>
+    .game-plus-layout { display: grid; grid-template-columns: 1fr 320px; gap: 20px; }
+    @media (max-width: 1000px) { .game-plus-layout { grid-template-columns: 1fr; } }
+    .team-panel { background: var(--bg-card); border: 1px solid var(--border-light); border-radius: 12px; padding: 20px; position: sticky; top: calc(var(--header-height) + 24px); box-shadow: var(--shadow-sm); }
+    .team-panel h3 { color: var(--accent); margin-bottom: 12px; font-size: 16px; border-bottom: 1px solid var(--border-light); padding-bottom: 8px; }
+    .team-slot { display: flex; align-items: center; gap: 10px; padding: 8px 12px; background: var(--bg-primary); border: 1px dashed var(--border); border-radius: 8px; margin-bottom: 6px; min-height: 40px; }
+    .team-slot.has-character { border-style: solid; border-color: var(--accent-dim); }
+    .team-slot .remove-btn { margin-left: auto; cursor: pointer; color: var(--danger); font-size: 18px; line-height: 1; padding: 0 4px; }
+    .team-stats { margin-top: 12px; font-size: 13px; color: var(--text-secondary); line-height: 1.8; padding: 12px; background: var(--bg-primary); border-radius: 8px; }
+    .game-card { cursor: pointer; transition: all 0.2s; border: 1px solid var(--border-light); }
+    .game-card.selected { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-dim); }
+    .skill-detail-modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.3); z-index: 2000; align-items: center; justify-content: center; }
+    .skill-detail-modal.show { display: flex; }
+    .skill-detail-content { background: var(--bg-card); border-radius: 16px; padding: 32px; max-width: 480px; width: 90%; max-height: 80vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,0.15); }
+    .skill-detail-content h3 { color: var(--accent); margin-bottom: 8px; }
+    .skill-detail-content .close-btn { float: right; cursor: pointer; font-size: 24px; color: var(--text-muted); }
+    .skill-detail-content .section { margin-top: 12px; }
+    .skill-detail-content .section label { font-weight: 600; font-size: 13px; color: var(--accent); }
+    .skill-detail-content .section p { font-size: 13px; color: var(--text-secondary); line-height: 1.6; margin-top: 2px; }
+    .skill-explorer { margin-top: 20px; }
+    .skill-grid { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+    .skill-chip { padding: 4px 14px; border-radius: 20px; font-size: 12px; background: var(--accent-dim); color: var(--accent); border: 1px solid var(--border); cursor: pointer; transition: all 0.2s; }
+    .skill-chip:hover { background: var(--accent); color: #fff; }
+    .quick-filter { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+    .quick-filter button { padding: 6px 16px; border-radius: 20px; border: 1px solid var(--border); background: transparent; color: var(--text-secondary); cursor: pointer; font-size: 13px; }
+    .quick-filter button.active, .quick-filter button:hover { background: var(--accent-dim); color: var(--accent); border-color: var(--accent); }
+    </style>
+</head>
+<body>
+<div class="header">
+    <div class="logo"><span class="logo-icon">🃏</span> 三国知识库</div>
+    <nav class="nav">
+        <a href="index.html">首页</a>
+        <a href="characters.html">人物谱</a>
+        <a href="timeline.html">时间线</a>
+        <a href="metro.html">地铁图</a>
+        <a href="graph.html">关系图谱</a>
+        <a href="game.html">三国杀</a>
+        <a href="game-plus.html" class="active">武将图鉴</a>
+    </nav>
+</div>
+<div class="main">
+    <div class="page-title">🃏 三国杀·武将图鉴</div>
+    <div class="page-subtitle">三十余位武将卡牌展示 · 技能探索 · 组队模拟</div>
+
+    <div class="game-plus-layout">
+        <div>
+            <!-- 筛选 -->
+            <div class="search-section fade-in" style="padding:16px 20px;">
+                <div class="search-box" style="margin-bottom:12px;">
+                    <input type="text" class="search-input" id="gsSearch" placeholder="搜索武将..." oninput="filterGameChars()">
+                </div>
+                <div class="quick-filter">
+                    <button class="active" data-faction="all" onclick="setFactionFilter('all',this)">全部</button>
+                    <button data-faction="魏" onclick="setFactionFilter('魏',this)">魏</button>
+                    <button data-faction="蜀" onclick="setFactionFilter('蜀',this)">蜀</button>
+                    <button data-faction="吴" onclick="setFactionFilter('吴',this)">吴</button>
+                    <button data-faction="群" onclick="setFactionFilter('群',this)">群</button>
+                </div>
+            </div>
+            <!-- 卡牌网格 -->
+            <div class="game-card-grid" id="gameCardGrid"></div>
+        </div>
+        <!-- 组队面板 -->
+        <div class="team-panel" id="teamPanel">
+            <h3>👥 我的阵容</h3>
+            <div id="teamSlots"></div>
+            <div class="team-stats" id="teamStats">点击武将卡牌添加到阵容</div>
+        </div>
+    </div>
+
+    <!-- 技能详情弹窗 -->
+    <div class="skill-detail-modal" id="skillModal">
+        <div class="skill-detail-content">
+            <span class="close-btn" onclick="closeSkillModal()">&times;</span>
+            <h3 id="skillModalName">技能名</h3>
+            <div class="section"><label>游戏效果</label><p id="skillModalEffect">-</p></div>
+            <div class="section"><label>历史依据</label><p id="skillModalHistory">-</p></div>
+            <div class="section"><label>拥有者</label><p id="skillModalOwner">-</p></div>
+        </div>
+    </div>
+</div>
+<div class="footer">基于 Obsidian 的三国知识库 · <a href="https://github.com/junjunfantasy/sanguo">GitHub</a></div>
+
+<script>
+const FACTION_COLORS = {魏:'#c0392b',蜀:'#27ae60',吴:'#2980b9',群:'#d68910'};
+const SKILL_DB = {
+   奸雄:'受伤后获得造成伤害的牌，象征曹操善于从失败中汲取力量',护驾:'魏国武将替曹操出闪，体现曹操部下舍身护卫',
+   仁德:'将手牌分给他人，每分两张回复1点体力，体现刘备仁德之心',激将:'让蜀国武将替自己出杀，体现刘备善于用人',
+   武圣:'红色牌当作"杀"使用，关羽武圣之威，红脸关公',义绝:'拼点赢则弃牌封技能，关羽义绝曹操',
+   龙胆:'"杀"可当"闪"，"闪"可当"杀"，赵云一身是胆',观星:'观看牌堆顶并调整顺序，诸葛亮夜观天象',
+   空城:'无手牌时免疫"杀"和"决斗"，诸葛亮空城退敌',无双:'"杀"需要两张"闪"才能抵消，吕布天下无双',
+   英姿:'摸牌阶段多摸一张牌，孙权少年英雄',制衡:'弃掉任意张牌并摸等量牌，孙权善于平衡各方势力',
+   救援:'吴国武将可对孙权使用"桃"，孙权危急时将士救援',裸衣:'回合开始时可放弃使用锦囊，"杀"伤害+1，许褚裸衣战马超',
+   刚烈:'受到伤害后进行判定，不为红桃则伤害来源弃牌或受1点伤害，夏侯惇刚烈不屈',
+   反馈:'司马懿受到伤害后可从伤害来源处获得一张牌，司马懿善于隐忍反击',鬼才:'可用手牌替换判定牌，司马懿深谋远虑改变局势',
+   克己:'跳过弃牌阶段，可保留所有手牌，吕蒙隐忍蓄力',谦逊:'不受"乐不思蜀"和"顺手牵羊"影响，陆逊谦逊有礼',
+   连营:'无手牌时即可摸一张牌，陆逊火烧连营之势',苦肉:'自损1点体力摸两张牌，黄盖苦肉计诈降',
+   奇袭:'黑色牌可当"过河拆桥"使用，甘宁百骑劫曹营',英魂:'回合开始时可让一名角色摸牌弃牌，孙策英魂不灭',
+   洛神:'判定为黑色则收入手牌并继续，甄姬洛神之姿',倾国:'黑色牌可当"闪"使用，貂蝉倾国倾城',
+   离间:'弃一张牌令两名男性角色决斗，离间董卓吕布',突袭:'跳过摸牌阶段，从目标处各拿一张牌，张辽突袭逍遥津',
+   据守:'翻面摸三张牌，曹仁坚守城池',反馈:'受伤害后从伤害来源拿牌，司马懿隐忍反击'
+};
+
+let chars = window.SANGUO_CHARACTERS || [];
+let factionFilter = 'all';
+let team = [];
+
+function renderCards() {
+    const q = document.getElementById('gsSearch').value.trim().toLowerCase();
+    const grid = document.getElementById('gameCardGrid');
+    const filtered = chars.filter(c => {
+        if (factionFilter !== 'all' && c.faction !== factionFilter) return false;
+        if (q && !c.name.includes(q) && !(c.alias||'').includes(q)) return false;
+        return true;
+    });
+    if (!filtered.length) { grid.innerHTML = '<div class="empty-state"><div class="empty-state-icon">📭</div>没有找到匹配的武将</div>'; return; }
+    grid.innerHTML = filtered.map(c => {
+        const hp = c.hp || 4;
+        const skills = c.skills || [];
+        const inTeam = team.some(t => t.name === c.name);
+        return `<div class="game-card ${inTeam?'selected':''}" data-name="${c.name}" data-faction="${c.faction||'群'}" onclick="toggleTeam('${c.name}')">
+            <div class="game-card-header">
+                <div><div class="game-card-name">${c.name}</div>
+                <span class="faction-badge faction-${c.faction||'群'}" style="margin-top:4px;display:inline-block">${c.faction||'群'}</span></div>
+                <div class="game-card-hp">${'<span class="hp-dot"></span>'.repeat(hp)}</div>
+            </div>
+            <div class="game-card-skills">${skills.map(s => {
+                const desc = SKILL_DB[s] || '—';
+                return `<div class="skill-item"><div class="skill-name" onclick="event.stopPropagation();showSkill('${s}')">${s}</div><div class="skill-desc">${desc.split('，')[0]}…</div></div>`;
+            }).join('')}</div>
+        </div>`;
+    }).join('');
+}
+
+function setFactionFilter(f, btn) {
+    factionFilter = f;
+    document.querySelectorAll('.quick-filter button').forEach(b => b.classList.remove('active'));
+    if (btn) btn.classList.add('active');
+    renderCards();
+}
+
+function filterGameChars() { renderCards(); }
+
+function toggleTeam(name) {
+    const idx = team.findIndex(t => t.name === name);
+    if (idx >= 0) { team.splice(idx,1); } else { if (team.length >= 5) return; const c = chars.find(x => x.name === name); if (c) team.push(c); }
+    renderCards();
+    renderTeam();
+}
+
+function renderTeam() {
+    const slots = document.getElementById('teamSlots');
+    slots.innerHTML = '';
+    for (let i = 0; i < 5; i++) {
+        const c = team[i];
+        slots.innerHTML += `<div class="team-slot ${c?'has-character':''}">${c ? `<span class="faction-badge faction-${c.faction||'群'}">${c.faction||'群'}</span> <strong>${c.name}</strong> <span class="remove-btn" onclick="removeFromTeam(${i})">×</span>` : `<span style="color:var(--text-muted)">空位 ${i+1}</span>`}</div>`;
+    }
+    // stats
+    const stats = document.getElementById('teamStats');
+    if (!team.length) { stats.innerHTML = '点击武将卡牌添加到阵容（最多5人）'; return; }
+    const factions = [...new Set(team.map(c=>c.faction||'群'))];
+    const avgHp = (team.reduce((s,c)=>s+(c.hp||4),0)/team.length).toFixed(1);
+    const skillCount = team.reduce((s,c)=>s+(c.skills||[]).length,0);
+    stats.innerHTML = `<div>人数: ${team.length}/5</div><div>势力: ${factions.join('·')}</div><div>均体力: ${avgHp}</div><div>技能数: ${skillCount}</div>`;
+}
+
+function removeFromTeam(i) { team.splice(i,1); renderCards(); renderTeam(); }
+
+function showSkill(name) {
+    const desc = SKILL_DB[name];
+    if (!desc) return;
+    document.getElementById('skillModalName').textContent = name;
+    const parts = desc.split('，');
+    document.getElementById('skillModalEffect').textContent = parts[0] || '-';
+    document.getElementById('skillModalHistory').textContent = parts.slice(1).join('，') || '-';
+    const owner = chars.find(c => (c.skills||[]).includes(name));
+    document.getElementById('skillModalOwner').textContent = owner ? owner.name : '-';
+    document.getElementById('skillModal').classList.add('show');
+}
+function closeSkillModal() { document.getElementById('skillModal').classList.remove('show'); }
+document.getElementById('skillModal').addEventListener('click', function(e) { if (e.target === this) closeSkillModal(); });
+
+// 初始化
+renderCards();
+renderTeam();
+</script>
+</body>
+</html>

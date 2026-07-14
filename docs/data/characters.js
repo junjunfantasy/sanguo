@@ -566,5 +566,34 @@ const SANGUO_CHARACTERS = [
     skills: ['蛊惑', '缠怨'],
     mastery: { strength: 1, intelligence: 7, political: 1, charisma: 6 },
     obsidian: 'characters/于吉'
-  }
+  },
+  // === 魏 新增 ===
+  { id:'曹叡', name:'曹叡', alias:'元仲', faction:'魏', birth:205, death:239, tags:['君主'], desc:'魏明帝，曹丕之子。击退诸葛亮北伐，临终托孤司马懿。', hp:4, skills:['明鉴','兴衰'], mastery:{strength:5,intelligence:8,political:7,charisma:6}, obsidian:'characters/曹叡' },
+  { id:'曹仁', name:'曹仁', alias:'子孝', faction:'魏', birth:168, death:223, tags:['武将','宗亲'], desc:'曹魏名将。固守樊城，抵挡关羽水淹七军后的猛攻。', hp:4, skills:['据守','励战'], mastery:{strength:9,intelligence:6,political:4,charisma:5}, obsidian:'characters/曹仁' },
+  { id:'夏侯渊', name:'夏侯渊', alias:'妙才', faction:'魏', birth:168, death:219, tags:['武将','宗亲'], desc:'曹魏名将。虎步关右，定军山被黄忠斩杀。', hp:4, skills:['设伏','奔袭'], mastery:{strength:9,intelligence:6,political:3,charisma:5}, obsidian:'characters/夏侯渊' },
+  { id:'张郃', name:'张郃', alias:'儁乂', faction:'魏', birth:167, death:231, tags:['武将','五子良将'], desc:'五子良将。街亭大破马谡，木门道中伏身亡。', hp:4, skills:['巧变','破军'], mastery:{strength:8,intelligence:7,political:4,charisma:5}, obsidian:'characters/张郃' },
+  { id:'徐晃', name:'徐晃', alias:'公明', faction:'魏', birth:169, death:227, tags:['武将','五子良将'], desc:'五子良将。解樊城之围，长驱直入破关羽。', hp:4, skills:['断粮','长驱'], mastery:{strength:9,intelligence:7,political:4,charisma:6}, obsidian:'characters/徐晃' },
+  { id:'于禁', name:'于禁', alias:'文则', faction:'魏', birth:160, death:221, tags:['武将','五子良将'], desc:'五子良将。水淹七军投降关羽，晚节不保。', hp:4, skills:['节钺','毅重'], mastery:{strength:8,intelligence:6,political:5,charisma:4}, obsidian:'characters/于禁' },
+  { id:'乐进', name:'乐进', alias:'文谦', faction:'魏', birth:160, death:218, tags:['武将','五子良将'], desc:'五子良将。骁勇果敢，先登陷阵。', hp:4, skills:['骁果','先登'], mastery:{strength:8,intelligence:5,political:3,charisma:5}, obsidian:'characters/乐进' },
+  { id:'典韦', name:'典韦', alias:'', faction:'魏', birth:165, death:197, tags:['武将','虎贲'], desc:'曹操贴身护卫。宛城之战力战而亡，一夫当关。', hp:5, skills:['强袭','护主'], mastery:{strength:10,intelligence:2,political:1,charisma:4}, obsidian:'characters/典韦' },
+  // === 蜀 新增 ===
+  { id:'刘禅', name:'刘禅', alias:'公嗣', faction:'蜀', birth:207, death:271, tags:['君主'], desc:'蜀汉后主。\\\"乐不思蜀\\\"，诸葛亮辅政后宠信黄皓致亡国。', hp:3, skills:['享乐','放权'], mastery:{strength:2,intelligence:4,political:3,charisma:5}, obsidian:'characters/刘禅' },
+  { id:'王平', name:'王平', alias:'子均', faction:'蜀', birth:180, death:248, tags:['武将'], desc:'蜀汉名将。街亭劝马谡不听，后以严谨著称。', hp:4, skills:['镇军','严整'], mastery:{strength:7,intelligence:6,political:4,charisma:5}, obsidian:'characters/王平' },
+  { id:'严颜', name:'严颜', alias:'', faction:'蜀', birth:155, death:220, tags:['武将'], desc:'蜀汉老将。\\\"蜀中但有断头将军，无降将军\\\"。', hp:4, skills:['据守','不屈'], mastery:{strength:7,intelligence:5,political:3,charisma:6}, obsidian:'characters/严颜' },
+  { id:'关平', name:'关平', alias:'', faction:'蜀', birth:185, death:220, tags:['武将'], desc:'关羽之子。随父镇守荆州，麦城同死。', hp:4, skills:['孝义','护父'], mastery:{strength:7,intelligence:5,political:3,charisma:6}, obsidian:'characters/关平' },
+  { id:'张苞', name:'张苞', alias:'', faction:'蜀', birth:190, death:228, tags:['武将'], desc:'张飞之子。蜀汉后期将领，北伐中坠崖身亡。', hp:4, skills:['咆哮','骁勇'], mastery:{strength:8,intelligence:4,political:2,charisma:5}, obsidian:'characters/张苞' },
+  { id:'孟获', name:'孟获', alias:'', faction:'蜀', birth:190, death:250, tags:['南中','首领'], desc:'南中首领。诸葛亮七擒七纵，终归顺蜀汉。', hp:4, skills:['获缚','蛮力'], mastery:{strength:8,intelligence:3,political:2,charisma:5}, obsidian:'characters/孟获' },
+  { id:'祝融夫人', name:'祝融夫人', alias:'', faction:'蜀', birth:195, death:245, tags:['武将','女将'], desc:'南中女将，孟获之妻。善使飞刀，勇猛不让须眉。', hp:4, skills:['烈刃','飞刀'], mastery:{strength:7,intelligence:4,political:2,charisma:6}, obsidian:'characters/祝融夫人' },
+  // === 吴 新增 ===
+  { id:'孙策', name:'孙策', alias:'伯符', faction:'吴', birth:175, death:200, tags:['君主','小霸王'], desc:'东吴奠基人。\\\"小霸王\\\"孙策，平定江东，英年早逝。', hp:4, skills:['激昂','英魂'], mastery:{strength:9,intelligence:7,political:6,charisma:8}, obsidian:'characters/孙策' },
+  { id:'孙坚', name:'孙坚', alias:'文台', faction:'吴', birth:156, death:192, tags:['武将','诸侯'], desc:'东吴奠基者。讨董先锋，斩华雄，得传国玉玺。', hp:4, skills:['英魂','破虏'], mastery:{strength:9,intelligence:6,political:5,charisma:7}, obsidian:'characters/孙坚' },
+  { id:'太史慈', name:'太史慈', alias:'子义', faction:'吴', birth:166, death:206, tags:['武将'], desc:'东吴猛将。信义无双，单骑突围求援。', hp:4, skills:['天义','信义'], mastery:{strength:9,intelligence:5,political:3,charisma:7}, obsidian:'characters/太史慈' },
+  { id:'程普', name:'程普', alias:'德谋', faction:'吴', birth:160, death:215, tags:['武将','宿将'], desc:'东吴老将。孙坚旧部，东吴\\\"程公\\\"。', hp:4, skills:['醇醪','厉战'], mastery:{strength:8,intelligence:6,political:5,charisma:6}, obsidian:'characters/程普' },
+  { id:'韩当', name:'韩当', alias:'义公', faction:'吴', birth:165, death:227, tags:['武将','宿将'], desc:'东吴老将。孙坚旧部，善使弓箭水战。', hp:4, skills:['弓骑','水战'], mastery:{strength:7,intelligence:5,political:3,charisma:5}, obsidian:'characters/韩当' },
+  { id:'凌统', name:'凌统', alias:'公绩', faction:'吴', birth:189, death:237, tags:['武将'], desc:'东吴猛将。逍遥津之战救孙权，与甘宁冰释前嫌。', hp:4, skills:['旋风','勇决'], mastery:{strength:8,intelligence:5,political:3,charisma:6}, obsidian:'characters/凌统' },
+  // === 群 新增 ===
+  { id:'貂蝉', name:'貂蝉', alias:'', faction:'群', birth:170, death:200, tags:['美女','义女'], desc:'古代四大美女之一。连环计离间董卓吕布。', hp:3, skills:['离间','闭月'], mastery:{strength:1,intelligence:7,political:2,charisma:10}, obsidian:'characters/貂蝉' },
+  { id:'张角', name:'张角', alias:'', faction:'群', birth:140, death:184, tags:['起义','道士'], desc:'黄巾军领袖。太平道创始人，引发汉末大乱。', hp:4, skills:['雷击','鬼道'], mastery:{strength:3,intelligence:7,political:5,charisma:8}, obsidian:'characters/张角' },
+  { id:'陈宫', name:'陈宫', alias:'公台', faction:'群', birth:160, death:198, tags:['谋士'], desc:'吕布首席谋士。刚烈忠义，白门楼赴死。', hp:3, skills:['明策','智迟'], mastery:{strength:3,intelligence:8,political:6,charisma:7}, obsidian:'characters/陈宫' },
+  { id:'刘表', name:'刘表', alias:'景升', faction:'群', birth:142, death:208, tags:['诸侯','名士'], desc:'荆州牧。坐拥荆襄九郡，守成之主。', hp:4, skills:['自守','宗室'], mastery:{strength:4,intelligence:6,political:7,charisma:6}, obsidian:'characters/刘表' }
 ];

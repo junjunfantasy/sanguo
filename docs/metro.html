@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件地铁图 - 三国知识库</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="data/characters.js"></script>
+    <script src="data/events.js"></script>
+</head>
+<body>
+    <div class="header">
+        <div class="logo"><span class="logo-icon">🏯</span> 三国知识库</div>
+        <nav class="nav">
+            <a href="index.html">首页</a>
+            <a href="characters.html">人物谱</a>
+            <a href="timeline.html">事件时间线</a>
+            <a href="metro.html" class="active">事件地铁图</a>
+            <a href="graph.html">关系图谱</a>
+            <a href="game.html">三国杀</a>
+        </nav>
+    </div>
+
+    <div class="main">
+        <div class="page-title">🚇 事件地铁图</div>
+        <div class="page-subtitle">人物与势力的时间轨迹 · 横向展示多线并行的三国历史 · 184年 - 280年</div>
+
+        <!-- Filters -->
+        <div class="metro-container">
+            <div class="metro-legend" id="legendContainer"></div>
+            <div class="metro-line-filter" id="filterContainer">
+                <button class="metro-filter-btn active" data-filter="all" onclick="filterMetro('all')">全部</button>
+                <button class="metro-filter-btn" data-filter="魏" onclick="filterMetro('魏')" style="border-color:rgba(192,57,43,0.3);color:#c0392b;">魏 · 曹操</button>
+                <button class="metro-filter-btn" data-filter="蜀" onclick="filterMetro('蜀')" style="border-color:rgba(39,174,96,0.3);color:#27ae60;">蜀 · 刘备</button>
+                <button class="metro-filter-btn" data-filter="吴" onclick="filterMetro('吴')" style="border-color:rgba(41,128,185,0.3);color:#2980b9;">吴 · 孙权</button>
+                <button class="metro-filter-btn" data-filter="群" onclick="filterMetro('群')" style="border-color:rgba(214,137,16,0.3);color:#d68910;">群 · 董卓</button>
+            </div>
+
+            <div id="metroTimeline" class="metro-lines"></div>
+            <div class="loading" id="metroLoading">正在加载地铁图...</div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>三国知识库 · 事件地铁图 · 基于 Obsidian 笔记 · <a href="https://github.com/junjunfantasy/sanguo" target="_blank">GitHub</a></p>
+    </div>
+
+    <!-- Tooltip -->
+    <div class="graph-tooltip" id="metroTooltip">
+        <div class="tt-name" id="ttName"></div>
+        <div class="tt-detail" id="ttDetail"></div>
+    </div>
+
+    <script>
+    // ======== Configuration ========
+    const FACTION_COLORS = {
+        '魏': '#c0392b',
+        '蜀': '#27ae60',
+        '吴': '#2980b9',
+        '群': '#d68910'
+    };
+
+    const TYPE_COLORS = {
+        '军事': '#e74c3c',
+        '政治': '#9b59b6',
+        '人事': '#3498db'
+    };
+
+    const YEAR_START = 184;
+    const YEAR_END = 280;
+    const YEARS = [];
+    for (let y = YEAR_START; y <= YEAR_END; y++) YEARS.push(y);
+
+    // ======== Build line data ========
+    // Key events with primary character/faction association
+    const METRO_EVENTS = [
+        { year: 184, name: '黄巾起义', faction: '群', characters: ['张角'], desc: '张角领导太平道起义，开启三国时代序幕。', type: '军事' },
+        { year: 189, name: '董卓之乱', faction: '群', characters: ['董卓'], desc: '董卓入京废少帝，开启军阀混战。', type: '政治' },
+        { year: 190, name: '诸侯讨董', faction: '群', characters: ['曹操', '袁绍', '刘备'], desc: '关东诸侯起兵讨伐董卓。', type: '军事' },
+        { year: 190, name: '曹操起兵', faction: '魏', characters: ['曹操'], desc: '曹操散家财起兵，号召天下讨董。', type: '军事' },
+        { year: 194, name: '辕门射戟', faction: '群', characters: ['吕布', '刘备'], desc: '吕布辕门射戟为刘备解围。', type: '军事' },
+        { year: 196, name: '迎奉天子', faction: '魏', characters: ['曹操'], desc: '曹操挟天子以令诸侯。', type: '政治' },
+        { year: 200, name: '官渡之战', faction: '魏', characters: ['曹操', '袁绍'], desc: '曹操以少胜多击败袁绍，奠定北方霸权。', type: '军事' },
+        { year: 207, name: '三顾茅庐', faction: '蜀', characters: ['刘备', '诸葛亮'], desc: '刘备三顾茅庐请诸葛亮出山。', type: '人事' },
+        { year: 208, name: '赤壁之战', faction: '吴', characters: ['周瑜', '刘备', '曹操', '诸葛亮'], desc: '孙刘联军火攻大败曹操。', type: '军事' },
+        { year: 214, name: '刘备入益州', faction: '蜀', characters: ['刘备'], desc: '刘备夺取益州建立根据地。', type: '政治' },
+        { year: 215, name: '合肥之战', faction: '吴', characters: ['孙权', '张辽'], desc: '张辽八百骑破十万吴军。', type: '军事' },
+        { year: 217, name: '汉中之战', faction: '蜀', characters: ['刘备', '曹操'], desc: '刘备击败曹操夺取汉中。', type: '军事' },
+        { year: 219, name: '樊城之战', faction: '蜀', characters: ['关羽', '吕蒙'], desc: '关羽水淹七军，后败走麦城。', type: '军事' },
+        { year: 220, name: '曹丕篡汉', faction: '魏', characters: ['曹丕'], desc: '曹丕建魏，东汉灭亡。', type: '政治' },
+        { year: 221, name: '夷陵之战', faction: '蜀', characters: ['刘备', '陆逊'], desc: '陆逊火烧连营七百里。', type: '军事' },
+        { year: 222, name: '孙权称帝', faction: '吴', characters: ['孙权'], desc: '孙权称帝建立东吴。', type: '政治' },
+        { year: 225, name: '七擒孟获', faction: '蜀', characters: ['诸葛亮'], desc: '诸葛亮南征平定南中。', type: '军事' },
+        { year: 228, name: '街亭之战', faction: '蜀', characters: ['诸葛亮', '司马懿'], desc: '马谡失街亭，北伐失败。', type: '军事' },
+        { year: 234, name: '五丈原之战', faction: '蜀', characters: ['诸葛亮', '司马懿'], desc: '诸葛亮病逝五丈原。', type: '军事' },
+        { year: 249, name: '高平陵之变', faction: '魏', characters: ['司马懿'], desc: '司马懿夺权，曹魏大权旁落。', type: '政治' },
+        { year: 263, name: '蜀汉灭亡', faction: '魏', characters: ['邓艾', '刘禅'], desc: '邓艾伐蜀，刘禅投降。', type: '军事' },
+        { year: 265, name: '西晋建立', faction: '魏', characters: ['司马炎'], desc: '司马炎篡魏建晋。', type: '政治' },
+        { year: 280, name: '西晋灭吴', faction: '吴', characters: ['司马炎', '孙皓'], desc: '晋灭吴，三国归晋。', type: '军事' }
+    ];
+
+    // Lines: each faction has one main line, plus we add character-specific lines
+    const LINES = [
+        { id: 'wei', label: '曹魏', faction: '魏', icon: '⚔️', color: FACTION_COLORS['魏'] },
+        { id: 'shu', label: '蜀汉', faction: '蜀', icon: '🛡️', color: FACTION_COLORS['蜀'] },
+        { id: 'wu', label: '东吴', faction: '吴', icon: '⚓', color: FACTION_COLORS['吴'] },
+        { id: 'qun', label: '群雄', faction: '群', icon: '🔥', color: FACTION_COLORS['群'] }
+    ];
+
+    let currentFilter = 'all';
+
+    // ======== Metro Line Data Assignment ========
+    function getEventsForLine(lineId) {
+        const lineCfg = LINES.find(l => l.id === lineId);
+        if (!lineCfg) return [];
+        return METRO_EVENTS.filter(e => e.faction === lineCfg.faction);
+    }
+
+    // ======== Render ========
+    function renderMetro() {
+        const container = document.getElementById('metroTimeline');
+        const loading = document.getElementById('metroLoading');
+        container.innerHTML = '';
+        loading.style.display = 'none';
+
+        const filteredLines = currentFilter === 'all'
+            ? LINES
+            : LINES.filter(l => l.faction === currentFilter);
+
+        if (filteredLines.length === 0) {
+            container.innerHTML = '<div class="empty-state"><div class="empty-state-icon">🚇</div>当前筛选下没有线路</div>';
+            return;
+        }
+
+        // Build timeline header
+        const headerHtml = buildTimelineHeader();
+        container.innerHTML += headerHtml;
+
+        filteredLines.forEach((line, lineIdx) => {
+            const events = getEventsForLine(line.id);
+            if (events.length === 0) return;
+
+            // Sort events by year
+            events.sort((a, b) => a.year - b.year);
+
+            const lineHtml = buildLineTrack(line, events, lineIdx);
+            container.innerHTML += lineHtml;
+        });
+    }
+
+    function buildTimelineHeader() {
+        let html = '<div class="metro-line" style="margin-bottom:8px;min-height:36px;">';
+        html += '<div class="metro-year" style="color:var(--text-muted);font-weight:600;">年份</div>';
+        html += '<div class="metro-track" style="width:24px;flex-shrink:0;"></div>';
+        html += '<div style="flex:1;display:flex;align-items:center;padding-left:12px;overflow:hidden;">';
+        html += '<div style="display:flex;gap:0;position:relative;width:100%;height:30px;">';
+
+        // Draw year markers on the timeline header
+        const yearSpan = YEAR_END - YEAR_START;
+        const totalWidth = yearSpan * 5; // 5px per year, same as below
+        html += `<div style="position:relative;width:${totalWidth}px;height:100%;margin-left:0;">`;
+        // Show every 10 years
+        for (let y = YEAR_START; y <= YEAR_END; y += 10) {
+            const pos = ((y - YEAR_START) / yearSpan) * totalWidth;
+            html += `<div style="position:absolute;left:${pos}px;top:-2px;font-size:11px;color:var(--text-muted);transform:translateX(-50%);">${y}</div>`;
+        }
+        // Also show 184 and 280
+        html += `<div style="position:absolute;left:0;top:14px;font-size:9px;color:var(--text-muted);">184</div>`;
+        html += `<div style="position:absolute;left:${totalWidth - 5}px;top:14px;font-size:9px;color:var(--text-muted);">280</div>`;
+
+        html += '</div></div></div></div>';
+        return html;
+    }
+
+    function buildLineTrack(line, events, lineIdx) {
+        const color = line.color;
+        const yearSpan = YEAR_END - YEAR_START;
+        const totalWidth = yearSpan * 5; // 5px per year
+
+        let html = `<div class="metro-line" data-line="${line.id}" data-faction="${line.faction}" style="min-height:52px;">`;
+        html += `<div class="metro-year" style="color:${color};">`;
+        html += `${line.icon} ${line.label}`;
+        html += '</div>';
+
+        // Track (vertical connector + dot)
+        html += '<div class="metro-track" style="width:24px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;">';
+        // Top connector
+        if (lineIdx > 0) {
+            html += `<div class="metro-line-connector" style="background:${color};opacity:0.3;width:2px;min-height:8px;"></div>`;
+        } else {
+            html += `<div style="min-height:8px;"></div>`;
+        }
+        html += '</div>';
+
+        // Events track - horizontal line with event nodes
+        html += `<div style="flex:1;position:relative;padding-left:12px;overflow-x:auto;overflow-y:visible;">`;
+        html += `<div style="position:relative;width:${totalWidth}px;height:44px;">`;
+
+        // Draw the horizontal line (track)
+        html += `<div style="position:absolute;top:20px;left:0;right:0;height:3px;background:${color};opacity:0.3;border-radius:2px;"></div>`;
+
+        // Draw year tick marks
+        for (let y = YEAR_START; y <= YEAR_END; y += 10) {
+            const pos = ((y - YEAR_START) / yearSpan) * totalWidth;
+            html += `<div style="position:absolute;left:${pos}px;top:14px;width:1px;height:12px;background:var(--border);opacity:0.3;"></div>`;
+        }
+
+        // Event nodes
+        events.forEach((evt, idx) => {
+            const pos = ((evt.year - YEAR_START) / yearSpan) * totalWidth;
+            const typeColor = TYPE_COLORS[evt.type] || color;
+
+            // Determine if this event spans multiple characters/lines
+            const nodeSize = evt.characters.length > 2 ? 16 : 12;
+
+            html += `<div class="metro-event-node" style="position:absolute;left:${pos}px;top:${20 - nodeSize/2}px;width:${nodeSize}px;height:${nodeSize}px;border-radius:50%;background:${typeColor};border:2px solid var(--bg-card);cursor:pointer;z-index:3;box-shadow:0 1px 4px rgba(0,0,0,0.2);transition:all 0.2s;"`;
+            html += ` onmouseenter="showTooltip(event, '${evt.name}', '${evt.year}年 · ${evt.type} | ${evt.characters.join(', ')}<br>${evt.desc}', '${typeColor}')" onmouseleave="hideTooltip()"`;
+            html += ` onclick="showEventDetail('${evt.name}', ${evt.year})"`;
+            html += ` title="${evt.name} (${evt.year}年)"></div>`;
+
+            // Label below node
+            html += `<div style="position:absolute;left:${pos}px;top:28px;font-size:10px;color:var(--text-secondary);white-space:nowrap;transform:translateX(-50%);pointer-events:none;text-shadow:0 0 3px var(--bg-card);">${evt.name}</div>`;
+        });
+
+        html += '</div></div>'; // end scrollable track area
+        html += '</div>'; // end metro-line
+        return html;
+    }
+
+    // ======== Tooltip ========
+    function showTooltip(e, name, detail, color) {
+        const tooltip = document.getElementById('metroTooltip');
+        document.getElementById('ttName').innerHTML = `<span style="color:${color}">●</span> ${name}`;
+        document.getElementById('ttDetail').innerHTML = detail;
+        tooltip.style.display = 'block';
+
+        const rect = e.target.getBoundingClientRect();
+        const scrollY = window.scrollY || window.pageYOffset;
+        const scrollX = window.scrollX || window.pageXOffset;
+        tooltip.style.left = (rect.left + scrollX + 20) + 'px';
+        tooltip.style.top = (rect.top + scrollY - 10) + 'px';
+    }
+
+    function hideTooltip() {
+        document.getElementById('metroTooltip').style.display = 'none';
+    }
+
+    // ======== Filter ========
+    function filterMetro(faction) {
+        currentFilter = faction;
+        document.querySelectorAll('.metro-filter-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.filter === faction);
+        });
+        renderMetro();
+    }
+
+    // ======== Event detail (scroll to original event in data) ========
+    function showEventDetail(name, year) {
+        // Highlight matching event in SANGUO_EVENTS
+        const evt = SANGUO_EVENTS.find(e => e.name === name && e.year === year);
+        if (evt) {
+            alert(`📜 ${evt.name}\n${evt.year}年 · ${evt.type}\n地点: ${evt.location || '未知'}\n参与者: ${(evt.participants || []).join(', ')}\n\n${evt.desc}`);
+        } else {
+            alert(`📜 ${name} (${year}年)`);
+        }
+    }
+
+    // ======== Legend ========
+    function buildLegend() {
+        const container = document.getElementById('legendContainer');
+        container.innerHTML = '<span style="font-size:13px;font-weight:600;color:var(--text-secondary);margin-right:8px;">图例:</span>';
+
+        // Faction legends
+        Object.entries(FACTION_COLORS).forEach(([faction, color]) => {
+            container.innerHTML += `<span class="metro-legend-item"><span class="metro-legend-dot" style="background:${color};"></span>${faction}</span>`;
+        });
+
+        // Type legends
+        container.innerHTML += '<span style="margin:0 8px;color:var(--border);">|</span>';
+        Object.entries(TYPE_COLORS).forEach(([type, color]) => {
+            container.innerHTML += `<span class="metro-legend-item"><span class="metro-legend-dot" style="background:${color};"></span>${type}</span>`;
+        });
+
+        container.innerHTML += '<span style="margin:0 8px;color:var(--border);">|</span>';
+        container.innerHTML += `<span class="metro-legend-item" style="font-size:12px;color:var(--text-muted);">💡 悬停查看详情 · 点击查看完整信息</span>`;
+    }
+
+    // ======== Init ========
+    window.onload = function() {
+        buildLegend();
+        renderMetro();
+    };
+    </script>
+</body>
+</html>

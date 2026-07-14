@@ -1,33 +1,36 @@
-/* 三国知识库 - 深色主题 仿 shiji-kb 风格 */
+/* 三国知识库 - Warm Ivory 奶白色主题 */
 :root {
-    --bg-primary: #0f0f1a;
-    --bg-secondary: #1a1a2e;
-    --bg-card: #16213e;
-    --bg-card-hover: #1e2a4a;
-    --text-primary: #e8e8e8;
-    --text-secondary: #a0a0b0;
-    --text-muted: #6c6c80;
-    --accent: #c9a227;
-    --accent-light: #d4af37;
-    --accent-dim: rgba(201, 162, 39, 0.2);
-    --border: rgba(201, 162, 39, 0.25);
-    --border-light: rgba(201, 162, 39, 0.1);
-    --danger: #e74c3c;
-    --success: #2ecc71;
-    --info: #3498db;
-    --purple: #9b59b6;
-    --orange: #f39c12;
+    --bg-primary: #faf8f2;
+    --bg-secondary: #f5f0e6;
+    --bg-card: #fdfcfa;
+    --bg-card-hover: #faf7f0;
+    --text-primary: #3a3530;
+    --text-secondary: #7a7268;
+    --text-muted: #a0988c;
+    --accent: #b8860b;
+    --accent-light: #d4a017;
+    --accent-dim: rgba(184, 134, 11, 0.1);
+    --border: rgba(184, 134, 11, 0.2);
+    --border-light: rgba(184, 134, 11, 0.08);
+    --danger: #c0392b;
+    --success: #27ae60;
+    --info: #2980b9;
+    --purple: #8e44ad;
+    --orange: #d68910;
     --header-height: 64px;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
+    --shadow-lg: 0 8px 24px rgba(0,0,0,0.08);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Microsoft YaHei', 'SimHei', sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Noto Serif SC', 'Noto Sans SC', 'Microsoft YaHei', serif;
     background: var(--bg-primary);
     color: var(--text-primary);
     min-height: 100vh;
-    line-height: 1.6;
+    line-height: 1.7;
 }
 
 /* Header & Navigation */
@@ -37,7 +40,7 @@ body {
     left: 0;
     right: 0;
     height: var(--header-height);
-    background: rgba(15, 15, 26, 0.95);
+    background: rgba(253, 252, 250, 0.95);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
     display: flex;
@@ -98,19 +101,20 @@ body {
 }
 
 .stat-card {
-    background: var(--bg-secondary);
+    background: var(--bg-card);
     border: 1px solid var(--border-light);
     border-radius: 12px;
     padding: 20px;
     text-align: center;
     transition: all 0.3s;
     cursor: default;
+    box-shadow: var(--shadow-sm);
 }
 
 .stat-card:hover {
     border-color: var(--accent);
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(201, 162, 39, 0.1);
+    box-shadow: var(--shadow-md);
 }
 
 .stat-icon {
@@ -133,11 +137,12 @@ body {
 
 /* Search Section */
 .search-section {
-    background: var(--bg-secondary);
+    background: var(--bg-card);
     border: 1px solid var(--border-light);
     border-radius: 12px;
     padding: 24px;
     margin-bottom: 32px;
+    box-shadow: var(--shadow-sm);
 }
 
 .search-box {
@@ -168,7 +173,7 @@ body {
 .search-btn {
     padding: 12px 28px;
     background: var(--accent);
-    color: var(--bg-primary);
+    color: #fff;
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -211,7 +216,7 @@ body {
 }
 
 .char-card {
-    background: var(--bg-secondary);
+    background: var(--bg-card);
     border: 1px solid var(--border-light);
     border-radius: 12px;
     padding: 20px;
@@ -219,12 +224,13 @@ body {
     cursor: pointer;
     position: relative;
     overflow: hidden;
+    box-shadow: var(--shadow-sm);
 }
 
 .char-card:hover {
     border-color: var(--accent);
     transform: translateY(-3px);
-    box-shadow: 0 8px 24px rgba(201, 162, 39, 0.1);
+    box-shadow: var(--shadow-md);
     background: var(--bg-card-hover);
 }
 
@@ -286,10 +292,10 @@ body {
     font-weight: 600;
 }
 
-.faction-魏 { background: rgba(231, 76, 60, 0.2); color: #e74c3c; border: 1px solid rgba(231, 76, 60, 0.3); }
-.faction-蜀 { background: rgba(46, 204, 113, 0.2); color: #2ecc71; border: 1px solid rgba(46, 204, 113, 0.3); }
-.faction-吴 { background: rgba(52, 152, 219, 0.2); color: #3498db; border: 1px solid rgba(52, 152, 219, 0.3); }
-.faction-群 { background: rgba(243, 156, 18, 0.2); color: #f39c12; border: 1px solid rgba(243, 156, 18, 0.3); }
+.faction-魏 { background: rgba(192, 57, 43, 0.1); color: #c0392b; border: 1px solid rgba(192, 57, 43, 0.25); }
+.faction-蜀 { background: rgba(39, 174, 96, 0.1); color: #27ae60; border: 1px solid rgba(39, 174, 96, 0.25); }
+.faction-吴 { background: rgba(41, 128, 185, 0.1); color: #2980b9; border: 1px solid rgba(41, 128, 185, 0.25); }
+.faction-群 { background: rgba(214, 137, 16, 0.1); color: #d68910; border: 1px solid rgba(214, 137, 16, 0.25); }
 
 /* Viz Containers */
 .viz-grid {
@@ -300,10 +306,11 @@ body {
 }
 
 .viz-card {
-    background: var(--bg-secondary);
+    background: var(--bg-card);
     border: 1px solid var(--border-light);
     border-radius: 12px;
     padding: 20px;
+    box-shadow: var(--shadow-sm);
 }
 
 .viz-title {
@@ -324,20 +331,22 @@ body {
 
 /* Timeline */
 .timeline-container {
-    background: var(--bg-secondary);
+    background: var(--bg-card);
     border: 1px solid var(--border-light);
     border-radius: 12px;
     padding: 20px;
     margin-bottom: 32px;
+    box-shadow: var(--shadow-sm);
 }
 
 /* Network */
 .network-container {
-    background: var(--bg-secondary);
+    background: var(--bg-card);
     border: 1px solid var(--border-light);
     border-radius: 12px;
     padding: 20px;
     margin-bottom: 32px;
+    box-shadow: var(--shadow-sm);
 }
 
 .network-canvas {
@@ -409,13 +418,14 @@ body {
 }
 
 .game-card {
-    background: var(--bg-secondary);
-    border: 2px solid var(--border);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
     border-radius: 16px;
     padding: 24px;
     position: relative;
     overflow: hidden;
     transition: all 0.3s;
+    box-shadow: var(--shadow-sm);
 }
 
 .game-card::before {
@@ -427,14 +437,15 @@ body {
     height: 4px;
 }
 
-.game-card[data-faction="魏"]::before { background: #e74c3c; }
-.game-card[data-faction="蜀"]::before { background: #2ecc71; }
-.game-card[data-faction="吴"]::before { background: #3498db; }
-.game-card[data-faction="群"]::before { background: #f39c12; }
+.game-card[data-faction="魏"]::before { background: #c0392b; }
+.game-card[data-faction="蜀"]::before { background: #27ae60; }
+.game-card[data-faction="吴"]::before { background: #2980b9; }
+.game-card[data-faction="群"]::before { background: #d68910; }
 
 .game-card:hover {
     border-color: var(--accent);
     transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
 }
 
 .game-card-header {
@@ -460,7 +471,7 @@ body {
     height: 14px;
     border-radius: 50%;
     background: var(--danger);
-    border: 1px solid rgba(231, 76, 60, 0.4);
+    border: 1px solid rgba(192, 57, 43, 0.4);
 }
 
 .game-card-skills {
@@ -500,13 +511,13 @@ body {
 /* Tooltip for graph */
 .graph-tooltip {
     position: absolute;
-    background: var(--bg-secondary);
+    background: var(--bg-card);
     border: 1px solid var(--accent);
     border-radius: 8px;
     padding: 12px 16px;
     font-size: 13px;
     pointer-events: none;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+    box-shadow: var(--shadow-lg);
     display: none;
     z-index: 100;
 }
@@ -536,6 +547,159 @@ body {
     margin-bottom: 24px;
 }
 
+/* Event Metro Map */
+.metro-container {
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 32px;
+    box-shadow: var(--shadow-sm);
+}
+
+.metro-lines {
+    position: relative;
+    padding: 20px 0;
+}
+
+.metro-line {
+    display: flex;
+    align-items: stretch;
+    margin-bottom: 0;
+    position: relative;
+    min-height: 60px;
+}
+
+.metro-year {
+    width: 80px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+    flex-shrink: 0;
+    padding-top: 4px;
+    text-align: right;
+    padding-right: 16px;
+}
+
+.metro-track {
+    width: 24px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.metro-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    z-index: 2;
+    border: 2px solid var(--bg-card);
+    flex-shrink: 0;
+    margin-top: 4px;
+}
+
+.metro-line-connector {
+    width: 2px;
+    flex: 1;
+    min-height: 20px;
+}
+
+.metro-card {
+    flex: 1;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-left: 12px;
+    margin-bottom: 8px;
+    transition: all 0.2s;
+    cursor: default;
+}
+
+.metro-card:hover {
+    border-color: var(--accent);
+    box-shadow: var(--shadow-sm);
+}
+
+.metro-card-title {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.metro-card-desc {
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.metro-card-tags {
+    display: flex;
+    gap: 4px;
+    margin-top: 4px;
+    flex-wrap: wrap;
+}
+
+.metro-tag {
+    font-size: 10px;
+    padding: 1px 8px;
+    border-radius: 10px;
+    background: var(--accent-dim);
+    color: var(--accent);
+}
+
+.metro-line-filter {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.metro-filter-btn {
+    padding: 6px 16px;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.2s;
+}
+
+.metro-filter-btn:hover,
+.metro-filter-btn.active {
+    background: var(--accent-dim);
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+.metro-legend {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+    padding: 8px 0;
+}
+
+.metro-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.metro-legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
 /* Loading & Empty */
 .loading {
     text-align: center;
@@ -563,6 +727,7 @@ body {
     .main { padding-left: 16px; padding-right: 16px; }
     .nav a { padding: 6px 10px; font-size: 12px; }
     .logo { font-size: 16px; }
+    .metro-year { width: 60px; font-size: 12px; }
 }
 
 @media (max-width: 600px) {
@@ -572,6 +737,8 @@ body {
     .game-card-grid { grid-template-columns: 1fr; }
     .nav { gap: 0; }
     .nav a { padding: 6px 8px; font-size: 11px; }
+    .metro-year { display: none; }
+    .metro-track { width: 16px; }
 }
 
 /* Scrollbar */
