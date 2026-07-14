@@ -150,7 +150,7 @@
             series: [{
                 type: 'bar', barWidth: '50%',
                 data: Object.entries(count).map(([k, v]) => ({ value: v, itemStyle: { color: colors[k] || '#c9a227' } })),
-                label: { show: true, position: 'right', color: '#e8e8e8', formatter: '{c}个' }
+                label: { show: true, position: 'right', color: '#3a3530', formatter: '{c}个' }
             }]
         });
         window.addEventListener('resize', () => chart.resize());
@@ -159,65 +159,63 @@
     function initTimeline() {
         const chart = echarts.init(document.getElementById('timelineChart'));
         const sorted = [...SANGUO_EVENTS].sort((a, b) => a.year - b.year);
-        const years = [...new Set(sorted.map(e => e.year))].sort((a,b) => a-b);
-        const typeColors = { '军事': '#e74c3c', '政治': '#9b59b6', '人事': '#3498db' };
+        const typeColors = { '军事': '#c0392b', '政治': '#8e44ad', '人事': '#2980b9' };
 
         const option = {
             tooltip: {
-                trigger: 'axis',
+                trigger: 'item',
                 formatter: function(params) {
-                    const p = params[0];
-                    const evt = sorted.find(e => e.year === parseInt(p.name));
-                    if (!evt) return '';
-                    return `<strong style="color:#b8860b">${evt.name}</strong><br/>
-                            <span style="color:#3a3530">${evt.year}年 · ${evt.type}</span><br/>
-                            <span style="color:#7a7268;font-size:13px">${evt.desc}</span>`;
+                    const d = params.data;
+                    if (!d) return '';
+                    return `<strong style="color:#b8860b">${d[2]}</strong><br/>
+                            <span style="color:#3a3530">${d[0]}年 · ${d[3]}</span><br/>
+                            <span style="color:#7a7268;font-size:13px">${d[4]}</span>`;
                 }
             },
             grid: { left: '3%', right: '4%', bottom: '15%', containLabel: true },
-                xAxis: {
+            xAxis: {
                 type: 'category',
-                data: years,
+                data: sorted.map(e => e.year),
                 axisLabel: { color: '#7a7268', fontSize: 11 },
                 axisLine: { lineStyle: { color: 'rgba(184,134,11,0.2)' } },
-                axisTick: { alignWithLabel: true }
+                splitLine: { show: false }
             },
-            yAxis: { show: false },
-            visualMap: {
-                show: false,
-                min: 0, max: sorted.length - 1,
-                dimension: 0,
-                pieces: sorted.map((e, i) => ({ value: i, color: typeColors[e.type] || '#c9a227' }))
-            },
+            yAxis: { show: false, min: -1, max: 1 },
             series: [{
                 type: 'scatter',
-                symbolSize: function(val, params) {
-                    const idx = years.indexOf(params.name);
-                    const evts = sorted.filter(e => e.year === params.name);
-                    return 12 + evts.length * 4;
+                symbolSize: 16,
+                itemStyle: {
+                    color: function(params) {
+                        return params.data[5] || '#b8860b';
+                    }
                 },
-                itemStyle: { color: function(params) {
-                    const evts = sorted.filter(e => e.year === years[params.dataIndex]);
-                    return typeColors[evts[0]?.type] || '#c9a227';
-                }},
-                data: years.map(y => {
-                    const evts = sorted.filter(e => e.year === y);
-                    return { value: [y, 0], name: evts.map(e => e.name).join(', ') };
-                }),
+                data: sorted.map(e => [e.year, Math.random() * 0.6 - 0.3, e.name, e.type, e.desc, e.color]),
                 label: {
                     show: true,
                     position: 'top',
-                    color: '#7a7268',
+                    color: '#3a3530',
                     fontSize: 11,
                     formatter: function(p) {
-                        const evts = sorted.filter(e => e.year === years[p.dataIndex]);
-                        return evts.map(e => e.name).join('\n');
+                        return p.data[2];
                     }
+                },
+                emphasis: {
+                    itemStyle: { borderColor: '#b8860b', borderWidth: 2 }
                 }
             }]
         };
         chart.setOption(option);
+        chart.on('click', function(params) {
+            if (params.data && params.data[2]) {
+                window.open('timeline.html?q=' + encodeURIComponent(params.data[2]), '_blank');
+            }
+        });
         window.addEventListener('resize', () => chart.resize());
+    }
+
+    function goToPage(type, name) {
+        const url = type === 'character' ? 'characters.html?q=' + encodeURIComponent(name) : 'timeline.html?q=' + encodeURIComponent(name);
+        window.open(url, '_blank');
     }
 
     function doSearch(e) {
@@ -238,7 +236,7 @@
         }
         
         results.innerHTML = filtered.slice(0, 20).map(d => `
-            <div class="result-item" onclick="window.location.href='${d.type === 'character' ? 'characters.html?q=' + d.name : 'timeline.html?q=' + d.name}'">
+            <div class="result-item" style="cursor:pointer;" onclick="goToPage('${d.type}', '${d.name.replace(/'/g, "\\'")}')">
                 <span class="result-name">${d.name}</span>
                 <span class="result-type">${d.label}</span>
             </div>
