@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>三国杀·真实规则 - 三国知识库</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .game-real-layout { display: grid; grid-template-columns: 1fr 280px; gap: 16px; }
+        @media (max-width: 900px) { .game-real-layout { grid-template-columns: 1fr; } }
+        
+        /* 游戏区域 */
+        .game-table { 
+            background: linear-gradient(135deg, #2c1810 0%, #1a0f0a 100%);
+            border-radius: 16px; 
+            padding: 20px; 
+            min-height: 500px;
+            position: relative;
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.5);
+        }
+        
+        /* 玩家座位 */
+        .player-seat { 
+            position: absolute;
+            width: 120px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        .player-seat.active { transform: scale(1.1); }
+        .player-seat.current-turn { 
+            box-shadow: 0 0 20px rgba(255,215,0,0.6);
+            border-radius: 8px;
+        }
+        
+        /* 座位位置 */
+        .seat-0 { bottom: 20px; left: 50%; transform: translateX(-50%); }
+        .seat-1 { bottom: 80px; right: 40px; }
+        .seat-2 { top: 50%; right: 20px; transform: translateY(-50%); }
+        .seat-3 { top: 80px; right: 40px; }
+        .seat-4 { top: 20px; left: 50%; transform: translateX(-50%); }
+        .seat-5 { top: 80px; left: 40px; }
+        .seat-6 { top: 50%; left: 20px; transform: translateY(-50%); }
+        .seat-7 { bottom: 80px; left: 40px; }
+        
+        /* 玩家卡片 */
+        .player-card {
+            background: linear-gradient(180deg, #f5e6d3 0%, #e8d4bc 100%);
+            border-radius: 8px;
+            padding: 8px;
+            border: 2px solid #8b4513;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .player-card:hover { transform: translateY(-2px); }
+        .player-card.dead { opacity: 0.5; filter: grayscale(100%); }
+        
+        .player-name { font-weight: bold; font-size: 13px; color: #2c1810; }
+        .player-faction { font-size: 11px; padding: 2px 6px; border-radius: 4px; margin-top: 2px; }
+        .faction-魏 { background: #c0392b; color: white; }
+        .faction-蜀 { background: #27ae60; color: white; }
+        .faction-吴 { background: #2980b9; color: white; }
+        .faction-群 { background: #d68910; color: white; }
+        
+        .player-hp { margin-top: 4px; }
+        .hp-bar { display: flex; gap: 2px; justify-content: center; }
+        .hp-unit { 
+            width: 12px; height: 12px; border-radius: 50%; 
+            background: #e74c3c; border: 1px solid #c0392b;
+        }
+        .hp-unit.lost { background: #bdc3c7; border-color: #95a5a6; }
+        
+        .player-hand { font-size: 11px; color: #666; margin-top: 2px; }
+        
+        /* 手牌区域 */
+        .hand-area {
+            background: rgba(0,0,0,0.3);
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 16px;
+            min-height: 120px;
+        }
+        
+        .hand-title { color: #f5e6d3; font-size: 14px; margin-bottom: 12px; }
+        
+        .card-container { display: flex; gap: 8px; flex-wrap: wrap; }
+        
+        /* 卡牌样式 */
+        .game-card {
+            width: 70px;
+            height: 100px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+        .game-card:hover { transform: translateY(-4px); z-index: 10; }
+        .game-card.selected { box-shadow: 0 0 0 3px #f39c12; }
+        
+        /* 基本牌 */
+        .card-basic { background: linear-gradient(180deg, #f5f5f5 0%, #e0e0e0 100%); border: 2px solid #999; }
+        .card-杀 { background: linear-gradient(180deg, #e74c3c 0%, #c0392b 100%); border-color: #922b21; }
+        .card-闪 { background: linear-gradient(180deg, #3498db 0%, #2980b9 100%); border-color: #1f618d; }
+        .card-桃 { background: linear-gradient(180deg, #e91e63 0%, #c2185b 100%); border-color: #880e4f; }
+        .card-酒 { background: linear-gradient(180deg, #9b59b6 0%, #8e44ad 100%); border-color: #6c3483; }
+        
+        /* 锦囊牌 */
+        .card-scroll { background: linear-gradient(180deg, #f39c12 0%, #e67e22 100%); border: 2px solid #d68910; }
+        .card-delay { background: linear-gradient(180deg, #1abc9c 0%, #16a085 100%); border-color: #0e6655; }
+        
+        /* 装备牌 */
+        .card-equip { background: linear-gradient(180deg, #2ecc71 0%, #27ae60 100%); border: 2px solid #1e8449; }
+        .card-weapon { background: linear-gradient(180deg, #e74c3c 0%, #c0392b 100%); }
+        .card-armor { background: linear-gradient(180deg, #3498db 0%, #2980b9 100%); }
+        .card-horse { background: linear-gradient(180deg, #2ecc71 0%, #27ae60 100%); }
+        
+        .card-name { 
+            font-size: 12px; font-weight: bold; 
+            color: white; text-align: center; 
+            padding: 4px; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        .card-suit { 
+            position: absolute; top: 2px; left: 4px; 
+            font-size: 10px; color: rgba(255,255,255,0.8);
+        }
+        .card-number { 
+            position: absolute; top: 2px; right: 4px; 
+            font-size: 10px; color: rgba(255,255,255,0.8);
+        }
+        
+        /* 控制面板 */
+        .control-panel {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: 16px;
+        }
+        
+        .phase-indicator {
+            background: var(--bg-primary);
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 12px;
+        }
+        
+        .phase-name { font-weight: bold; color: var(--accent); margin-bottom: 4px; }
+        .phase-desc { font-size: 12px; color: var(--text-secondary); }
+        
+        .action-buttons { display: flex; flex-direction: column; gap: 8px; }
+        
+        .action-btn {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        
+        .btn-primary { background: var(--accent); color: white; }
+        .btn-primary:hover { background: #d4af37; }
+        .btn-secondary { background: var(--accent-dim); color: var(--accent); border: 1px solid var(--accent); }
+        .btn-disabled { background: var(--border); color: var(--text-muted); cursor: not-allowed; }
+        
+        /* 游戏日志 */
+        .game-log {
+            background: var(--bg-primary);
+            border-radius: 8px;
+            padding: 12px;
+            max-height: 200px;
+            overflow-y: auto;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+        
+        .log-entry { padding: 2px 0; border-bottom: 1px solid var(--border-light); }
+        .log-entry:last-child { border-bottom: none; }
+        
+        /* 目标选择 */
+        .target-selector {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+        .target-selector.show { display: flex; }
+        
+        .target-content {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 24px;
+            max-width: 400px;
+            width: 90%;
+        }
+        
+        .target-title { font-size: 18px; font-weight: bold; color: var(--accent); margin-bottom: 16px; }
+        
+        .target-list { display: flex; flex-direction: column; gap: 8px; }
+        
+        .target-option {
+            padding: 12px;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .target-option:hover { border-color: var(--accent); background: var(--accent-dim); }
+    </style>
+    <script src="data/characters.js"></script>
+</head>
+<body>
+<div class="header">
+    <div class="logo"><span class="logo-icon">🃏</span> 三国知识库</div>
+    <nav class="nav">
+        <a href="index.html">首页</a>
+        <a href="characters.html">人物谱</a>
+        <a href="timeline.html">时间线</a>
+        <a href="metro.html">地铁图</a>
+        <a href="graph.html">关系图谱</a>
+        <a href="game.html">三国杀</a>
+        <a href="game-plus.html">武将图鉴</a>
+        <a href="game-real.html" class="active">真实规则</a>
+        <a href="culture.html">文化</a>
+        <a href="war.html">争霸</a>
+        <a href="wiki/index.html">📖 WiKi</a>
+    </nav>
+</div>
+
+<div class="main">
+    <div class="page-title">🃏 三国杀·真实规则</div>
+    <div class="page-subtitle">完整卡牌系统 · 回合流程 · 技能触发</div>
+
+    <div class="game-real-layout">
+        <div>
+            <div class="game-table" id="gameTable">
+                <!-- 玩家座位将动态生成 -->
+            </div>
+            
+            <div class="hand-area" id="handArea" style="display:none;">
+                <div class="hand-title">🎴 手牌区域 <span id="handCount">0</span>张</div>
+                <div class="card-container" id="handCards"></div>
+            </div>
+        </div>
+        
+        <div class="control-panel">
+            <div class="phase-indicator">
+                <div class="phase-name" id="phaseName">准备开始</div>
+                <div class="phase-desc" id="phaseDesc">点击开始游戏</div>
+            </div>
+            
+            <div class="action-buttons">
+                <button class="action-btn btn-primary" id="startBtn" onclick="startGame()">开始游戏</button>
+                <button class="action-btn btn-secondary" id="playCardBtn" onclick="playSelectedCard()" style="display:none;">出牌</button>
+                <button class="action-btn btn-secondary" id="endTurnBtn" onclick="endTurn()" style="display:none;">结束回合</button>
+                <button class="action-btn btn-secondary" onclick="usePeach()">吃桃</button>
+            </div>
+            
+            <div class="game-log" id="gameLog">
+                <div class="log-entry" style="color: var(--text-muted); text-align: center;">游戏日志</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 目标选择弹窗 -->
+<div class="target-selector" id="targetSelector">
+    <div class="target-content">
+        <div class="target-title" id="targetTitle">选择目标</div>
+        <div class="target-list" id="targetList"></div>
+        <button class="action-btn btn-secondary" style="margin-top: 16px; width: 100%;" onclick="cancelTarget()">取消</button>
+    </div>
+</div>
+
+<div class="footer">基于 Obsidian 的三国知识库 · <a href="https://github.com/junjunfantasy/sanguo">GitHub</a></div>
+
+<script>
+// ===== 三国杀真实规则系统 =====
+
+// 卡牌定义
+const CARD_TYPES = {
+    BASIC: 'basic',
+    SCROLL: 'scroll',
+    EQUIP: 'equip'
+};
+
+const CARD_SUITS = ['♠', '♥', '♣', '♦'];
+const CARD_NUMBERS = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+
+// 基本牌定义
+const BASIC_CARDS = {
+    '杀': { type: CARD_TYPES.BASIC, effect: 'attack', desc: '对攻击范围内的一名角色使用' },
+    '闪': { type: CARD_TYPES.BASIC, effect: 'dodge', desc: '抵消杀的效果' },
+    '桃': { type: CARD_TYPES.BASIC, effect: 'heal', desc: '回复1点体力' },
+    '酒': { type: CARD_TYPES.BASIC, effect: 'wine', desc: '本回合下一张杀伤害+1' }
+};
+
+// 锦囊牌定义
+const SCROLL_CARDS = {
+    '过河拆桥': { type: CARD_TYPES.SCROLL, effect: 'dismantlement', desc: '弃置目标区域一张牌' },
+    '顺手牵羊': { type: CARD_TYPES.SCROLL, effect: 'snatch', desc: '获得目标区域一张牌' },
+    '决斗': { type: CARD_TYPES.SCROLL, effect: 'duel', desc: '与目标进行决斗' },
+    '借刀杀人': { type: CARD_TYPES.SCROLL, effect: 'borrow', desc: '让目标对另一角色使用杀' },
+    '无中生有': { type: CARD_TYPES.SCROLL, effect: 'draw', desc: '摸两张牌' },
+    '万箭齐发': { type: CARD_TYPES.SCROLL, effect: 'arrow', desc: '所有其他角色需出闪' },
+    '南蛮入侵': { type: CARD_TYPES.SCROLL, effect: 'barbarian', desc: '所有其他角色需出杀' },
+    '乐不思蜀': { type: CARD_TYPES.SCROLL, effect: 'delay', delay: true, desc: '判定阶段跳过出牌阶段' },
+    '兵粮寸断': { type: CARD_TYPES.SCROLL, effect: 'delay', delay: true, desc: '判定阶段跳过摸牌阶段' }
+};
+
+// 装备牌定义
+const EQUIPMENT_CARDS = {
+    '诸葛连弩': { type: CARD_TYPES.EQUIP, subtype: 'weapon', range: 1, desc: '攻击距离1，可无限出杀' },
+    '青釭剑': { type: CARD_TYPES.EQUIP, subtype: 'weapon', range: 2, desc: '攻击距离2，无视防具' },
+    '青龙偃月刀': { type: CARD_TYPES.EQUIP, subtype: 'weapon', range: 3, desc: '攻击距离3' },
+    '丈八蛇矛': { type: CARD_TYPES.EQUIP, subtype: 'weapon', range: 3, desc: '攻击距离3' },
+    '贯石斧': { type: CARD_TYPES.EQUIP, subtype: 'weapon', range: 3, desc: '攻击距离3' },
+    '方天画戟': { type: CARD_TYPES.EQUIP, subtype: 'weapon', range: 4, desc: '攻击距离4' },
+    '麒麟弓': { type: CARD_TYPES.EQUIP, subtype: 'weapon', range: 5, desc: '攻击距离5' },
+    '八卦阵': { type: CARD_TYPES.EQUIP, subtype: 'armor', desc: '判定红色当闪' },
+    '仁王盾': { type: CARD_TYPES.EQUIP, subtype: 'armor', desc: '黑色杀无效' },
+    '+1马': { type: CARD_TYPES.EQUIP, subtype: 'defensive', desc: '其他角色距离+1' },
+    '-1马': { type: CARD_TYPES.EQUIP, subtype: 'offensive', desc: '到其他角色距离-1' }
+};
+
+// 回合阶段
+const PHASES = {
+    START: 'start',
+    JUDGE: 'judge',
+    DRAW: 'draw',
+    PLAY: 'play',
+    DISCARD: 'discard',
+    END: 'end'
+};
+
+// 游戏状态
+let gameState = {
+    players: [],
+    currentPlayer: 0,
+    phase: PHASES.START,
+    deck: [],
+    discardPile: [],
+    selectedCard: null,
+    wineUsed: false
+};
+
+// 初始化牌堆
+function initDeck() {
+    const deck = [];
+    
+    // 基本牌 (30杀, 15闪, 8桃, 5酒)
+    for (let i = 0; i < 30; i++) deck.push(createCard('杀'));
+    for (let i = 0; i < 15; i++) deck.push(createCard('闪'));
+    for (let i = 0; i < 8; i++) deck.push(createCard('桃'));
+    for (let i = 0; i < 5; i++) deck.push(createCard('酒'));
+    
+    // 锦囊牌
+    const scrollCounts = {
+        '过河拆桥': 6, '顺手牵羊': 4, '决斗': 3, '借刀杀人': 2,
+        '无中生有': 4, '万箭齐发': 1, '南蛮入侵': 3,
+        '乐不思蜀': 3, '兵粮寸断': 2
+    };
+    for (const [name, count] of Object.entries(scrollCounts)) {
+        for (let i = 0; i < count; i++) deck.push(createCard(name));
+    }
+    
+    // 装备牌
+    const equipCounts = {
+        '诸葛连弩': 1, '青釭剑': 1, '青龙偃月刀': 1, '丈八蛇矛': 1,
+        '贯石斧': 1, '方天画戟': 1, '麒麟弓': 1,
+        '八卦阵': 2, '仁王盾': 1, '+1马': 3, '-1马': 3
+    };
+    for (const [name, count] of Object.entries(equipCounts)) {
+        for (let i = 0; i < count; i++) deck.push(createCard(name));
+    }
+    
+    // 洗牌
+    return shuffle(deck);
+}
+
+function createCard(name) {
+    const suit = CARD_SUITS[Math.floor(Math.random() * 4)];
+    const number = CARD_NUMBERS[Math.floor(Math.random() * 13)];
+    
+    let card = { name, suit, number, id: Math.random().toString(36).substr(2, 9) };
+    
+    if (BASIC_CARDS[name]) {
+        card = { ...card, ...BASIC_CARDS[name] };
+    } else if (SCROLL_CARDS[name]) {
+        card = { ...card, ...SCROLL_CARDS[name] };
+    } else if (EQUIPMENT_CARDS[name]) {
+        card = { ...card, ...EQUIPMENT_CARDS[name] };
+    }
+    
+    return card;
+}
+
+function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
+// 摸牌
+function drawCards(count) {
+    const cards = [];
+    for (let i = 0; i < count; i++) {
+        if (gameState.deck.length === 0) {
+            if (gameState.discardPile.length === 0) break;
+            gameState.deck = shuffle(gameState.discardPile);
+            gameState.discardPile = [];
+        }
+        cards.push(gameState.deck.pop());
+    }
+    return cards;
+}
+
+// 开始游戏
+function startGame() {
+    const chars = window.SANGUO_CHARACTERS || [];
+    const selectedChars = chars.slice(0, 8); // 选择8个角色
+    
+    gameState.deck = initDeck();
+    gameState.players = selectedChars.map((char, index) => ({
+        ...char,
+        id: index,
+        hp: char.hp || 4,
+        maxHp: char.hp || 4,
+        hand: drawCards(4),
+        equipment: [],
+        delayed: [], // 延时锦囊
+        alive: true,
+        position: index
+    }));
+    
+    gameState.currentPlayer = 0;
+    gameState.phase = PHASES.START;
+    
+    document.getElementById('startBtn').style.display = 'none';
+    document.getElementById('playCardBtn').style.display = 'block';
+    document.getElementById('endTurnBtn').style.display = 'block';
+    
+    renderGameTable();
+    addLog('游戏开始！');
+    startTurn();
+}
+
+// 开始回合
+function startTurn() {
+    const player = gameState.players[gameState.currentPlayer];
+    if (!player.alive) {
+        nextPlayer();
+        return;
+    }
+    
+    gameState.phase = PHASES.START;
+    updatePhase('回合开始', `${player.name}的回合开始`);
+    addLog(`${player.name}的回合开始`);
+    
+    // 回合开始阶段技能触发（如孙策英魂）
+    setTimeout(() => {
+        judgePhase();
+    }, 500);
+}
+
+// 判定阶段
+function judgePhase() {
+    gameState.phase = PHASES.JUDGE;
+    updatePhase('判定阶段', '处理延时锦囊');
+    
+    const player = gameState.players[gameState.currentPlayer];
+    
+    if (player.delayed.length === 0) {
+        setTimeout(() => drawPhase(), 300);
+        return;
+    }
+    
+    // 处理延时锦囊
+    const card = player.delayed.shift();
+    const judgment = drawCards(1)[0];
+    const isRed = judgment.suit === '♥' || judgment.suit === '♦';
+    
+    addLog(`${player.name}判定${card.name}，结果：${judgment.suit}${judgment.number}`);
+    
+    if (card.name === '乐不思蜀') {
+        if (isRed) {
+            addLog(`${player.name}判定成功，跳过出牌阶段`);
+            player.skipPlay = true;
+        } else {
+            addLog(`${player.name}判定失败，正常出牌`);
+        }
+    } else if (card.name === '兵粮寸断') {
+        if (!isRed) {
+            addLog(`${player.name}判定失败，跳过摸牌阶段`);
+            player.skipDraw = true;
+        } else {
+            addLog(`${player.name}判定成功，正常摸牌`);
+        }
+    }
+    
+    gameState.discardPile.push(judgment);
+    gameState.discardPile.push(card);
+    
+    setTimeout(() => {
+        if (player.skipDraw) {
+            playPhase();
+        } else {
+            drawPhase();
+        }
+    }, 500);
+}
+
+// 摸牌阶段
+function drawPhase() {
+    gameState.phase = PHASES.DRAW;
+    updatePhase('摸牌阶段', '摸2张牌');
+    
+    const player = gameState.players[gameState.currentPlayer];
+    const newCards = drawCards(2);
+    player.hand.push(...newCards);
+    
+    addLog(`${player.name}摸了${newCards.length}张牌`);
+    renderHand();
+    
+    setTimeout(() => playPhase(), 500);
+}
+
+// 出牌阶段
+function playPhase() {
+    gameState.phase = PHASES.PLAY;
+    updatePhase('出牌阶段', '使用手牌');
+    
+    const player = gameState.players[gameState.currentPlayer];
+    
+    if (player.skipPlay) {
+        addLog(`${player.name}跳过出牌阶段`);
+        player.skipPlay = false;
+        setTimeout(() => discardPhase(), 500);
+        return;
+    }
+    
+    renderHand();
+}
+
+// 弃牌阶段
+function discardPhase() {
+    gameState.phase = PHASES.DISCARD;
+    updatePhase('弃牌阶段', `当前手牌：${gameState.players[gameState.currentPlayer].hand.length}张`);
+    
+    const player = gameState.players[gameState.currentPlayer];
+    const handCount = player.hand.length;
+    const hp = player.hp;
+    
+    if (handCount <= hp) {
+        addLog(`${player.name}手牌数≤体力值，无需弃牌`);
+        setTimeout(() => endPhase(), 500);
+        return;
+    }
+    
+    const discardCount = handCount - hp;
+    addLog(`${player.name}需要弃置${discardCount}张牌`);
+    
+    // 简化处理：随机弃牌
+    for (let i = 0; i < discardCount; i++) {
+        const idx = Math.floor(Math.random() * player.hand.length);
+        const card = player.hand.splice(idx, 1)[0];
+        gameState.discardPile.push(card);
+        addLog(`${player.name}弃置了${card.name}`);
+    }
+    
+    renderHand();
+    setTimeout(() => endPhase(), 500);
+}
+
+// 回合结束阶段
+function endPhase() {
+    gameState.phase = PHASES.END;
+    updatePhase('回合结束', '清理状态');
+    
+    const player = gameState.players[gameState.currentPlayer];
+    gameState.wineUsed = false;
+    
+    addLog(`${player.name}回合结束`);
+    
+    setTimeout(() => nextPlayer(), 500);
+}
+
+// 下一个玩家
+function nextPlayer() {
+    gameState.currentPlayer = (gameState.currentPlayer + 1) % gameState.players.length;
+    
+    // 检查游戏是否结束
+    const alivePlayers = gameState.players.filter(p => p.alive);
+    if (alivePlayers.length <= 1) {
+        endGame();
+        return;
+    }
+    
+    startTurn();
+}
+
+// 结束回合
+function endTurn() {
+    if (gameState.phase !== PHASES.PLAY) return;
+    discardPhase();
+}
+
+// 使用桃
+function usePeach() {
+    const player = gameState.players[gameState.currentPlayer];
+    if (player.hp >= player.maxHp) {
+        addLog('体力已满，无法使用桃');
+        return;
+    }
+    
+    const peachIdx = player.hand.findIndex(c => c.name === '桃');
+    if (peachIdx === -1) {
+        addLog('手牌中没有桃');
+        return;
+    }
+    
+    const card = player.hand.splice(peachIdx, 1)[0];
+    gameState.discardPile.push(card);
+    player.hp = Math.min(player.hp + 1, player.maxHp);
+    
+    addLog(`${player.name}使用了桃，体力+1`);
+    renderHand();
+    renderGameTable();
+}
+
+// 出牌
+function playSelectedCard() {
+    if (!gameState.selectedCard) {
+        addLog('请先选择一张牌');
+        return;
+    }
+    
+    const player = gameState.players[gameState.currentPlayer];
+    const card = gameState.selectedCard;
+    
+    if (gameState.phase !== PHASES.PLAY) {
+        addLog('只能在出牌阶段出牌');
+        return;
+    }
+    
+    // 处理不同类型的牌
+    switch (card.name) {
+        case '杀':
+            playSlash(card);
+            break;
+        case '桃':
+            usePeach();
+            break;
+        case '酒':
+            useWine(card);
+            break;
+        case '无中生有':
+            useDrawCard(card);
+            break;
+        case '过河拆桥':
+        case '顺手牵羊':
+            showTargetSelector(card);
+            break;
+        default:
+            addLog(`暂不支持${card.name}的使用`);
+            return;
+    }
+    
+    gameState.selectedCard = null;
+    renderHand();
+}
+
+// 使用杀
+function playSlash(card) {
+    const player = gameState.players[gameState.currentPlayer];
+    
+    // 检查是否已经出过杀（除非有诸葛连弩）
+    const hasCrossbow = player.equipment.some(e => e.name === '诸葛连弩');
+    if (player.slashUsed && !hasCrossbow) {
+        addLog('每回合只能使用一张杀');
+        return;
+    }
+    
+    // 选择目标
+    showTargetSelector(card);
+}
+
+// 使用酒
+function useWine(card) {
+    const player = gameState.players[gameState.currentPlayer];
+    
+    if (gameState.wineUsed) {
+        addLog('每回合只能使用一张酒');
+        return;
+    }
+    
+    const cardIdx = player.hand.findIndex(c => c.id === card.id);
+    if (cardIdx === -1) return;
+    
+    player.hand.splice(cardIdx, 1);
+    gameState.discardPile.push(card);
+    gameState.wineUsed = true;
+    
+    addLog(`${player.name}使用了酒，下一张杀伤害+1`);
+    renderHand();
+}
+
+// 使用无中生有
+function useDrawCard(card) {
+    const player = gameState.players[gameState.currentPlayer];
+    
+    const cardIdx = player.hand.findIndex(c => c.id === card.id);
+    if (cardIdx === -1) return;
+    
+    player.hand.splice(cardIdx, 1);
+    gameState.discardPile.push(card);
+    
+    const newCards = drawCards(2);
+    player.hand.push(...newCards);
+    
+    addLog(`${player.name}使用无中生有，摸了2张牌`);
+    renderHand();
+}
+
+// 显示目标选择器
+function showTargetSelector(card) {
+    const player = gameState.players[gameState.currentPlayer];
+    const targets = gameState.players.filter(p => p.alive && p.id !== player.id);
+    
+    // 计算攻击距离
+    const attackRange = getAttackRange(player);
+    const validTargets = targets.filter(target => {
+        const distance = calculateDistance(player, target);
+        return distance <= attackRange;
+    });
+    
+    if (validTargets.length === 0) {
+        addLog('没有有效的目标');
+        return;
+    }
+    
+    const targetList = document.getElementById('targetList');
+    targetList.innerHTML = validTargets.map(target => `
+        <div class="target-option" onclick="selectTarget('${target.id}', '${card.id}')">
+            <div style="font-weight:bold;">${target.name}</div>
+            <div style="font-size:12px;color:var(--text-secondary);">体力：${target.hp}/${target.maxHp}</div>
+        </div>
+    `).join('');
+    
+    document.getElementById('targetTitle').textContent = `选择${card.name}的目标`;
+    document.getElementById('targetSelector').classList.add('show');
+}
+
+// 选择目标
+function selectTarget(targetId, cardId) {
+    const player = gameState.players[gameState.currentPlayer];
+    const target = gameState.players.find(p => p.id === parseInt(targetId));
+    const card = player.hand.find(c => c.id === cardId);
+    
+    if (!target || !card) return;
+    
+    cancelTarget();
+    
+    // 执行卡牌效果
+    switch (card.name) {
+        case '杀':
+            executeSlash(player, target, card);
+            break;
+        case '过河拆桥':
+            executeDismantlement(player, target, card);
+            break;
+        case '顺手牵羊':
+            executeSnatch(player, target, card);
+            break;
+    }
+}
+
+// 取消目标选择
+function cancelTarget() {
+    document.getElementById('targetSelector').classList.remove('show');
+}
+
+// 执行杀
+function executeSlash(attacker, target, card) {
+    const cardIdx = attacker.hand.findIndex(c => c.id === card.id);
+    if (cardIdx === -1) return;
+    
+    attacker.hand.splice(cardIdx, 1);
+    gameState.discardPile.push(card);
+    attacker.slashUsed = true;
+    
+    addLog(`${attacker.name}对${target.name}使用了杀`);
+    
+    // 检查目标是否有闪
+    const dodgeIdx = target.hand.findIndex(c => c.name === '闪');
+    
+    if (dodgeIdx !== -1) {
+        // AI自动出闪
+        const dodge = target.hand.splice(dodgeIdx, 1)[0];
+        gameState.discardPile.push(dodge);
+        addLog(`${target.name}使用了闪，抵消了杀`);
+    } else {
+        // 计算伤害
+        let damage = 1;
+        if (gameState.wineUsed) {
+            damage = 2;
+            gameState.wineUsed = false;
+        }
+        
+        // 检查防具
+        const hasArmor = target.equipment.some(e => e.name === '八卦阵');
+        if (hasArmor) {
+            const judgment = drawCards(1)[0];
+            const isRed = judgment.suit === '♥' || judgment.suit === '♦';
+            gameState.discardPile.push(judgment);
+            
+            if (isRed) {
+                addLog(`${target.name}八卦阵判定成功，当闪使用`);
+                return;
+            }
+        }
+        
+        target.hp -= damage;
+        addLog(`${target.name}受到${damage}点伤害，体力：${target.hp}/${target.maxHp}`);
+        
+        if (target.hp <= 0) {
+            target.hp = 0;
+            target.alive = false;
+            addLog(`${target.name}阵亡！`);
+        }
+    }
+    
+    renderHand();
+    renderGameTable();
+}
+
+// 执行过河拆桥
+function executeDismantlement(player, target, card) {
+    const cardIdx = player.hand.findIndex(c => c.id === card.id);
+    if (cardIdx === -1) return;
+    
+    player.hand.splice(cardIdx, 1);
+    gameState.discardPile.push(card);
+    
+    if (target.hand.length === 0) {
+        addLog(`${target.name}没有牌可拆`);
+        return;
+    }
+    
+    const randomIdx = Math.floor(Math.random() * target.hand.length);
+    const dismantled = target.hand.splice(randomIdx, 1)[0];
+    gameState.discardPile.push(dismantled);
+    
+    addLog(`${player.name}对${target.name}使用过河拆桥，弃置了${dismantled.name}`);
+    renderHand();
+}
+
+// 执行顺手牵羊
+function executeSnatch(player, target, card) {
+    const cardIdx = player.hand.findIndex(c => c.id === card.id);
+    if (cardIdx === -1) return;
+    
+    player.hand.splice(cardIdx, 1);
+    gameState.discardPile.push(card);
+    
+    if (target.hand.length === 0) {
+        addLog(`${target.name}没有牌可牵`);
+        return;
+    }
+    
+    const randomIdx = Math.floor(Math.random() * target.hand.length);
+    const snatched = target.hand.splice(randomIdx, 1)[0];
+    player.hand.push(snatched);
+    
+    addLog(`${player.name}对${target.name}使用顺手牵羊，获得了${snatched.name}`);
+    renderHand();
+}
+
+// 计算攻击距离
+function getAttackRange(player) {
+    let range = 1; // 默认攻击距离
+    
+    const weapon = player.equipment.find(e => e.subtype === 'weapon');
+    if (weapon) {
+        range = weapon.range;
+    }
+    
+    const offensiveHorse = player.equipment.find(e => e.subtype === 'offensive');
+    if (offensiveHorse) {
+        range -= 1;
+    }
+    
+    return Math.max(1, range);
+}
+
+// 计算距离
+function calculateDistance(from, to) {
+    const fromPos = from.position;
+    const toPos = to.position;
+    const playerCount = gameState.players.length;
+    
+    let distance = Math.abs(toPos - fromPos);
+    distance = Math.min(distance, playerCount - distance);
+    
+    // 检查防守马
+    const defensiveHorse = to.equipment.find(e => e.subtype === 'defensive');
+    if (defensiveHorse) {
+        distance += 1;
+    }
+    
+    return distance;
+}
+
+// 渲染游戏桌面
+function renderGameTable() {
+    const table = document.getElementById('gameTable');
+    table.innerHTML = '';
+    
+    gameState.players.forEach((player, index) => {
+        const seat = document.createElement('div');
+        seat.className = `player-seat seat-${index}`;
+        if (index === gameState.currentPlayer) {
+            seat.classList.add('current-turn');
+        }
+        
+        const hpBar = player.hp > 0 
+            ? '<div class="hp-bar">' + '<span class="hp-unit"></span>'.repeat(player.hp) + '</div>'
+            : '<div style="color:#e74c3c;font-size:12px;">阵亡</div>';
+        
+        seat.innerHTML = `
+            <div class="player-card ${!player.alive ? 'dead' : ''}">
+                <div class="player-name">${player.name}</div>
+                <div class="player-faction faction-${player.faction || '群'}">${player.faction || '群'}</div>
+                <div class="player-hp">${hpBar}</div>
+                <div class="player-hand">手牌：${player.hand.length}</div>
+            </div>
+        `;
+        
+        table.appendChild(seat);
+    });
+}
+
+// 渲染手牌
+function renderHand() {
+    const player = gameState.players[gameState.currentPlayer];
+    const handArea = document.getElementById('handArea');
+    const handCards = document.getElementById('handCards');
+    
+    if (!player || !player.alive) {
+        handArea.style.display = 'none';
+        return;
+    }
+    
+    handArea.style.display = 'block';
+    document.getElementById('handCount').textContent = player.hand.length;
+    
+    handCards.innerHTML = player.hand.map(card => {
+        const cardClass = getCardClass(card);
+        const selected = gameState.selectedCard && gameState.selectedCard.id === card.id ? 'selected' : '';
+        
+        return `
+            <div class="game-card ${cardClass} ${selected}" onclick="selectCard('${card.id}')">
+                <span class="card-suit">${card.suit}</span>
+                <span class="card-number">${card.number}</span>
+                <div class="card-name">${card.name}</div>
+            </div>
+        `;
+    }).join('');
+}
+
+function getCardClass(card) {
+    if (BASIC_CARDS[card.name]) {
+        return `card-basic card-${card.name}`;
+    } else if (SCROLL_CARDS[card.name]) {
+        return SCROLL_CARDS[card.name].delay ? 'card-scroll card-delay' : 'card-scroll';
+    } else if (EQUIPMENT_CARDS[card.name]) {
+        const subtype = EQUIPMENT_CARDS[card.name].subtype;
+        return `card-equip card-${subtype}`;
+    }
+    return 'card-basic';
+}
+
+// 选择手牌
+function selectCard(cardId) {
+    const player = gameState.players[gameState.currentPlayer];
+    const card = player.hand.find(c => c.id === cardId);
+    
+    if (gameState.selectedCard && gameState.selectedCard.id === cardId) {
+        gameState.selectedCard = null;
+    } else {
+        gameState.selectedCard = card;
+    }
+    
+    renderHand();
+}
+
+// 更新阶段显示
+function updatePhase(name, desc) {
+    document.getElementById('phaseName').textContent = name;
+    document.getElementById('phaseDesc').textContent = desc;
+}
+
+// 添加日志
+function addLog(message) {
+    const log = document.getElementById('gameLog');
+    const entry = document.createElement('div');
+    entry.className = 'log-entry';
+    entry.textContent = message;
+    log.appendChild(entry);
+    log.scrollTop = log.scrollHeight;
+}
+
+// 结束游戏
+function endGame() {
+    const alivePlayers = gameState.players.filter(p => p.alive);
+    
+    if (alivePlayers.length === 1) {
+        addLog(`🎉 ${alivePlayers[0].name}获胜！`);
+        updatePhase('游戏结束', `${alivePlayers[0].name}获胜`);
+    } else {
+        addLog('游戏平局');
+        updatePhase('游戏结束', '平局');
+    }
+    
+    document.getElementById('playCardBtn').style.display = 'none';
+    document.getElementById('endTurnBtn').style.display = 'none';
+}
+
+// 初始化
+document.addEventListener('DOMContentLoaded', function() {
+    addLog('欢迎来到三国杀真实规则版');
+    addLog('点击"开始游戏"开始对局');
+});
+</script>
+</body>
+</html>
