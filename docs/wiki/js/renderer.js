@@ -93,11 +93,10 @@ export async function renderPage(core, pid) {
     // 渲染侧边栏 infobox
     const sidebar = document.getElementById('sidebar');
     const infobox = document.getElementById('infobox');
-    const sidebarPortrait = document.getElementById('sidebar-portrait');
 
     sidebar.removeAttribute('hidden');
     infobox.removeAttribute('hidden');
-    if (sidebarPortrait) sidebarPortrait.setAttribute('hidden', '');
+
 
     // 构建 infobox 表格
     const rows = [];
