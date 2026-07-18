@@ -97,7 +97,7 @@ export async function renderPage(core, pid) {
 
     sidebar.removeAttribute('hidden');
     infobox.removeAttribute('hidden');
-    sidebarPortrait.setAttribute('hidden', '');
+    if (sidebarPortrait) sidebarPortrait.setAttribute('hidden', '');
 
     // 构建 infobox 表格
     const rows = [];
