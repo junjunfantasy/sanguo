@@ -1,5 +1,6 @@
 /* 页面渲染器 */
 import { resolvePageId } from './registry.js';
+import { parseMarkdown } from './parser.js';
 
 /** 渲染首页 */
 export function renderHome(core) {

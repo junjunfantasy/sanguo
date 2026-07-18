@@ -5,8 +5,9 @@
 """
 import os, re, json, yaml
 
-CHARTS_DIR = '/Users/macbook/AI/sanguo/sanguo-knowledge/characters'
-OUTPUT_JS = '/Users/macbook/AI/sanguo/docs/data/characters.js'
+REPO_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+CHARTS_DIR = os.path.join(REPO_DIR, 'sanguo-knowledge', 'characters')
+OUTPUT_JS = os.path.join(REPO_DIR, 'docs', 'data', 'characters.js')
 FACTION_MAP = {'魏':'魏','蜀':'蜀','吴':'吴','群':'群','汉':'群','晋':'群','董卓':'群'}
 HP_MAP = {
     '吕布':5,'许褚':5,'典韦':5,'关羽':4,'张飞':4,'赵云':4,'马超':4,'黄忠':4,
@@ -90,10 +91,10 @@ results = []
 files = sorted(os.listdir(CHARTS_DIR))
 
 for f in files:
-    if not f.endswith('.md'):
+    if not f.endswith('.md') or f.startswith('._'):
         continue
     name = f.replace('.md', '')
-    content = open(os.path.join(CHARTS_DIR, f)).read()
+    content = open(os.path.join(CHARTS_DIR, f), encoding='utf-8').read()
     fm_match = re.search(r'^---\n(.*?)\n---', content, re.DOTALL)
     if not fm_match:
         continue

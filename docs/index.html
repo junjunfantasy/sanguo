@@ -190,7 +190,7 @@
                         return params.data[5] || '#b8860b';
                     }
                 },
-                data: sorted.map(e => [e.year, Math.random() * 0.6 - 0.3, e.name, e.type, e.desc, e.color]),
+                data: sorted.map((e, i) => [i, Math.random() * 0.6 - 0.3, e.name, e.type, e.desc, e.color]),
                 label: {
                     show: true,
                     position: 'top',
