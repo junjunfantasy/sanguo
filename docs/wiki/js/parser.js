@@ -99,7 +99,7 @@ function protectWikilinks(text) {
   const tokens = [];
   let idx = 0;
   const protectedText = text.replace(WIKILINK_RE, (match, target, label) => {
-    const placeholder = `__WIKILINK_${idx}__`;
+    const placeholder = `\u0000WK${idx}\u0000`;
     tokens.push({
       target: target.trim(),
       label: label ? label.trim() : target.trim(),
