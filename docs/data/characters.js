@@ -94,7 +94,7 @@ const SANGUO_CHARACTERS = [
     tags: ['武将', '东吴名将', '孙吴宗室'],
     desc: '全琮 **基本信息** - **姓名**: 全琮 - **字**: 子璜 - **生卒**: 190年 - 249年 -…',
     hp: 4,
-    skills: [],
+    skills: ['邀名', '矜功'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/全琮'
   },
@@ -108,7 +108,7 @@ const SANGUO_CHARACTERS = [
     tags: ['诸侯', '辽东太守', '辽东王'],
     desc: '公孙度 **基本信息** - **姓名**: 公孙度 - **字**: 升济 - **生卒**: 155年 - 204年…',
     hp: 4,
-    skills: [],
+    skills: ['辽东', '裂土'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/公孙度'
   },
@@ -122,7 +122,7 @@ const SANGUO_CHARACTERS = [
     tags: ['诸侯', '辽东太守', '燕王'],
     desc: '公孙渊 **基本信息** - **姓名**: 公孙渊 - **字**: 文懿 - **生卒**: 200年 - 238年…',
     hp: 4,
-    skills: [],
+    skills: ['绝盟', '称燕'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/公孙渊'
   },
@@ -150,7 +150,7 @@ const SANGUO_CHARACTERS = [
     tags: ['武将', '蜀汉名将', '关羽之子'],
     desc: '关兴 **基本信息** - **姓名**: 关兴 - **字**: 安国 - **生卒**: 200年 - 240年 -…',
     hp: 4,
-    skills: [],
+    skills: ['武继', '奋锐'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/关兴'
   },
@@ -248,7 +248,7 @@ const SANGUO_CHARACTERS = [
     tags: ['皇帝', '东汉灵帝'],
     desc: '刘宏 **基本信息** - **姓名**: 刘宏 - **生卒**: 156年 - 189年 - **势力**: [[汉…',
     hp: 4,
-    skills: [],
+    skills: ['卖官', '昏政'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/刘宏'
   },
@@ -276,7 +276,7 @@ const SANGUO_CHARACTERS = [
     tags: ['政治家', '蜀汉重臣', '名士'],
     desc: '刘巴 **基本信息** - **姓名**: 刘巴 - **生卒**: 172年 - 222年 - **势力**: [[蜀…',
     hp: 4,
-    skills: [],
+    skills: ['锻币', '通市'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/刘巴'
   },
@@ -290,7 +290,7 @@ const SANGUO_CHARACTERS = [
     tags: ['谋士', '曹魏重臣', '光武之后'],
     desc: '刘晔 **基本信息** - **姓名**: 刘晔 - **字**: 子扬 - **生卒**: 175年 - 240年 -…',
     hp: 4,
-    skills: [],
+    skills: ['奇佐', '霹雳'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/刘晔'
   },
@@ -304,7 +304,7 @@ const SANGUO_CHARACTERS = [
     tags: ['诸侯', '益州牧', '汉室宗亲'],
     desc: '刘焉 **基本信息** - **姓名**: 刘焉 - **字**: 君郎 - **生卒**: 145年 - 194年 -…',
     hp: 4,
-    skills: [],
+    skills: ['牧州', '立威'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/刘焉'
   },
@@ -318,7 +318,7 @@ const SANGUO_CHARACTERS = [
     tags: ['诸侯', '益州牧', '暗弱'],
     desc: '刘璋 **基本信息** - **姓名**: 刘璋 - **字**: 季玉 - **生卒**: 160年 - 220年 -…',
     hp: 4,
-    skills: [],
+    skills: ['暗弱', '引狼'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/刘璋'
   },
@@ -360,7 +360,7 @@ const SANGUO_CHARACTERS = [
     tags: ['武将', '蜀汉宗室', '忠烈'],
     desc: '刘谌 **基本信息** - **姓名**: 刘谌 - **生卒**: 220年 - 263年 - **势力**: [[蜀…',
     hp: 4,
-    skills: [],
+    skills: ['战绝', '死节'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/刘谌'
   },
@@ -374,7 +374,7 @@ const SANGUO_CHARACTERS = [
     tags: ['皇帝', '东汉少帝'],
     desc: '刘辩 **基本信息** - **姓名**: 刘辩 - **生卒**: 176年 - 190年 - **势力**: [[汉…',
     hp: 4,
-    skills: [],
+    skills: ['废立', '鸩酒'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/刘辩'
   },
@@ -402,7 +402,7 @@ const SANGUO_CHARACTERS = [
     tags: ['政治家', '曹魏司徒', '名士'],
     desc: '华歆 **基本信息** - **姓名**: 华歆 - **字**: 子鱼 - **生卒**: 157年 - 232年 -…',
     hp: 4,
-    skills: [],
+    skills: ['望归', '息兵'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/华歆'
   },
@@ -416,7 +416,7 @@ const SANGUO_CHARACTERS = [
     tags: ['武将', '董卓部将'],
     desc: '华雄 **基本信息** - **姓名**: 华雄 - **生卒**: 155年 - 190年 - **势力**: [[群…',
     hp: 4,
-    skills: [],
+    skills: ['耀武', '斩将'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/华雄'
   },
@@ -430,7 +430,7 @@ const SANGUO_CHARACTERS = [
     tags: ['武将', '学者', '刘备老师'],
     desc: '卢植 **基本信息** - **姓名**: 卢植 - **字**: 子干 - **生卒**: 139年 - 192年 -…',
     hp: 4,
-    skills: [],
+    skills: ['通经', '督学'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/卢植'
   },
@@ -444,7 +444,7 @@ const SANGUO_CHARACTERS = [
     tags: ['政治家', '曹魏重臣', '司马氏', '忠臣'],
     desc: '司马孚 **基本信息** - **姓名**: 司马孚 - **字**: 叔达 - **生卒**: 180年 - 272年…',
     hp: 4,
-    skills: [],
+    skills: ['守正', '全节'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/司马孚'
   },
@@ -458,7 +458,7 @@ const SANGUO_CHARACTERS = [
     tags: ['政治家', '司马氏', '曹魏权臣'],
     desc: '司马师 **基本信息** - **姓名**: 司马师 - **字**: 子元 - **生卒**: 208年 - 255年…',
     hp: 4,
-    skills: [],
+    skills: ['刚厉', '景略'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/司马师'
   },
@@ -486,7 +486,7 @@ const SANGUO_CHARACTERS = [
     tags: ['政治家', '晋王', '灭蜀'],
     desc: '司马昭 **基本信息** - **姓名**: 司马昭 - **字**: 子上 - **生卒**: 211年 - 265年…',
     hp: 4,
-    skills: [],
+    skills: ['筹策', '睥睨'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/司马昭'
   },
@@ -500,7 +500,7 @@ const SANGUO_CHARACTERS = [
     tags: ['政治家', '司马氏', '曹魏重臣'],
     desc: '司马朗 **基本信息** - **姓名**: 司马朗 - **生卒**: 171年 - 217年 - **势力**: […',
     hp: 4,
-    skills: [],
+    skills: ['郡望', '施仁'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/司马朗'
   },
@@ -514,7 +514,7 @@ const SANGUO_CHARACTERS = [
     tags: ['皇帝', '晋武帝', '统一三国'],
     desc: '司马炎 **基本信息** - **姓名**: 司马炎 - **字**: 安世 - **生卒**: 236年 - 290年…',
     hp: 4,
-    skills: [],
+    skills: ['受禅', '一统'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/司马炎'
   },
@@ -528,7 +528,7 @@ const SANGUO_CHARACTERS = [
     tags: ['文臣', '蜀汉重臣', '学者'],
     desc: '向朗 **基本信息** - **姓名**: 向朗 - **生卒**: 168年 - 247年 - **势力**: [[蜀…',
     hp: 4,
-    skills: [],
+    skills: ['藏书', '好学'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/向朗'
   },
@@ -542,7 +542,7 @@ const SANGUO_CHARACTERS = [
     tags: ['武将', '东吴名将', '交州平定'],
     desc: '吕岱 **基本信息** - **姓名**: 吕岱 - **字**: 定公 - **生卒**: 161年 - 256年 -…',
     hp: 4,
-    skills: [],
+    skills: ['平南', '清厉'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/吕岱'
   },
@@ -584,7 +584,7 @@ const SANGUO_CHARACTERS = [
     tags: ['武将', '蜀汉名将', '国舅'],
     desc: '吴懿 **基本信息** - **姓名**: 吴懿 - **字**: 子远 - **生卒**: 175年 - 237年 -…',
     hp: 4,
-    skills: [],
+    skills: ['奔袭', '邀战'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/吴懿'
   },
@@ -598,7 +598,7 @@ const SANGUO_CHARACTERS = [
     tags: ['武将', '蜀汉名将'],
     desc: '吴班 **基本信息** - **姓名**: 吴班 - **字**: 元雄 - **生卒**: 180年 - 240年 -…',
     hp: 4,
-    skills: [],
+    skills: ['摧锋', '先登'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/吴班'
   },
@@ -654,7 +654,7 @@ const SANGUO_CHARACTERS = [
     tags: ['武将', '东吴名将', '诈降'],
     desc: '周鲂 **基本信息** - **姓名**: 周鲂 - **生卒**: 200年 - 250年 - **势力**: [[吴…',
     hp: 4,
-    skills: [],
+    skills: ['断发', '诱敌'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/周鲂'
   },
@@ -696,7 +696,7 @@ const SANGUO_CHARACTERS = [
     tags: ['女性', '美女', '孙策之妻'],
     desc: '大乔 **基本信息** - **姓名**: 大乔 - **字**: 大乔 - **生卒**: 180年 - 200年 -…',
     hp: 4,
-    skills: [],
+    skills: ['国色', '流离'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/大乔'
   },
@@ -738,7 +738,7 @@ const SANGUO_CHARACTERS = [
     tags: ['名士', '建安七子', '北海相'],
     desc: '孔融 **基本信息** - **姓名**: 孔融 - **生卒**: 153年 - 208年 - **势力**: [[汉…',
     hp: 4,
-    skills: [],
+    skills: ['让梨', '名士'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/孔融'
   },
@@ -766,7 +766,7 @@ const SANGUO_CHARACTERS = [
     tags: ['角色', '孙夫人', '刘备之妻'],
     desc: '孙尚香 **基本信息** - **姓名**: 孙尚香 - **字**: 孙仁 - **生卒**: 190年 - 223年…',
     hp: 4,
-    skills: [],
+    skills: ['弓腰', '联姻'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/孙尚香'
   },
@@ -822,7 +822,7 @@ const SANGUO_CHARACTERS = [
     tags: ['谋士', '袁绍部下', '忠臣'],
     desc: '审配 **基本信息** - **姓名**: 审配 - **字**: 正南 - **生卒**: 165年 - 204年 -…',
     hp: 4,
-    skills: [],
+    skills: ['刚直', '死守'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/审配'
   },
@@ -836,7 +836,7 @@ const SANGUO_CHARACTERS = [
     tags: ['女性', '美女', '周瑜之妻'],
     desc: '小乔 **基本信息** - **姓名**: 小乔 - **字**: 小乔 - **生卒**: 182年 - 210年 -…',
     hp: 4,
-    skills: [],
+    skills: ['天香', '红颜'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/小乔'
   },
@@ -892,7 +892,7 @@ const SANGUO_CHARACTERS = [
     tags: ['政治家', '文学家', '学者'],
     desc: '张华 **基本信息** - **姓名**: 张华 - **字**: 茂先 - **生卒**: 232年 - 300年 -…',
     hp: 4,
-    skills: [],
+    skills: ['博物', '推贤'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/张华'
   },
@@ -934,7 +934,7 @@ const SANGUO_CHARACTERS = [
     tags: ['诸侯', '河内太守'],
     desc: '张杨 **基本信息** - **姓名**: 张杨 - **生卒**: 160年 - 198年 - **势力**: [[群…',
     hp: 4,
-    skills: [],
+    skills: ['护友', '中立'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/张杨'
   },
@@ -948,7 +948,7 @@ const SANGUO_CHARACTERS = [
     tags: ['谋士', '刘璋部下', '献图之人'],
     desc: '张松 **基本信息** - **姓名**: 张松 - **生卒**: 165年 - 212年 - **势力**: [[群…',
     hp: 4,
-    skills: [],
+    skills: ['献图', '强识'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/张松'
   },
@@ -962,7 +962,7 @@ const SANGUO_CHARACTERS = [
     tags: ['文臣', '蜀汉重臣', '张飞之子'],
     desc: '张绍 **基本信息** - **姓名**: 张绍 - **字**: [[子义]] - **生卒**: 200年 - 26…',
     hp: 4,
-    skills: [],
+    skills: ['承爵', '求和'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/张绍'
   },
@@ -1018,7 +1018,7 @@ const SANGUO_CHARACTERS = [
     tags: ['宦官', '十常侍'],
     desc: '张让 **基本信息** - **姓名**: 张让 - **生卒**: 145年 - 189年 - **势力**: [[汉…',
     hp: 4,
-    skills: [],
+    skills: ['弄权', '十侍'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/张让'
   },
@@ -1074,7 +1074,7 @@ const SANGUO_CHARACTERS = [
     tags: ['诸侯', '五斗米道', '汉中太守'],
     desc: '张鲁 **基本信息** - **姓名**: 张鲁 - **字**: 公祺 - **生卒**: 160年 - 216年 -…',
     hp: 4,
-    skills: [],
+    skills: ['义舍', '布施'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/张鲁'
   },
@@ -1158,7 +1158,7 @@ const SANGUO_CHARACTERS = [
     tags: ['武将', '猛将', '魏→晋'],
     desc: '文鸯 **基本信息** - **姓名**: 文鸯 - **生卒**: 238年 - 291年 - **势力**: [[魏…',
     hp: 4,
-    skills: [],
+    skills: ['骁勇', '单骑'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/文鸯'
   },
@@ -1200,7 +1200,7 @@ const SANGUO_CHARACTERS = [
     tags: ['武将', '曹魏名将', '大司马'],
     desc: '曹休 **基本信息** - **姓名**: 曹休 - **字**: 文烈 - **生卒**: 170年 - 228年 -…',
     hp: 4,
-    skills: [],
+    skills: ['千驹', '倾袭'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/曹休'
   },
@@ -1242,7 +1242,7 @@ const SANGUO_CHARACTERS = [
     tags: ['武将', '曹魏宗室', '黄须儿', '勇猛'],
     desc: '曹彰 **基本信息** - **姓名**: 曹彰 - **字**: 子文 - **生卒**: 189年 - 223年 -…',
     hp: 4,
-    skills: [],
+    skills: ['虎骑', '将才'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/曹彰'
   },
@@ -1270,7 +1270,7 @@ const SANGUO_CHARACTERS = [
     tags: ['武将', '曹操长子', '孝子'],
     desc: '曹昂 **基本信息** - **姓名**: 曹昂 - **字**: 子脩 - **生卒**: 177年 - 197年 -…',
     hp: 4,
-    skills: [],
+    skills: ['慷慨', '护主'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/曹昂'
   },
@@ -1312,7 +1312,7 @@ const SANGUO_CHARACTERS = [
     tags: ['政治家', '曹魏宗室', '大将军'],
     desc: '曹爽 **基本信息** - **姓名**: 曹爽 - **字**: 昭伯 - **生卒**: 195年 - 249年 -…',
     hp: 4,
-    skills: [],
+    skills: ['托孤', '擅权'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/曹爽'
   },
@@ -1340,7 +1340,7 @@ const SANGUO_CHARACTERS = [
     tags: ['武将', '虎豹骑统领', '曹魏名将'],
     desc: '曹纯 **基本信息** - **姓名**: 曹纯 - **字**: 子和 - **生卒**: 166年 - 210年 -…',
     hp: 4,
-    skills: [],
+    skills: ['虎豹', '缮甲'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/曹纯'
   },
@@ -1354,7 +1354,7 @@ const SANGUO_CHARACTERS = [
     tags: ['武将', '东汉名将', '平定黄巾'],
     desc: '朱儁 **基本信息** - **姓名**: 朱儁 - **字**: 公伟 - **生卒**: 145年 - 195年 -…',
     hp: 4,
-    skills: [],
+    skills: ['讨逆', '平乱'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/朱儁'
   },
@@ -1382,7 +1382,7 @@ const SANGUO_CHARACTERS = [
     tags: ['武将', '东吴名将', '大都督'],
     desc: '朱然 **基本信息** - **姓名**: 朱然 - **字**: 义封 - **生卒**: 182年 - 249年 -…',
     hp: 4,
-    skills: [],
+    skills: ['胆守', '奋战'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/朱然'
   },
@@ -1410,7 +1410,7 @@ const SANGUO_CHARACTERS = [
     tags: ['诸侯', '凉州军阀'],
     desc: '李傕 **基本信息** - **姓名**: 李傕 - **生卒**: 155年 - 198年 - **势力**: [[群…',
     hp: 4,
-    skills: [],
+    skills: ['凶暴', '劫掠'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/李傕'
   },
@@ -1466,7 +1466,7 @@ const SANGUO_CHARACTERS = [
     tags: ['文臣', '蜀汉丞相长史', '诸葛亮部下'],
     desc: '杨仪 **基本信息** - **姓名**: 杨仪 - **字**: 威公 - **生卒**: 189年 - 235年 -…',
     hp: 4,
-    skills: [],
+    skills: ['筹度', '怨望'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/杨仪'
   },
@@ -1480,7 +1480,7 @@ const SANGUO_CHARACTERS = [
     tags: ['文臣', '名士', '曹操主簿'],
     desc: '杨修 **基本信息** - **姓名**: 杨修 - **字**: 德祖 - **生卒**: 175年 - 219年 -…',
     hp: 4,
-    skills: [],
+    skills: ['鸡肋', '才露'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/杨修'
   },
@@ -1494,7 +1494,7 @@ const SANGUO_CHARACTERS = [
     tags: ['政治家', '东吴丞相', '名士'],
     desc: '步骘 **基本信息** - **姓名**: 步骘 - **字**: 子山 - **生卒**: 175年 - 247年 -…',
     hp: 4,
-    skills: [],
+    skills: ['弘德', '定叛'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/步骘'
   },
@@ -1536,7 +1536,7 @@ const SANGUO_CHARACTERS = [
     tags: ['武将', '袁绍部将', '乌巢守将'],
     desc: '淳于琼 **基本信息** - **姓名**: 淳于琼 - **生卒**: 160年 - 200年 - **势力**: […',
     hp: 4,
-    skills: [],
+    skills: ['守仓', '醉酒'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/淳于琼'
   },
@@ -1550,7 +1550,7 @@ const SANGUO_CHARACTERS = [
     tags: ['武将', '曹魏名将', '法家'],
     desc: '满宠 **基本信息** - **姓名**: 满宠 - **字**: 伯宁 - **生卒**: 170年 - 242年 -…',
     hp: 4,
-    skills: [],
+    skills: ['御策', '峻法'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/满宠'
   },
@@ -1564,7 +1564,7 @@ const SANGUO_CHARACTERS = [
     tags: ['武将', '东吴名将'],
     desc: '潘璋 **基本信息** - **姓名**: 潘璋 - **字**: 文珪 - **生卒**: 175年 - 221年 -…',
     hp: 4,
-    skills: [],
+    skills: ['擒龙', '夺刀'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/潘璋'
   },
@@ -1592,7 +1592,7 @@ const SANGUO_CHARACTERS = [
     tags: ['武将', '曹魏名将'],
     desc: '王基 **基本信息** - **姓名**: 王基 - **生卒**: 190年 - 261年 - **势力**: [[魏…',
     hp: 4,
-    skills: [],
+    skills: ['奇制', '进趋'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/王基'
   },
@@ -1620,7 +1620,7 @@ const SANGUO_CHARACTERS = [
     tags: ['武将', '曹魏名将', '政治家'],
     desc: '王昶 **基本信息** - **姓名**: 王昶 - **生卒**: 180年 - 259年 - **势力**: [[魏…',
     hp: 4,
-    skills: [],
+    skills: ['持重', '固边'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/王昶'
   },
@@ -1634,7 +1634,7 @@ const SANGUO_CHARACTERS = [
     tags: ['政治家', '曹魏司徒', '经学家'],
     desc: '王朗 **基本信息** - **姓名**: 王朗 - **字**: 景兴 - **生卒**: 154年 - 228年 -…',
     hp: 4,
-    skills: [],
+    skills: ['鼓舌', '激词'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/王朗'
   },
@@ -1648,7 +1648,7 @@ const SANGUO_CHARACTERS = [
     tags: ['武将', '西晋名将', '灭吴功臣'],
     desc: '王濬 **基本信息** - **姓名**: 王濬 - **字**: 士治 - **生卒**: 206年 - 286年 -…',
     hp: 4,
-    skills: [],
+    skills: ['楼船', '破吴'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/王濬'
   },
@@ -1690,7 +1690,7 @@ const SANGUO_CHARACTERS = [
     tags: ['武将', '曹魏名将', '边防名将'],
     desc: '田豫 **基本信息** - **姓名**: 田豫 - **字**: 国让 - **生卒**: 169年 - 252年 -…',
     hp: 4,
-    skills: [],
+    skills: ['安疆', '奋守'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/田豫'
   },
@@ -1704,7 +1704,7 @@ const SANGUO_CHARACTERS = [
     tags: ['武将', '东汉名将', '平定黄巾'],
     desc: '皇甫嵩 **基本信息** - **姓名**: 皇甫嵩 - **字**: 义真 - **生卒**: 135年 - 195年…',
     hp: 4,
-    skills: [],
+    skills: ['火攻', '整军'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/皇甫嵩'
   },
@@ -1732,7 +1732,7 @@ const SANGUO_CHARACTERS = [
     tags: ['名士', '狂士', '文学家'],
     desc: '祢衡 **基本信息** - **姓名**: 祢衡 - **字**: 正平 - **生卒**: 173年 - 198年 -…',
     hp: 4,
-    skills: [],
+    skills: ['击鼓', '裸衣'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/祢衡'
   },
@@ -1746,7 +1746,7 @@ const SANGUO_CHARACTERS = [
     tags: ['文臣', '蜀汉名士', '辩论家'],
     desc: '秦宓 **基本信息** - **姓名**: 秦宓 - **生卒**: 170年 - 226年 - **势力**: [[蜀…',
     hp: 4,
-    skills: [],
+    skills: ['天辩', '谏征'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/秦宓'
   },
@@ -1788,7 +1788,7 @@ const SANGUO_CHARACTERS = [
     tags: ['谋士', '刘备部下', '说客'],
     desc: '简雍 **基本信息** - **姓名**: 简雍 - **生卒**: 165年 - 215年 - **势力**: [[蜀…',
     hp: 4,
-    skills: [],
+    skills: ['巧说', '纵适'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/简雍'
   },
@@ -1802,7 +1802,7 @@ const SANGUO_CHARACTERS = [
     tags: ['政治家', '蜀汉重臣', '徐州富商'],
     desc: '糜竺 **基本信息** - **姓名**: 糜竺 - **生卒**: 160年 - 221年 - **势力**: [[蜀…',
     hp: 4,
-    skills: [],
+    skills: ['资援', '巨贾'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/糜竺'
   },
@@ -1816,7 +1816,7 @@ const SANGUO_CHARACTERS = [
     tags: ['武将', '蜀汉叛将', '糜竺之弟'],
     desc: '糜芳 **基本信息** - **姓名**: 糜芳 - **生卒**: 170年 - 225年 - **势力**: [[蜀…',
     hp: 4,
-    skills: [],
+    skills: ['背刺', '怯战'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/糜芳'
   },
@@ -1844,7 +1844,7 @@ const SANGUO_CHARACTERS = [
     tags: ['诸侯', '东郡太守', '忠义'],
     desc: '臧洪 **基本信息** - **姓名**: 臧洪 - **生卒**: 160年 - 196年 - **势力**: [[群…',
     hp: 4,
-    skills: [],
+    skills: ['义烈', '杀妾'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/臧洪'
   },
@@ -1900,7 +1900,7 @@ const SANGUO_CHARACTERS = [
     tags: ['武将', '东吴名将'],
     desc: '董袭 **基本信息** - **姓名**: 董袭 - **字**: 元代 - **生卒**: 170年 - 215年 -…',
     hp: 4,
-    skills: [],
+    skills: ['断后', '殉船'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/董袭'
   },
@@ -1914,7 +1914,7 @@ const SANGUO_CHARACTERS = [
     tags: ['谋士', '曹魏重臣', '政治家', '太尉'],
     desc: '蒋济 **基本信息** - **姓名**: 蒋济 - **字**: 子通 - **生卒**: 188年 - 249年 -…',
     hp: 4,
-    skills: [],
+    skills: ['谏诤', '催粮'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/蒋济'
   },
@@ -1942,7 +1942,7 @@ const SANGUO_CHARACTERS = [
     tags: ['女性', '才女', '文学家', '音乐家'],
     desc: '蔡琰 **基本信息** - **姓名**: 蔡琰 - **字**: 文姬 - **生卒**: 177年 - 249年 -…',
     hp: 4,
-    skills: [],
+    skills: ['归汉', '悲歌'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/蔡琰'
   },
@@ -1970,7 +1970,7 @@ const SANGUO_CHARACTERS = [
     tags: ['谋士', '易学家', '东吴名士'],
     desc: '虞翻 **基本信息** - **姓名**: 虞翻 - **字**: 仲翔 - **生卒**: 164年 - 233年 -…',
     hp: 4,
-    skills: [],
+    skills: ['直言', '易理'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/虞翻'
   },
@@ -1984,7 +1984,7 @@ const SANGUO_CHARACTERS = [
     tags: ['诸侯', '袁绍之子'],
     desc: '袁尚 **基本信息** - **姓名**: 袁尚 - **字**: 显甫 - **生卒**: 175年 - 207年 -…',
     hp: 4,
-    skills: [],
+    skills: ['恃宠', '争嗣'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/袁尚'
   },
@@ -1998,7 +1998,7 @@ const SANGUO_CHARACTERS = [
     tags: ['诸侯', '袁绍长子'],
     desc: '袁谭 **基本信息** - **姓名**: 袁谭 - **字**: 显思 - **生卒**: 170年 - 205年 -…',
     hp: 4,
-    skills: [],
+    skills: ['骄兵', '求盟'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/袁谭'
   },
@@ -2012,7 +2012,7 @@ const SANGUO_CHARACTERS = [
     tags: ['政治家', '太傅', '袁绍之叔'],
     desc: '袁隗 **基本信息** - **姓名**: 袁隗 - **生卒**: 140年 - 190年 - **势力**: [[汉…',
     hp: 4,
-    skills: [],
+    skills: ['门阀', '灭族'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/袁隗'
   },
@@ -2026,7 +2026,7 @@ const SANGUO_CHARACTERS = [
     tags: ['谋士', '官渡之战', '叛袁投曹'],
     desc: '许攸 **基本信息** - **姓名**: 许攸 - **字**: 子远 - **生卒**: 160年 - 204年 -…',
     hp: 4,
-    skills: [],
+    skills: ['成略', '恃才'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/许攸'
   },
@@ -2096,7 +2096,7 @@ const SANGUO_CHARACTERS = [
     tags: ['武将', '曹魏名将'],
     desc: '诸葛绪 **基本信息** - **姓名**: 诸葛绪 - **生卒**: 200年 - 270年 - **势力**: […',
     hp: 4,
-    skills: [],
+    skills: ['阴平', '失守'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/诸葛绪'
   },
@@ -2124,7 +2124,7 @@ const SANGUO_CHARACTERS = [
     tags: ['政治家', '诸葛氏', '东吴重臣'],
     desc: '诸葛靓 **基本信息** - **姓名**: 诸葛靓 - **生卒**: 230年 - 280年 - **势力**: […',
     hp: 4,
-    skills: [],
+    skills: ['全节', '不仕'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/诸葛靓'
   },
@@ -2138,7 +2138,7 @@ const SANGUO_CHARACTERS = [
     tags: ['学者', '蜀汉光禄大夫', '劝降'],
     desc: '谯周 **基本信息** - **姓名**: 谯周 - **字**: 允南 - **生卒**: 201年 - 270年 -…',
     hp: 4,
-    skills: [],
+    skills: ['劝降', '仇国'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/谯周'
   },
@@ -2180,7 +2180,7 @@ const SANGUO_CHARACTERS = [
     tags: ['武将', '东吴名将'],
     desc: '贺齐 **基本信息** - **姓名**: 贺齐 - **字**: 公苗 - **生卒**: 170年 - 227年 -…',
     hp: 4,
-    skills: [],
+    skills: ['讨逆', '奋威'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/贺齐'
   },
@@ -2222,7 +2222,7 @@ const SANGUO_CHARACTERS = [
     tags: ['武将', '曹魏名将'],
     desc: '贾逵 **基本信息** - **姓名**: 贾逵 - **生卒**: 174年 - 228年 - **势力**: [[魏…',
     hp: 4,
-    skills: [],
+    skills: ['忠谏', '通漕'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/贾逵'
   },
@@ -2250,7 +2250,7 @@ const SANGUO_CHARACTERS = [
     tags: ['宦官', '十常侍'],
     desc: '赵忠 **基本信息** - **姓名**: 赵忠 - **生卒**: 140年 - 189年 - **势力**: [[汉…',
     hp: 4,
-    skills: [],
+    skills: ['谗言', '敛财'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/赵忠'
   },
@@ -2264,7 +2264,7 @@ const SANGUO_CHARACTERS = [
     tags: ['谋士', '曹魏重臣', '政治家'],
     desc: '辛毗 **基本信息** - **姓名**: 辛毗 - **字**: 佐治 - **生卒**: 170年 - 245年 -…',
     hp: 4,
-    skills: [],
+    skills: ['谏诤', '持节'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/辛毗'
   },
@@ -2292,7 +2292,7 @@ const SANGUO_CHARACTERS = [
     tags: ['政治家', '外交家', '蜀汉重臣'],
     desc: '邓芝 **基本信息** - **姓名**: 邓芝 - **字**: 伯苗 - **生卒**: 178年 - 251年 -…',
     hp: 4,
-    skills: [],
+    skills: ['修好', '殒命'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/邓芝'
   },
@@ -2306,7 +2306,7 @@ const SANGUO_CHARACTERS = [
     tags: ['武将', '曹魏名将', '守城名将'],
     desc: '郝昭 **基本信息** - **姓名**: 郝昭 - **字**: 伯道 - **生卒**: 190年 - 230年 -…',
     hp: 4,
-    skills: [],
+    skills: ['镇骨', '拒降'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/郝昭'
   },
@@ -2334,7 +2334,7 @@ const SANGUO_CHARACTERS = [
     tags: ['诸侯', '凉州军阀'],
     desc: '郭汜 **基本信息** - **姓名**: 郭汜 - **生卒**: 155年 - 197年 - **势力**: [[群…',
     hp: 4,
-    skills: [],
+    skills: ['乱京', '纵兵'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/郭汜'
   },
@@ -2348,7 +2348,7 @@ const SANGUO_CHARACTERS = [
     tags: ['武将', '曹魏名将', '车骑将军'],
     desc: '郭淮 **基本信息** - **姓名**: 郭淮 - **字**: 伯济 - **生卒**: 185年 - 255年 -…',
     hp: 4,
-    skills: [],
+    skills: ['精策', '御敌'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/郭淮'
   },
@@ -2376,7 +2376,7 @@ const SANGUO_CHARACTERS = [
     tags: ['武将', '东吴名将'],
     desc: '钟离牧 **基本信息** - **姓名**: 钟离牧 - **生卒**: 210年 - 270年 - **势力**: […',
     hp: 4,
-    skills: [],
+    skills: ['抚夷', '辟土'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/钟离牧'
   },
@@ -2390,7 +2390,7 @@ const SANGUO_CHARACTERS = [
     tags: ['政治家', '书法家', '曹魏太傅'],
     desc: '钟繇 **基本信息** - **姓名**: 钟繇 - **字**: 元常 - **生卒**: 151年 - 230年 -…',
     hp: 4,
-    skills: [],
+    skills: ['活墨', '佐定'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/钟繇'
   },
@@ -2404,7 +2404,7 @@ const SANGUO_CHARACTERS = [
     tags: ['政治家', '东吴重臣', '陆逊之侄'],
     desc: '陆凯 **基本信息** - **姓名**: 陆凯 - **生卒**: 198年 - 269年 - **势力**: [[吴…',
     hp: 4,
-    skills: [],
+    skills: ['直谏', '贞良'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/陆凯'
   },
@@ -2446,7 +2446,7 @@ const SANGUO_CHARACTERS = [
     tags: ['武将', '蜀汉名将', '白毦兵统领'],
     desc: '陈到 **基本信息** - **姓名**: 陈到 - **字**: 叔至 - **生卒**: 170年 - 230年 -…',
     hp: 4,
-    skills: [],
+    skills: ['白毦', '护主'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/陈到'
   },
@@ -2474,7 +2474,7 @@ const SANGUO_CHARACTERS = [
     tags: ['史学家', '三国志作者'],
     desc: '陈寿 **基本信息** - **姓名**: 陈寿 - **字**: 承祚 - **生卒**: 233年 - 297年 -…',
     hp: 4,
-    skills: [],
+    skills: ['秉笔', '直书'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/陈寿'
   },
@@ -2488,7 +2488,7 @@ const SANGUO_CHARACTERS = [
     tags: ['政治家', '曹魏重臣', '九品中正制', '法学家'],
     desc: '陈群 **基本信息** - **姓名**: 陈群 - **字**: 长文 - **生卒**: 166年 - 236年 -…',
     hp: 4,
-    skills: [],
+    skills: ['定品', '法恩'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/陈群'
   },
@@ -2502,7 +2502,7 @@ const SANGUO_CHARACTERS = [
     tags: ['诸侯', '徐州牧'],
     desc: '陶谦 **基本信息** - **姓名**: 陶谦 - **字**: 恭祖 - **生卒**: 132年 - 194年 -…',
     hp: 4,
-    skills: [],
+    skills: ['让贤', '仁政'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/陶谦'
   },
@@ -2516,7 +2516,7 @@ const SANGUO_CHARACTERS = [
     tags: ['武将', '蜀汉名将', '守城名将'],
     desc: '霍峻 **基本信息** - **姓名**: 霍峻 - **字**: 仲邈 - **生卒**: 177年 - 216年 -…',
     hp: 4,
-    skills: [],
+    skills: ['镇关', '守城'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/霍峻'
   },
@@ -2544,7 +2544,7 @@ const SANGUO_CHARACTERS = [
     tags: ['诸侯', '西凉军阀'],
     desc: '韩遂 **基本信息** - **姓名**: 韩遂 - **字**: 文约 - **生卒**: 140年 - 215年 -…',
     hp: 4,
-    skills: [],
+    skills: ['羌合', '叛离'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/韩遂'
   },
@@ -2600,7 +2600,7 @@ const SANGUO_CHARACTERS = [
     tags: ['武将', '蜀汉名将', '南中平定'],
     desc: '马忠 **基本信息** - **姓名**: 马忠 - **字**: 德信 - **生卒**: 185年 - 249年 -…',
     hp: 4,
-    skills: [],
+    skills: ['抚南', '诚抚'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/马忠'
   },
@@ -2614,7 +2614,7 @@ const SANGUO_CHARACTERS = [
     tags: ['诸侯', '西凉军阀', '马超之父'],
     desc: '马腾 **基本信息** - **姓名**: 马腾 - **字**: 寿成 - **生卒**: 150年 - 212年 -…',
     hp: 4,
-    skills: [],
+    skills: ['西征', '奉召'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/马腾'
   },
@@ -2712,7 +2712,7 @@ const SANGUO_CHARACTERS = [
     tags: ['武将', '济北相', '曹操盟友'],
     desc: '鲍信 **基本信息** - **姓名**: 鲍信 - **生卒**: 151年 - 192年 - **势力**: [[群…',
     hp: 4,
-    skills: [],
+    skills: ['识鉴', '赴义'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/鲍信'
   },
@@ -2726,7 +2726,7 @@ const SANGUO_CHARACTERS = [
     tags: ['武将', '袁绍部将', '界桥之战'],
     desc: '麴义 **基本信息** - **姓名**: 麴义 - **生卒**: 155年 - 195年 - **势力**: [[群…',
     hp: 4,
-    skills: [],
+    skills: ['先登', '强弩'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/麴义'
   },
@@ -2768,7 +2768,7 @@ const SANGUO_CHARACTERS = [
     tags: ['武将', '谋士', '蜀汉→曹魏'],
     desc: '黄权 **基本信息** - **姓名**: 黄权 - **字**: 公衡 - **生卒**: 170年 - 240年 -…',
     hp: 4,
-    skills: [],
+    skills: ['远见', '北望'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/黄权'
   },
@@ -2796,7 +2796,7 @@ const SANGUO_CHARACTERS = [
     tags: ['武将', '江夏太守', '刘表部下'],
     desc: '黄祖 **基本信息** - **姓名**: 黄祖 - **字**: 黄祖 - **生卒**: 145年 - 208年 -…',
     hp: 4,
-    skills: [],
+    skills: ['阻江', '强射'],
     mastery: { strength: 5, intelligence: 5, political: 5 },
     obsidian: 'characters/黄祖'
   },
